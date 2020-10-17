@@ -47,7 +47,7 @@ const db = {
         {
           id: 6,
           name: 'Cody',
-          history: [2, 3],
+          history: [2, 2],
           active: true,
         },
         {
@@ -78,12 +78,7 @@ const db = {
           date_created: 1602631659,
           group_size: 2,
           handle_unevenness: 'many small', // "many large", "one large", "one small",
-          groups: [
-            [1, 3],
-            [0, 2],
-            [4, 5],
-            [6, 7, 7, 7, 7, 7],
-          ],
+          groups: [[1, 3], [0, 2], [4, 5, 6], [7]],
         },
       ],
     },

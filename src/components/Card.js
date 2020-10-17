@@ -3,6 +3,9 @@ import { css, jsx } from '@emotion/core';
 
 const Card = (props) => {
   const cardCss = css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     width: 150px;
     padding: 1rem;
     margin: 1rem;
