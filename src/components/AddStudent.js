@@ -1,10 +1,13 @@
 /** @jsx jsx */
+import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { Modal } from 'react-responsive-modal';
 import { colors } from '../constants/styles';
 import 'react-responsive-modal/styles.css';
 
-const AddStudent = ({ open, setOpen }) => {
+const AddStudent = ({ open, setOpen, addStudent }) => {
+  const [names, setNames] = useState('');
+
   const textInputCss = css`
     display: block;
     margin-bottom: 1rem;
@@ -50,6 +53,13 @@ const AddStudent = ({ open, setOpen }) => {
     }
   `;
 
+  const handleSubmit = (e) => {
+    addStudent(names); // Add student to section
+    setNames(''); // Empty the data in the list
+    setOpen(false); // Close modal
+    e.preventDefault();
+  };
+
   return (
     <Modal
       styles={{
@@ -65,9 +75,11 @@ const AddStudent = ({ open, setOpen }) => {
           You can add multiple students at once by separating their names with
           commas.
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <textarea
             name="students"
+            value={names}
+            onChange={(e) => setNames(e.target.value)}
             rows="4"
             cols="60"
             css={textInputCss}

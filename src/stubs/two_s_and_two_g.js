@@ -18,7 +18,7 @@ const db = {
           id: 1,
           name: 'Hannah',
           history: [0, 0],
-          active: true,
+          active: false,
         },
         {
           id: 2,
@@ -58,7 +58,7 @@ const db = {
         },
       ],
       // History of groupings
-      iterations: [
+      generations: [
         {
           id: 0,
           active: true,

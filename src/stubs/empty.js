@@ -6,7 +6,7 @@ const db = {
       disallowed_pairings: [],
       students: [],
       // History of groupings
-      iterations: [],
+      generations: [],
     },
   ],
 };
