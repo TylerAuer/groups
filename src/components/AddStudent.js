@@ -5,7 +5,7 @@ import { Modal } from 'react-responsive-modal';
 import { colors } from '../constants/styles';
 import 'react-responsive-modal/styles.css';
 
-const AddStudent = ({ open, setOpen, addStudent }) => {
+const AddStudent = ({ open, setOpen, addStudents }) => {
   const [names, setNames] = useState('');
 
   const textInputCss = css`
@@ -54,10 +54,11 @@ const AddStudent = ({ open, setOpen, addStudent }) => {
   `;
 
   const handleSubmit = (e) => {
-    addStudent(names); // Add student to section
+    e.preventDefault();
+    const nameList = names.split(/[\n,]/);
+    addStudents(nameList);
     setNames(''); // Empty the data in the list
     setOpen(false); // Close modal
-    e.preventDefault();
   };
 
   return (
@@ -72,8 +73,8 @@ const AddStudent = ({ open, setOpen, addStudent }) => {
       <h2>Add Students</h2>
       <div>
         <p>
-          You can add multiple students at once by separating their names with
-          commas.
+          You can add multiple students at once by putting each name on a new
+          line.
         </p>
         <form onSubmit={handleSubmit}>
           <textarea

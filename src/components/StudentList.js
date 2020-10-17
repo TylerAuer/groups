@@ -1,12 +1,46 @@
 import React, { useState } from 'react';
+import { studentState } from '../recoil/student';
+import { useRecoilState } from 'recoil';
 import Bar from './Bar';
 import EditBtn from './buttons/EditBtn';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import AddBtn from './buttons/AddBtn';
 import AddStudent from './AddStudent';
 
-const StudentList = ({ students, addStudent, deactivateStudent }) => {
+const StudentList = () => {
+  const [students, setStudents] = useRecoilState(studentState);
   const [addModal, setAddModal] = useState(false);
+
+  const addStudents = (namesArray) => {
+    let id = students.length;
+
+    // Populate history array with nulls
+    const priorGens = (students[0] && students[0].history.length) || 0;
+    const history = new Array(priorGens).fill(null);
+
+    const cleanedNames = namesArray
+      .map((name) => name.trim())
+      .filter((name) => name.length > 0);
+
+    const newStudents = cleanedNames.map((name) => ({
+      id: id++,
+      name: name,
+      history,
+      active: true,
+    }));
+
+    setStudents([...students, ...newStudents]);
+  };
+
+  const toggleStudentActive = (id) => {
+    const student = { ...students[id] }; // Grab and copy the student
+    student.active = !student.active; // Toggle their activeness
+
+    const modifiedStudents = [...students]; // Make copy of state
+    modifiedStudents[id] = student; // replace student with new one
+
+    setStudents(modifiedStudents); // dispatch change to recoil
+  };
 
   return (
     <section id="student-list">
@@ -17,20 +51,20 @@ const StudentList = ({ students, addStudent, deactivateStudent }) => {
       <AddStudent
         open={addModal}
         setOpen={setAddModal}
-        addStudent={addStudent}
+        addStudents={addStudents}
       />
       {students
         .filter((s) => s.active) // Hide inactive students
-        .map((s) => {
+        .map((s, index) => {
           return (
             <Bar key={s.id}>
               <div>
-                {s.id + 1} - {s.name}
+                {index + 1} {s.name}
                 <EditBtn />
               </div>
               <div>
                 <TextOnlyBtn
-                  onClick={() => deactivateStudent(s.id)}
+                  onClick={() => toggleStudentActive(s.id)}
                   text="Deactivate"
                 />
               </div>
