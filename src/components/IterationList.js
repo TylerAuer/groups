@@ -15,9 +15,13 @@ const IterationList = ({ setShownIter, iterations }) => {
 
         return (
           <Bar key={g.id}>
-            <div>Generated {date}</div>
             <div>
-              <TextOnlyBtn onClick={() => setShownIter(g.id)} text="Groups" />
+              <TextOnlyBtn
+                onClick={() => setShownIter(g.id)}
+                text={`See Generation from ${date}`}
+              />
+            </div>
+            <div>
               <TextOnlyBtn onClick={null} text="Delete" />
             </div>
           </Bar>

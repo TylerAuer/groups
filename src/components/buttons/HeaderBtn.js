@@ -2,16 +2,21 @@
 import { css, jsx } from '@emotion/core';
 
 const btnCss = css`
+  padding: 5px 1rem;
   background-color: white;
-  border: none;
-  font-size: 1.2rem;
-  padding: 0.25rem;
   outline: none;
+  border: none;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+
+  &:not(:last-of-type) {
+    margin-right: 0.5rem;
+  }
 
   &:hover,
   &:focus {
-    color: blue;
     cursor: pointer;
+    color: blue;
   }
 
   &:active {
@@ -19,7 +24,7 @@ const btnCss = css`
   }
 `;
 
-const ControlBtn = ({ text, onClick }) => {
+const HeaderBtn = ({ text, onClick }) => {
   return (
     <button css={btnCss} onClick={onClick}>
       {text}
@@ -27,4 +32,4 @@ const ControlBtn = ({ text, onClick }) => {
   );
 };
 
-export default ControlBtn;
+export default HeaderBtn;
