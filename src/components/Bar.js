@@ -5,6 +5,7 @@ import { css, jsx } from '@emotion/core';
 const barCss = css`
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 
   border: 2px solid grey;
   border-radius: 5px;
