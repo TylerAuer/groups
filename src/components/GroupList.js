@@ -1,20 +1,12 @@
 /** @jsx jsx */
 import React from 'react';
 import { css, jsx } from '@emotion/core';
+import Card from './Card';
 
 const containerCss = css`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-`;
-
-const groupCss = css`
-  width: 150px;
-  padding: 1rem;
-  margin: 1rem;
-  border: 2px solid black;
-  border-radius: 5px;
-  text-align: center;
 `;
 
 const studentCss = css`
@@ -33,7 +25,7 @@ const GroupList = ({ groups, students }) => {
       <div css={containerCss}>
         {groups.map((group) => {
           return (
-            <div css={groupCss} key={group}>
+            <Card key={group}>
               {group.map((student) => {
                 return (
                   <div css={studentCss} key={student}>
@@ -41,7 +33,7 @@ const GroupList = ({ groups, students }) => {
                   </div>
                 );
               })}
-            </div>
+            </Card>
           );
         })}
       </div>
