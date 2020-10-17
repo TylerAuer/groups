@@ -6,6 +6,7 @@ const headerCss = css`
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-bottom: 3rem;
 `;
 
 const titleCss = css`
@@ -29,9 +30,10 @@ const Header = () => {
     <header css={headerCss}>
       <div>
         <h1 css={titleCss}>Group Us</h1>
-        <div css={subtitleCss}>Generate random, weighted groups</div>
+        <div css={subtitleCss}>Smart random groupings</div>
       </div>
       <div css={rightCss}>
+        <button>About</button>
         <button>Sign In</button>
       </div>
     </header>

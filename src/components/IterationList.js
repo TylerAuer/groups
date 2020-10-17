@@ -3,11 +3,11 @@ import Bar from './Bar';
 import { formatRelative } from 'date-fns';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
-const GroupingList = ({ groupings }) => {
+const IterationList = ({ setShownIter, iterations }) => {
   return (
     <section id="list-of-groupings">
-      <h2>Groupings</h2>
-      {groupings.map((g) => {
+      <h2>Generations</h2>
+      {iterations.map((g) => {
         const date = formatRelative(
           new Date(g.date_created * 1000),
           new Date()
@@ -17,7 +17,7 @@ const GroupingList = ({ groupings }) => {
           <Bar key={g.id}>
             <div>Generated {date}</div>
             <div>
-              <TextOnlyBtn onClick={null} text="Groups" />
+              <TextOnlyBtn onClick={() => setShownIter(g.id)} text="Groups" />
               <TextOnlyBtn onClick={null} text="Delete" />
             </div>
           </Bar>
@@ -27,4 +27,4 @@ const GroupingList = ({ groupings }) => {
   );
 };
 
-export default GroupingList;
+export default IterationList;

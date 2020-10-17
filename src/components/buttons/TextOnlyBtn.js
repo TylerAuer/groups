@@ -15,7 +15,7 @@ const btnCss = css`
   }
 `;
 
-const TextOnlyBtn = ({ text, onClick }) => {
+const ControlBtn = ({ text, onClick }) => {
   return (
     <button css={btnCss} onClick={onClick}>
       {text}
@@ -23,4 +23,4 @@ const TextOnlyBtn = ({ text, onClick }) => {
   );
 };
 
-export default TextOnlyBtn;
+export default ControlBtn;

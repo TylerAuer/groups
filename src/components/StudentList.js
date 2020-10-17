@@ -4,7 +4,7 @@ import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const StudentList = ({ students }) => {
   return (
-    <section id="list-of-groupings">
+    <section id="student-list">
       <h2>Students in Section</h2>
       {students.map((s) => {
         return (
