@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import LargeBtn from './buttons/LargeBtn';
-import EditIcon from './EditIcon';
+import EditBtn from './buttons/EditBtn';
 
 const Controls = ({ title }) => {
   const [sectionName, setSectionname] = useState({ title });
@@ -20,7 +20,7 @@ const Controls = ({ title }) => {
     <section id="controls">
       <h2 css={titleCss}>
         {title}
-        <EditIcon />
+        <EditBtn />
       </h2>
 
       <div css={btnListCss}>
