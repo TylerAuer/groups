@@ -1,6 +1,7 @@
 import React from 'react';
 import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
+import EditIcon from './EditIcon';
 
 const StudentList = ({ students }) => {
   return (
@@ -11,6 +12,7 @@ const StudentList = ({ students }) => {
           <Bar key={s.id}>
             <div>
               {s.id + 1} - {s.name}
+              <EditIcon />
             </div>
             <div>
               <TextOnlyBtn onClick={null} text="Delete" />

@@ -1,8 +1,12 @@
 /** @jsx jsx */
+import React, { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import LargeBtn from './buttons/LargeBtn';
+import EditIcon from './EditIcon';
 
 const Controls = ({ title }) => {
+  const [sectionName, setSectionname] = useState({ title });
+
   const titleCss = css`
     text-align: center;
   `;
@@ -14,7 +18,11 @@ const Controls = ({ title }) => {
 
   return (
     <section id="controls">
-      <h2 css={titleCss}>{title}</h2>
+      <h2 css={titleCss}>
+        {title}
+        <EditIcon />
+      </h2>
+
       <div css={btnListCss}>
         <LargeBtn text="Generate" onClick={null} />
       </div>
