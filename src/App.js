@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import GroupingList from './components/GroupingList';
+import StudentList from './components/StudentList';
+
 import './App.css';
 
+import mock from './grouping_algorithm/mock_data';
+
 function App() {
+  const [data, setData] = useState(mock);
+  const [sectionId, setSectionId] = useState(0);
+
+  const students = data.sections[sectionId].students;
+  const groupings = data.sections[sectionId].groupings;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <StudentList students={students} />
+      <GroupingList groupings={groupings} />
     </div>
   );
 }

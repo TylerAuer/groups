@@ -20,3 +20,6 @@ An app for randomly generating groups.
    - Show how many times students have been together in 2D array
 5. **Easy importing**
    - Make it easy to import student lists from other sources
+6. **Other Features**
+   - Exclude a student from next grouping
+   - See probabilities of students being grouped together
