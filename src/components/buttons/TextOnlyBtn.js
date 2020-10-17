@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { colors } from '../../constants/styles';
 
 const ControlBtn = ({ text, onClick }) => {
   const btnCss = css`
@@ -11,7 +12,7 @@ const ControlBtn = ({ text, onClick }) => {
 
     &:hover,
     &:focus {
-      color: blue;
+      color: ${colors.primary};
       cursor: pointer;
     }
 

@@ -2,15 +2,21 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../../constants/styles';
 
-const LargeBtn = ({ text, onClick }) => {
+const AddBtn = ({ text, onClick }) => {
   const btnCss = css`
-    padding: 0.75rem 1rem;
-    background-color: white;
-    color: ${colors.secondary};
+    position: relative;
+    top: 3px;
+    display: inline-block;
+    padding: 0;
+
+    margin-left: 0.5rem;
+
     border: 2px solid ${colors.secondary};
-    border-radius: 5px;
     outline: none;
-    font-size: 1.2rem;
+    border-radius: 50%;
+
+    color: ${colors.secondary};
+    background-color: white;
     transition: all 0.2s ease-in-out;
 
     &:hover,
@@ -27,11 +33,19 @@ const LargeBtn = ({ text, onClick }) => {
     }
   `;
 
+  const circleCss = css`
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 1.8rem;
+  `;
+
   return (
     <button css={btnCss} onClick={onClick}>
-      {text}
+      <div css={circleCss}>+</div>
     </button>
   );
 };
 
-export default LargeBtn;
+export default AddBtn;

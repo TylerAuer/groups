@@ -7,10 +7,11 @@ import GroupList from './components/GroupList';
 
 import './App.css';
 
-import mock from './grouping_algorithm/mock_data';
+import stubWithData from './stubs/two_s_and_two_g';
+import stubEmpty from './stubs/empty';
 
 function App() {
-  const [data, setData] = useState(mock);
+  const [data, setData] = useState(stubEmpty);
   const [section, setSection] = useState(0);
   const [generation, setGeneration] = useState(0);
 

@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import React, { useState } from 'react';
 import { css, jsx } from '@emotion/core';
-import LargeBtn from './buttons/LargeBtn';
 import EditBtn from './buttons/EditBtn';
 
 const Controls = ({ title }) => {
@@ -9,11 +8,7 @@ const Controls = ({ title }) => {
 
   const titleCss = css`
     text-align: center;
-  `;
-
-  const btnListCss = css`
-    display: flex;
-    justify-content: center;
+    font-size: 2rem;
   `;
 
   return (
@@ -22,10 +17,6 @@ const Controls = ({ title }) => {
         {title}
         <EditBtn />
       </h2>
-
-      <div css={btnListCss}>
-        <LargeBtn text="Generate" onClick={null} />
-      </div>
     </section>
   );
 };
