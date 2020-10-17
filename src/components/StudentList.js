@@ -2,6 +2,7 @@ import React from 'react';
 import Bar from './Bar';
 import EditBtn from './buttons/EditBtn';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
+import AddEntryBtn from './buttons/AddEntryBtn';
 
 const StudentList = ({ students }) => {
   return (
@@ -20,6 +21,7 @@ const StudentList = ({ students }) => {
           </Bar>
         );
       })}
+      <AddEntryBtn text="Add Student" onClick={null} />
     </section>
   );
 };
