@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import React, { useState } from 'react';
+import { activeSectionName } from '../recoil/section';
+import { useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/core';
 import EditBtn from './buttons/EditBtn';
 
-const Controls = ({ title }) => {
-  const [sectionName, setSectionname] = useState({ title });
+const Controls = () => {
+  const title = useRecoilValue(activeSectionName);
 
   const titleCss = css`
     text-align: center;
