@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
-import Bar from './Bar';
+import { generationState, activeGenerationId } from '../recoil/generation';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { formatRelative } from 'date-fns';
+import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import AddBtn from './buttons/AddBtn';
 import AddGeneration from './AddGeneration';
 
-const GenerationList = ({ setGeneration, generations }) => {
-  const [addGeneration, setAddGeneration] = useState(false);
+const GenerationList = () => {
+  const [generations, setGenerations] = useRecoilState(generationState);
+  const setActiveGenerationId = useSetRecoilState(activeGenerationId);
+  const [addModal, setAddModal] = useState(false);
 
   return (
     <section id="list-of-groupings">
       <h2>
         Generations
-        <AddBtn text="Add Student" onClick={() => setAddGeneration(true)} />
+        <AddBtn text="Add Student" onClick={() => setAddModal(true)} />
       </h2>
-      <AddGeneration open={addGeneration} setOpen={setAddGeneration} />
+      <AddGeneration open={addModal} setOpen={setAddModal} />
       {generations.map((g) => {
         const date = formatRelative(
           new Date(g.date_created * 1000),
@@ -25,7 +29,7 @@ const GenerationList = ({ setGeneration, generations }) => {
           <Bar key={g.id}>
             <div>
               <TextOnlyBtn
-                onClick={() => setGeneration(g.id)}
+                onClick={() => setActiveGenerationId(g.id)}
                 text={`See Generation from ${date}`}
               />
             </div>

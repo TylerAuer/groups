@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { Modal } from 'react-responsive-modal';
-import { colors } from '../constants/styles';
+// import { colors } from '../constants/styles';
 import 'react-responsive-modal/styles.css';
 
 const AddGeneration = ({ open, setOpen }) => {

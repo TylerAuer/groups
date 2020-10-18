@@ -1,9 +1,18 @@
 /** @jsx jsx */
-import React from 'react';
 import { css, jsx } from '@emotion/core';
+import { useRecoilValue } from 'recoil';
+import { activeGroups } from '../recoil/generation';
+import { studentState } from '../recoil/student';
 import Card from './Card';
 
-const GroupList = ({ groups, students }) => {
+const GroupList = () => {
+  const groups = useRecoilValue(activeGroups);
+  const students = useRecoilValue(studentState);
+
+  if (!groups) {
+    return null;
+  }
+
   const containerCss = css`
     display: flex;
     flex-wrap: wrap;
@@ -14,10 +23,6 @@ const GroupList = ({ groups, students }) => {
     margin-bottom: 5px;
     font-size: 1.2rem;
   `;
-
-  if (!groups) {
-    return null;
-  }
 
   return (
     <section id="present-group">

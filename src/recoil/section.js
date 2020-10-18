@@ -22,7 +22,7 @@ export const activeSectionName = selector({
     const list = get(sectionList);
 
     const { name } = list[id];
-    console.log(name);
+
     return name;
   },
 });

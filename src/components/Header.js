@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import { css, jsx } from '@emotion/core';
 import HeaderBtn from './buttons/HeaderBtn';
 
@@ -31,7 +30,7 @@ const Header = () => {
     <header css={headerCss}>
       <div>
         <h1 css={titleCss}>Group Us</h1>
-        <div css={subtitleCss}>Smart random groupings</div>
+        <div css={subtitleCss}>Smart, random groupings</div>
       </div>
       <div css={rightCss}>
         <HeaderBtn text="About" onClick={null} />

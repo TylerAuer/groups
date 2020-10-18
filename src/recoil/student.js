@@ -19,6 +19,12 @@ const testStub = [
     history: [],
     active: true,
   },
+  {
+    name: 'Avery',
+    id: 3,
+    history: [],
+    active: true,
+  },
 ];
 
 export const studentState = atom({
