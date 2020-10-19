@@ -1,16 +1,16 @@
 import { atom, selector } from 'recoil';
 
 export const EXTRAS_OPTIONS = {
-  ONE_LARGE: {
+  ONE_LARGER: {
     name: 'One larger',
-    desc: 'One larger group with all the extras',
+    desc: 'Extras are all added to the same group',
   },
-  MANY_LARGER: {
-    name: 'Many larger',
-    desc: 'Many groups may be 1 student larger',
+  SPLIT_ACROSS: {
+    name: 'Split across',
+    desc: 'Extras are split across groups',
   },
-  EXTRA_GROUP: {
-    name: 'Extra group',
+  ONE_SMALLER: {
+    name: 'One smaller',
     desc: 'Extras form their own smaller group',
   },
 };
@@ -21,7 +21,8 @@ const testStub = [
     active: true,
     date_created: 1602888920,
     group_size: 3,
-    handle_unevenness: 'one small',
+    students: 4,
+    extras: 'ONE_SMALLER',
     groups: [[0, 1, 2], [3]],
   },
   {
@@ -29,7 +30,8 @@ const testStub = [
     active: true,
     date_created: 1602631659,
     group_size: 2,
-    handle_unevenness: 'many large',
+    students: 4,
+    extras: 'ONE_LARGER',
     groups: [
       [0, 2],
       [1, 3],
@@ -55,7 +57,7 @@ export const groupSizeSetting = atom({
 
 export const extrasSetting = atom({
   key: 'extrasSetting',
-  default: EXTRAS_OPTIONS.MANY_LARGER,
+  default: EXTRAS_OPTIONS.SPLIT_ACROSS,
 });
 
 // SELECTORS
