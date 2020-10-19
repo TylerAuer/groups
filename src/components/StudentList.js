@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
+import { useState } from 'react';
 import { studentState } from '../recoil/student';
 import { useRecoilState } from 'recoil';
 import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
-import AddBtn from './buttons/AddBtn';
+import ControlBtn from './buttons/ControlBtn';
 import AddStudent from './AddStudent';
 
 const StudentList = () => {
   const [students, setStudents] = useRecoilState(studentState);
   const [addModal, setAddModal] = useState(false);
+
+  const h2Css = css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `;
 
   const addStudents = (namesArray) => {
     let id = students.length;
@@ -38,9 +46,9 @@ const StudentList = () => {
 
   return (
     <section id="student-list">
-      <h2>
+      <h2 css={h2Css}>
         Students
-        <AddBtn text="Add Student" onClick={() => setAddModal(true)} />
+        <ControlBtn text="Add" onClick={() => setAddModal(true)} />
       </h2>
       <AddStudent
         open={addModal}

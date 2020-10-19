@@ -17,7 +17,7 @@ function App() {
         <GroupList />
         <GenerationList />
         <StudentList />
-        <Relations />
+        {/* <Relations /> */}
       </div>
     </RecoilRoot>
   );
