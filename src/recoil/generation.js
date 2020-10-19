@@ -28,7 +28,7 @@ const testStub = [
 // ATOMS
 export const generationState = atom({
   key: 'generationState',
-  default: testStub,
+  default: [],
 });
 
 export const activeGenerationId = atom({

@@ -7,7 +7,7 @@ export default function setGroupSizes(
 ) {
   let groupSizes = [];
 
-  while (count >= groupSize) {
+  while (count >= groupSize && count > 0) {
     groupSizes.push(groupSize);
     count -= groupSize;
   }
