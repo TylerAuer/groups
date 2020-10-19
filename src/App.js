@@ -5,6 +5,7 @@ import SectionTitle from './components/SectionTitle';
 import GroupList from './components/GroupList';
 import StudentList from './components/StudentList';
 import GenerationList from './components/GenerationList';
+import Relations from './components/Relations';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <GroupList />
         <GenerationList />
         <StudentList />
+        <Relations />
       </div>
     </RecoilRoot>
   );
