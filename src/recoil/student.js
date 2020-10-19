@@ -1,3 +1,4 @@
+import { selector } from 'recoil';
 import { atom } from 'recoil';
 
 const testStub = [
@@ -27,7 +28,16 @@ const testStub = [
   },
 ];
 
+// Atoms
 export const studentState = atom({
   key: 'studentState',
   default: testStub,
+});
+
+// Count of students
+export const countOfStudents = selector({
+  key: 'countOfStudents',
+  get: ({ get }) => {
+    return get(studentState).length;
+  },
 });

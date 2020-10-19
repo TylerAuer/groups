@@ -1,7 +1,7 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import Header from './components/Header';
-import Controls from './components/Controls';
+import SectionTitle from './components/SectionTitle';
 import GroupList from './components/GroupList';
 import StudentList from './components/StudentList';
 import GenerationList from './components/GenerationList';
@@ -12,7 +12,7 @@ function App() {
     <RecoilRoot>
       <div className="App">
         <Header />
-        <Controls />
+        <SectionTitle />
         <GroupList />
         <GenerationList />
         <StudentList />

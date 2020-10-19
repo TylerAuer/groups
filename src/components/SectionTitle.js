@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/core';
 import EditBtn from './buttons/EditBtn';
 
-const Controls = () => {
+const SectionTitle = () => {
   const title = useRecoilValue(activeSectionName);
 
   const titleCss = css`
@@ -22,4 +22,4 @@ const Controls = () => {
   );
 };
 
-export default Controls;
+export default SectionTitle;

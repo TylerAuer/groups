@@ -74,7 +74,7 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
       <div>
         <p>
           You can add multiple students at once by putting each name on a new
-          line.
+          line or separating each name with a comma.
         </p>
         <form onSubmit={handleSubmit}>
           <textarea
