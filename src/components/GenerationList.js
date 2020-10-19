@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { generationState, activeGenerationId } from '../recoil/generation';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { formatRelative } from 'date-fns';
 import Bar from './Bar';
@@ -11,7 +11,7 @@ import GenerationControls from './GenerationControls';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const GenerationList = () => {
-  const [generations, setGenerations] = useRecoilState(generationState);
+  const generations = useRecoilValue(generationState);
   const [active, setActive] = useRecoilState(activeGenerationId);
 
   const barContainerCss = css`
@@ -41,11 +41,13 @@ const GenerationList = () => {
         Generations <GenerationControls />
       </h2>
 
-      {generations.map((g, index) => {
+      {generations.map((g) => {
         const date = formatRelative(
           new Date(g.date_created * 1000),
           new Date()
         );
+
+        console.log(g.date_created);
 
         const borderColor = g.id === active ? colors.tertiary : 'inherit';
 

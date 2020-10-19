@@ -5,7 +5,7 @@ const testStub = [
   {
     id: 0,
     active: true,
-    date_created: 1602888920,
+    date_created: 1601888920,
     group_size: 3,
     students: 4,
     extras: 'ONE_SMALLER',
