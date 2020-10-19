@@ -11,8 +11,10 @@ import GenerationControls from './GenerationControls';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const GenerationList = () => {
-  const generations = useRecoilValue(generationState);
+  const genState = useRecoilValue(generationState);
   const [active, setActive] = useRecoilState(activeGenerationId);
+
+  const generations = [...genState].reverse();
 
   const barContainerCss = css`
     cursor: pointer;
@@ -47,19 +49,18 @@ const GenerationList = () => {
           new Date()
         );
 
-        console.log(g.date_created);
-
         const borderColor = g.id === active ? colors.tertiary : 'inherit';
 
         return (
           <div
             css={barContainerCss}
+            key={g.id}
             onClick={() => setActive(g.id)}
             style={{
               borderColor: borderColor,
             }}
           >
-            <Bar key={g.id}>
+            <Bar>
               <div>
                 {`${g.students} students`}
                 <Pill color="grey" text={`${g.group_size} per group`} />

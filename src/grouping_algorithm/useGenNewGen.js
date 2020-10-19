@@ -32,7 +32,7 @@ const useGenNewGen = () => {
     const count = ids.length;
     const groupSizes = setGroupSizes(count, size, extras);
 
-    // Placeholders to track best grouping
+    // Placeholders to track best grouping in iterations below
     let minWeight = Infinity;
     let groupings = [];
 
