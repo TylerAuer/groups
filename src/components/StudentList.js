@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { studentState } from '../recoil/student';
 import { useRecoilState } from 'recoil';
 import Bar from './Bar';
-import EditBtn from './buttons/EditBtn';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import AddBtn from './buttons/AddBtn';
 import AddStudent from './AddStudent';
@@ -60,7 +59,6 @@ const StudentList = () => {
             <Bar key={s.id}>
               <div>
                 {index + 1} {s.name}
-                <EditBtn />
               </div>
               <div>
                 <TextOnlyBtn

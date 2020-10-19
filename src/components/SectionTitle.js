@@ -2,7 +2,6 @@
 import { activeSectionName } from '../recoil/section';
 import { useRecoilValue } from 'recoil';
 import { css, jsx } from '@emotion/core';
-import EditBtn from './buttons/EditBtn';
 
 const SectionTitle = () => {
   const title = useRecoilValue(activeSectionName);
@@ -14,10 +13,7 @@ const SectionTitle = () => {
 
   return (
     <section id="controls">
-      <h2 css={titleCss}>
-        {title}
-        <EditBtn />
-      </h2>
+      <h2 css={titleCss}>{title}</h2>
     </section>
   );
 };

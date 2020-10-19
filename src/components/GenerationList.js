@@ -29,7 +29,7 @@ const GenerationList = () => {
     color: ${colors.mediumgrey};
     font-style: italic;
     font-size: 1rem;
-    margin-left: 1rem;
+    margin-left: 0.8rem;
   `;
 
   return (
