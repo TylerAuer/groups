@@ -12,7 +12,7 @@ const testStub = [
     name: 'Jessica',
     id: 1,
     history: [],
-    active: false,
+    active: true,
   },
   {
     name: 'Hannah',

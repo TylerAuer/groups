@@ -1,4 +1,4 @@
-export default function shuffleGroup(classList) {
+export default function shuffle(classList) {
   // Fisher-Yates Shuffle
   let unsortedElementsCount = classList.length;
 

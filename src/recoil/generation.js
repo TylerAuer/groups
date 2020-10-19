@@ -1,19 +1,5 @@
 import { atom, selector } from 'recoil';
-
-export const EXTRAS_OPTIONS = {
-  ONE_LARGER: {
-    name: 'One larger',
-    desc: 'Extras are all added to the same group',
-  },
-  SPLIT_ACROSS: {
-    name: 'Split across',
-    desc: 'Extras are split across groups',
-  },
-  ONE_SMALLER: {
-    name: 'One smaller',
-    desc: 'Extras form their own smaller group',
-  },
-};
+import { EXTRA_OPTIONS } from '../constants/extraOptions';
 
 const testStub = [
   {
@@ -57,7 +43,7 @@ export const groupSizeSetting = atom({
 
 export const extrasSetting = atom({
   key: 'extrasSetting',
-  default: EXTRAS_OPTIONS.SPLIT_ACROSS,
+  default: EXTRA_OPTIONS.SPLIT_ACROSS,
 });
 
 // SELECTORS

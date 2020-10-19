@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { useRecoilState } from 'recoil';
-import { extrasSetting, EXTRAS_OPTIONS } from '../recoil/generation';
+import { extrasSetting } from '../recoil/generation';
+import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { colors } from '../constants/styles';
 import ControlBtn from './buttons/ControlBtn';
 
@@ -54,7 +55,7 @@ const ExtrasDropdown = () => {
 
   const onOptionClick = (selection) => {
     setOpen(false);
-    setSetting(EXTRAS_OPTIONS[selection]);
+    setSetting(EXTRA_OPTIONS[selection]);
   };
 
   return (
@@ -66,15 +67,15 @@ const ExtrasDropdown = () => {
           visibility: `${open ? 'visible' : 'hidden'}`,
         }}
       >
-        {Object.keys(EXTRAS_OPTIONS).map((option) => {
+        {Object.keys(EXTRA_OPTIONS).map((option) => {
           return (
             <div
               key={option}
               className="dropdown-option"
               onClick={() => onOptionClick(option)}
             >
-              <div className="option-title">{EXTRAS_OPTIONS[option].name}</div>
-              <div className="option-desc">{EXTRAS_OPTIONS[option].desc}</div>
+              <div className="option-title">{EXTRA_OPTIONS[option].name}</div>
+              <div className="option-desc">{EXTRA_OPTIONS[option].desc}</div>
             </div>
           );
         })}

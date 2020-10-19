@@ -1,12 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import {
-  generationState,
-  activeGenerationId,
-  EXTRAS_OPTIONS,
-} from '../recoil/generation';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { generationState, activeGenerationId } from '../recoil/generation';
+import { useRecoilState } from 'recoil';
+import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { formatRelative } from 'date-fns';
 import Bar from './Bar';
 import Pill from './Pill';
@@ -64,7 +61,7 @@ const GenerationList = () => {
               <div>
                 {`${g.students} students`}
                 <Pill color="grey" text={`${g.group_size} per group`} />
-                <Pill color="grey" text={EXTRAS_OPTIONS[g.extras].name} />
+                <Pill color="grey" text={EXTRA_OPTIONS[g.extras].name} />
                 <span css={dateCss}>{date}</span>
               </div>
               <div>
