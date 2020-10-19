@@ -13,10 +13,6 @@ const StudentList = () => {
   const addStudents = (namesArray) => {
     let id = students.length;
 
-    // Populate history array with nulls
-    const priorGens = (students[0] && students[0].history.length) || 0;
-    const history = new Array(priorGens).fill(null);
-
     const cleanedNames = namesArray
       .map((name) => name.trim())
       .filter((name) => name.length > 0);
@@ -24,7 +20,6 @@ const StudentList = () => {
     const newStudents = cleanedNames.map((name) => ({
       id: id++,
       name: name,
-      history,
       active: true,
     }));
 

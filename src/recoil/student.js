@@ -5,25 +5,31 @@ const testStub = [
   {
     name: 'Tyler',
     id: 0,
-    history: [],
     active: true,
   },
   {
     name: 'Jessica',
     id: 1,
-    history: [],
     active: true,
   },
   {
     name: 'Hannah',
     id: 2,
-    history: [],
     active: true,
   },
   {
     name: 'Avery',
     id: 3,
-    history: [],
+    active: true,
+  },
+  {
+    name: 'Maisie',
+    id: 4,
+    active: true,
+  },
+  {
+    name: 'Doug',
+    id: 5,
     active: true,
   },
 ];

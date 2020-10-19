@@ -1,10 +1,8 @@
-import React from 'react';
 import setGroupSizes from './setGroupSizes';
 import shuffle from './shuffle';
 import calcGroupWeight from './calcGroupWeight';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { relationGraph } from '../recoil/relations';
-import { studentState } from '../recoil/student';
 import { activeGenerationId } from '../recoil/generation';
 import {
   groupSizeSetting,
@@ -17,7 +15,6 @@ const useGenNewGen = () => {
   const size = useRecoilValue(groupSizeSetting);
   const extras = useRecoilValue(extrasSetting);
   const [gens, setGens] = useRecoilState(generationState);
-  const [students, setStudents] = useRecoilState(studentState);
   const setGroupsBeingShown = useSetRecoilState(activeGenerationId);
 
   const iterations = 10000;
