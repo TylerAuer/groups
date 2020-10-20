@@ -71,7 +71,6 @@ const GenerationList = () => {
   );
 
   let title = null;
-
   if (studentCount && genState.length) {
     title = headerWithTitle;
   } else if (studentCount) {
@@ -97,18 +96,13 @@ const GenerationList = () => {
             new Date()
           );
 
-          const borderColor = g.id === active ? colors.tertiary : 'inherit';
-
           return (
             <div
               css={barContainerCss}
               key={g.id}
               onClick={() => setActive(g.id)}
-              style={{
-                borderColor: borderColor,
-              }}
             >
-              <Bar>
+              <Bar highlight={g.id === active}>
                 <div>
                   {`${g.students} students`}
                   <Pill color="grey" text={`${g.group_size} per group`} />

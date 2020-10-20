@@ -37,7 +37,7 @@ const testStub = [
 // Atoms
 export const studentState = atom({
   key: 'studentState',
-  default: testStub,
+  default: [],
 });
 
 // Count of students
