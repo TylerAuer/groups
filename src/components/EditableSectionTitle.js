@@ -23,6 +23,10 @@ const EditableSectionTitle = () => {
     border: 2px solid transparent;
     border-radius: 5px;
     outline: none;
+
+    &[disabled] {
+      color: black;
+    }
   `;
 
   const editingCss = css`
@@ -37,8 +41,6 @@ const EditableSectionTitle = () => {
 
   const title = sections[id].name;
 
-  console.log(sections);
-
   const handleChange = (e) => {
     // Copy section, rename
     const newSection = { ...sections[id] };
@@ -50,19 +52,27 @@ const EditableSectionTitle = () => {
     setSections(newSectionList);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setEditing(false);
+  };
+
   return (
     <div css={containerCss}>
-      <input
-        type="text"
-        css={[titleCss, editing ? editingCss : notEditingCss]}
-        value={title === ' ' ? '' : title}
-        onChange={handleChange}
-        maxLength="50"
-        size={Math.max(title.length, 20)}
-        placeholder="Add a Custom Section Title"
-        onFocus={() => setEditing(true)}
-        onBlur={() => setEditing(false)}
-      />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          css={[titleCss, editing ? editingCss : notEditingCss]}
+          value={title === ' ' ? '' : title}
+          onChange={handleChange}
+          maxLength="50"
+          size={Math.max(title.length, 20)}
+          placeholder="Add a Section Title"
+          onFocus={() => setEditing(true)}
+          onBlur={() => setEditing(false)}
+          readOnly={!editing}
+        />
+      </form>
     </div>
   );
 };
