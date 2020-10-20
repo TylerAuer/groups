@@ -30,8 +30,8 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
   const submitBtnCss = css`
     display: block;
     background-color: white;
-    border: 2px solid black;
-    color: black;
+    border: 2px solid ${colors.tertiary};
+    color: ${colors.tertiary};
     border-radius: 5px;
     font-size: 1rem;
     padding: 0.5rem 2rem;
@@ -42,10 +42,9 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
     &:focus {
       cursor: pointer;
       color: white;
-      background-color: black;
+      background-color: ${colors.tertiary};
       box-shadow: 0 5px 5px lightgrey;
       transition: all 0.2s ease-in-out;
-      transform: translateY(-2px);
     }
 
     &:active {

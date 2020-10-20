@@ -12,7 +12,7 @@ import GenerationControls from './GenerationControls';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const GenerationList = () => {
-  const genState = useRecoilValue(generationState);
+  const [genState, setGenState] = useRecoilState(generationState);
   const studentCount = useRecoilValue(countOfStudents);
   const [active, setActive] = useRecoilState(activeGenerationId);
 
@@ -78,40 +78,53 @@ const GenerationList = () => {
     title = headerJustControls;
   }
 
+  const handleDeleteGen = (id) => {
+    const updatedGenState = genState.slice();
+    const updatedGen = { ...updatedGenState[id], deleted: true };
+    updatedGenState[id] = updatedGen;
+
+    setGenState(updatedGenState);
+  };
+
   return (
     <section id="list-of-groupings">
       {title}
-      {generations.map((g) => {
-        const date = formatRelative(
-          new Date(g.date_created * 1000),
-          new Date()
-        );
+      {generations
+        .filter((g) => !g.deleted)
+        .map((g) => {
+          const date = formatRelative(
+            new Date(g.date_created * 1000),
+            new Date()
+          );
 
-        const borderColor = g.id === active ? colors.tertiary : 'inherit';
+          const borderColor = g.id === active ? colors.tertiary : 'inherit';
 
-        return (
-          <div
-            css={barContainerCss}
-            key={g.id}
-            onClick={() => setActive(g.id)}
-            style={{
-              borderColor: borderColor,
-            }}
-          >
-            <Bar>
-              <div>
-                {`${g.students} students`}
-                <Pill color="grey" text={`${g.group_size} per group`} />
-                <Pill color="grey" text={EXTRA_OPTIONS[g.extras].name} />
-                <span css={dateCss}>{date}</span>
-              </div>
-              <div>
-                <TextOnlyBtn onClick={null} text="Delete" />
-              </div>
-            </Bar>
-          </div>
-        );
-      })}
+          return (
+            <div
+              css={barContainerCss}
+              key={g.id}
+              onClick={() => setActive(g.id)}
+              style={{
+                borderColor: borderColor,
+              }}
+            >
+              <Bar>
+                <div>
+                  {`${g.students} students`}
+                  <Pill color="grey" text={`${g.group_size} per group`} />
+                  <Pill color="grey" text={EXTRA_OPTIONS[g.extras].name} />
+                  <span css={dateCss}>{date}</span>
+                </div>
+                <div>
+                  <TextOnlyBtn
+                    onClick={() => handleDeleteGen(g.id)}
+                    text="Delete"
+                  />
+                </div>
+              </Bar>
+            </div>
+          );
+        })}
     </section>
   );
 };

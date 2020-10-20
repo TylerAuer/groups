@@ -4,7 +4,7 @@ import { EXTRA_OPTIONS } from '../constants/extraOptions';
 const testStub = [
   {
     id: 0,
-    active: true,
+    deleted: false,
     date_created: 1601888920,
     group_size: 3,
     students: 4,
@@ -13,7 +13,7 @@ const testStub = [
   },
   {
     id: 1,
-    active: true,
+    deleted: false,
     date_created: 1602631659,
     group_size: 2,
     students: 4,
@@ -23,12 +23,21 @@ const testStub = [
       [1, 3],
     ],
   },
+  {
+    id: 2,
+    deleted: true,
+    date_created: 1602631659,
+    group_size: 2,
+    students: 4,
+    extras: 'ONE_LARGER',
+    groups: [[0, 1, 2], [3]],
+  },
 ];
 
 // ATOMS
 export const generationState = atom({
   key: 'generationState',
-  default: [],
+  default: testStub,
 });
 
 export const activeGenerationId = atom({
