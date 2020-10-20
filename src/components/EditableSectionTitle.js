@@ -5,8 +5,6 @@ import { colors } from '../constants/styles';
 import { useRecoilState } from 'recoil';
 import { activeSectionId, sectionList } from '../recoil/section';
 
-// https://stackoverflow.com/questions/42167704/how-can-i-make-a-number-become-editable-onclick-in-react
-
 const EditableSectionTitle = () => {
   const containerCss = css`
     display: flex;
@@ -63,7 +61,7 @@ const EditableSectionTitle = () => {
         <input
           type="text"
           css={[titleCss, editing ? editingCss : notEditingCss]}
-          value={title === ' ' ? '' : title}
+          value={title}
           onChange={handleChange}
           maxLength="50"
           size={Math.max(title.length, 20)}

@@ -7,6 +7,7 @@ import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import ControlBtn from './buttons/ControlBtn';
 import AddStudent from './AddStudent';
+import EditableStudentName from './EditableStudentName';
 
 const StudentList = () => {
   const [students, setStudents] = useRecoilState(studentState);
@@ -61,7 +62,14 @@ const StudentList = () => {
           return (
             <Bar key={s.id}>
               <div>
-                {index + 1} {s.name}
+                <div
+                  css={css`
+                    display: inline-block;
+                  `}
+                >
+                  {index + 1}
+                </div>
+                <EditableStudentName id={s.id} />
               </div>
               <div>
                 <TextOnlyBtn
