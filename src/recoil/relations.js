@@ -23,7 +23,7 @@ export const relationGraph = selector({
 
     // Iterate over each generation
     generations.forEach((generation) => {
-      if (!generation.active) {
+      if (generation.deleted) {
         return;
       }
 
@@ -53,8 +53,6 @@ export const relationGraph = selector({
             }
 
             // Add the relation to the second person as well.
-            // This is a bit redundant but will be handy if I want to
-            // display a matrix showing who has been with whom
             if (graph[id2].relations[id1]) {
               graph[id2].relations[id1].points += groupVal;
               graph[id2].relations[id1].count++;
@@ -62,7 +60,7 @@ export const relationGraph = selector({
               graph[id2].relations[id1] = {
                 points: groupVal,
                 count: 1,
-                name: students[second].name,
+                name: students[first].name,
               };
             }
           }
