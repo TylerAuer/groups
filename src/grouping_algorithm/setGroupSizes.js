@@ -26,7 +26,7 @@ export default function setGroupSizes(
     // Pass out extras into each group
     case EXTRA_OPTIONS.SPLIT_ACROSS:
       while (count > 0) {
-        for (let i = 0; i < groupSizes.length && i < count; i++) {
+        for (let i = 0; i < groupSizes.length && count > 0; i++) {
           groupSizes[i]++;
           count--;
         }
