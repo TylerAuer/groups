@@ -12,20 +12,25 @@ db.sequelize.sync();
 
 const port = process.env.PORT || 4000;
 
-////////////////////////////////////////////////////////////////////////////////
-// ROUTES //////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-//
-//
-// Static Files and Client
+////////////////////////////////////
+// STATIC FILES AND CLIENT ROUTE
 app.use(express.static(__dirname + '/build'));
 app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
-// API
+////////////////////////////////////
+// ACCOUNT API
 
-// Get users
-// Save section
-// Load list of user secitons
+// Account
+app.get('/api/login');
+// app.get('/api/logout')
+
+////////////////////////////////////
+// SECTION API
+
+// app.get('/api/section/:id')
+// app.post('/api/section')
+// app.put('/api/section')
+// app.delete('/api/section')
 
 app.listen(port, () =>
   console.log(
