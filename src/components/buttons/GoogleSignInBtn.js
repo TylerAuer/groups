@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useEffect } from 'react';
-import { colors } from '../../constants/styles';
 import { useRecoilState } from 'recoil';
 import {
   isSignedIn as state,

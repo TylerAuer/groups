@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { colors } from '../../constants/styles';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   isSignedIn as state,
   userImgLink as img,
@@ -9,7 +9,7 @@ import {
 } from '../../recoil/account';
 
 const GoogleSignOutBtn = () => {
-  const [isSignedIn, setIsSignedIn] = useRecoilState(state);
+  const setIsSignedIn = useSetRecoilState(state);
   const [imgUrl, setImgUrl] = useRecoilState(img);
   const [name, setName] = useRecoilState(username);
 
@@ -35,12 +35,14 @@ const GoogleSignOutBtn = () => {
   `;
 
   const handleSignOut = () => {
-    const auth2 = window.gapi.auth2.getAuthInstance();
-    auth2.signOut().then(() => {
-      setIsSignedIn(false);
-      setImgUrl(null);
-      setName(null);
-    });
+    if (window.confirm('Are you sure you want to sign out?')) {
+      const auth2 = window.gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
+        setIsSignedIn(false);
+        setImgUrl(null);
+        setName(null);
+      });
+    }
   };
 
   return (
