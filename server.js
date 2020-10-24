@@ -2,6 +2,7 @@ const express = require('express');
 const secure = require('express-force-https');
 const chalk = require('chalk');
 const db = require('./models');
+const { loginUser } = require('./backend/users/loginUser');
 require('dotenv').config();
 
 const app = express();
@@ -21,7 +22,7 @@ app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 // ACCOUNT API
 
 // Account
-app.get('/api/login');
+app.post('/api/login', loginUser);
 // app.get('/api/logout')
 
 ////////////////////////////////////

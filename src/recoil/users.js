@@ -15,3 +15,8 @@ export const userImgLink = atom({
   key: 'userImgLink',
   default: null,
 });
+
+export const userIdToken = atom({
+  key: 'userIdToken',
+  default: null,
+});

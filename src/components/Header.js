@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useRecoilValue } from 'recoil';
-import { isSignedIn as signInState } from '../recoil/account';
+import { isSignedIn as signInState } from '../recoil/users';
 import HeaderBtn from './buttons/HeaderBtn';
 import GoogleSignInBtn from './buttons/GoogleSignInBtn';
 import GoogleSignOutBtn from './buttons/GoogleSignOutBtn';

@@ -1,28 +1,42 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import {
   isSignedIn as state,
   userImgLink as img,
   username,
-} from '../../recoil/account';
+  userIdToken,
+} from '../../recoil/users';
 
 const GoogleSignInBtn = () => {
-  const [isSignedIn, setIsSignedIn] = useRecoilState(state);
-  const [imgUrl, setImgUrl] = useRecoilState(img);
-  const [name, setName] = useRecoilState(username);
+  const setIsSignedIn = useSetRecoilState(state);
+  const setImgUrl = useSetRecoilState(img);
+  const setName = useSetRecoilState(username);
+  const setIdToken = useSetRecoilState(userIdToken);
 
   const btnCss = css`
     display: inline-block;
     vertical-align: middle;
   `;
 
-  const onSuccess = (googleUser) => {
-    const profile = googleUser.getBasicProfile();
+  const onSuccess = async (googleUser) => {
+    const profile = await googleUser.getBasicProfile();
     setIsSignedIn(true);
     setImgUrl(profile.getImageUrl());
     setName(profile.getName());
+
+    const idToken = await googleUser.getAuthResponse().id_token;
+    setIdToken(idToken);
+
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ idToken: idToken }),
+    });
+    const text = await res.text();
+
+    console.log(text);
   };
 
   const onFailure = (error) => {
@@ -40,15 +54,6 @@ const GoogleSignInBtn = () => {
       onfailure: onFailure,
     });
   }, []);
-
-  // useEffect(() => {
-  //   window.onSignIn = (googleUser) => {
-  //     const profile = googleUser.getBasicProfile();
-  //     setIsSignedIn(true);
-  //     setImgUrl(profile.getImageUrl());
-  //     setName(profile.getName());
-  //   };
-  // }, [setImgUrl, setIsSignedIn, setName]);
 
   return <div css={btnCss} id="header-sign-in" />;
 };

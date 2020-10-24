@@ -6,7 +6,7 @@ import {
   isSignedIn as state,
   userImgLink as img,
   username,
-} from '../../recoil/account';
+} from '../../recoil/users';
 
 const GoogleSignOutBtn = () => {
   const setIsSignedIn = useSetRecoilState(state);
