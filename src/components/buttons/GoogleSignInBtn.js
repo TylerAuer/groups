@@ -32,7 +32,7 @@ const GoogleSignInBtn = () => {
   useEffect(() => {
     window.gapi.signin2.render('header-sign-in', {
       scope: 'profile',
-      width: 120,
+      width: 100,
       height: 36,
       longtitle: false,
       theme: 'light',
