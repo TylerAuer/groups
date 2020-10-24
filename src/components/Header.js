@@ -1,8 +1,14 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { useRecoilValue } from 'recoil';
+import { isSignedIn as signInState } from '../recoil/account';
 import HeaderBtn from './buttons/HeaderBtn';
+import GoogleSignInBtn from './buttons/GoogleSignInBtn';
+import GoogleSignOutBtn from './buttons/GoogleSignOutBtn';
 
 const Header = () => {
+  const isSignedIn = useRecoilValue(signInState);
+
   const headerCss = css`
     display: flex;
     justify-content: space-between;
@@ -33,8 +39,8 @@ const Header = () => {
         <div css={subtitleCss}>Smart, random groupings</div>
       </div>
       <div css={rightCss}>
-        <HeaderBtn text="About" onClick={null} />
-        <HeaderBtn text="Sign In" onClick={null} />
+        <HeaderBtn text="FAQs" onClick={null} />
+        {isSignedIn ? <GoogleSignOutBtn /> : <GoogleSignInBtn />}
       </div>
     </header>
   );
