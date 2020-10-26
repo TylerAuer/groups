@@ -8,8 +8,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   GroupUsUser.init(
     {
-      name: DataTypes.STRING,
-      googleId: DataTypes.STRING,
+      google_id: DataTypes.STRING,
+      first_name: DataTypes.STRING,
+      last_name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      profile_pic: DataTypes.STRING,
     },
     {
       sequelize,
