@@ -16,6 +16,12 @@ require('./backend/config')(app);
 app.use(express.static(__dirname + '/build'));
 app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
+// Middleware for confirming someone is logged in
+const authorize = (req, res, next) => {
+  if (req.isAuthenticated()) next();
+  else res.redirect('/#/login');
+};
+
 ////////////////////////////////////
 // ACCOUNT API
 
@@ -24,13 +30,16 @@ app.get(
   '/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
+
 app.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/login',
-    successRedirect: '/user',
+    failureRedirect: '/#/login',
+    successRedirect: '/#/app',
   })
 );
+
+app.get('/data/user', authorize, require('./backend/getUserInfo'));
 
 // app.get('/auth/google/logout')
 // app.get('/auth/google/disconnect)

@@ -9,6 +9,7 @@ import GenerationList from './components/GenerationList';
 import './App.css';
 import LoginPage from './LoginPage';
 import LandingPage from './LandingPage';
+import AppPage from './AppPage';
 
 function App() {
   return (
@@ -18,10 +19,7 @@ function App() {
           <Header />
           <Switch>
             <Route path="/app">
-              <EditableSectionTitle />
-              <GroupList />
-              <GenerationList />
-              <StudentList />
+              <AppPage />
             </Route>
             <Route path="/login">
               <LoginPage />
