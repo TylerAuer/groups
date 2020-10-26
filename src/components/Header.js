@@ -3,8 +3,7 @@ import { css, jsx } from '@emotion/core';
 import { useRecoilValue } from 'recoil';
 import { isSignedIn as signInState } from '../recoil/users';
 import HeaderBtn from './buttons/HeaderBtn';
-import GoogleSignInBtn from './buttons/GoogleSignInBtn';
-import GoogleSignOutBtn from './buttons/GoogleSignOutBtn';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const isSignedIn = useRecoilValue(signInState);
@@ -40,7 +39,7 @@ const Header = () => {
       </div>
       <div css={rightCss}>
         <HeaderBtn text="FAQs" onClick={null} />
-        {isSignedIn ? <GoogleSignOutBtn /> : <GoogleSignInBtn />}
+        <Link to="/login">Log In</Link>
       </div>
     </header>
   );

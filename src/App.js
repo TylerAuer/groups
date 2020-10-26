@@ -7,25 +7,30 @@ import GroupList from './components/GroupList';
 import StudentList from './components/StudentList';
 import GenerationList from './components/GenerationList';
 import './App.css';
+import LoginPage from './LoginPage';
+import LandingPage from './LandingPage';
 
 function App() {
   return (
     <HashRouter>
       <RecoilRoot>
-        <Switch>
-          <Route path="/about"></Route>
-          <Route path="/auth/login"></Route>
-          <Route path="/">
-            <div className="App">
-              <Header />
+        <div className="App">
+          <Header />
+          <Switch>
+            <Route path="/app">
               <EditableSectionTitle />
               <GroupList />
               <GenerationList />
               <StudentList />
-              {/* <Relations /> */}
-            </div>
-          </Route>
-        </Switch>
+            </Route>
+            <Route path="/login">
+              <LoginPage />
+            </Route>
+            <Route path="/">
+              <LandingPage />
+            </Route>
+          </Switch>
+        </div>
       </RecoilRoot>
     </HashRouter>
   );
