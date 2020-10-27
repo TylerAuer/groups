@@ -21,29 +21,11 @@ const authorize = (req, res, next) => {
 ////////////////////////////////////
 // ACCOUNT API
 
-// Account
-app.get(
-  '/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
+// Auth
+app.get('/auth/google', auth.googleAuth);
+app.get('/auth/google/callback', auth.googleCallback);
 
-app.get(
-  '/auth/google/callback',
-  passport.authenticate('google', {
-    failureRedirect: '/#/login',
-    successRedirect: '/#/app',
-  })
-);
-
+// User
 app.get('/data/user', authorize, data.getUserInfo);
 
-// app.get('/auth/google/logout')
-// app.get('/auth/google/disconnect)
-
-////////////////////////////////////
-// SECTION API
-
-// app.get('/api/section/:id')
-// app.post('/api/section/:id')
-// app.put('/api/section/:id')
-// app.delete('/api/section/:id')
+// Data

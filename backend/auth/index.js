@@ -1,13 +1,24 @@
+const passport = require('passport');
 // Serialization functions for PassportJS
 require('./serialization');
 
 // Configure PassportJS Strategies
 require('./google');
 
-// Functions to handle user auth process
-const handleNewUser = require('./handleNewUser');
-const handleSignIn = require('./handleSignIn');
-//const handleSignOut = require('./handleSignOut');
-//const handleDisconnect = require('./handleDisconnect');
+const successDestinationUrl = '/#/app';
+const failureDestinationUrl = '/#/login';
 
-module.exports = { handleNewUser, handleSignIn };
+// Authorizaitons
+const googleAuth = (req, res, next) => {
+  passport.authenticate('google', { scope: ['profile', 'email'] });
+};
+
+// Callbacks
+const googleCallback = (req, res, next) => {
+  passport.authenticate('google', {
+    successRedirect: successDestinationUrl,
+    failureRedirect: failureDestinationUrl,
+  });
+};
+
+module.exports = { googleAuth, googleCallback };
