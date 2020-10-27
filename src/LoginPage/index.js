@@ -26,7 +26,7 @@ const LoginPage = () => {
         sure what we'd do with it.
       </p>
 
-      <a href="http://localhost:4000/auth/google">Login with Google</a>
+      <a href="auth/google">Login with Google</a>
     </section>
   );
 };

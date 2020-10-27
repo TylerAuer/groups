@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const data = require('./backend/data');
 const auth = require('./backend/auth');
 
@@ -12,10 +11,11 @@ require('./backend/config')(app);
 app.use(express.static(__dirname + '/build'));
 app.get('/', (req, res) => res.sendFile(__dirname + '/build/index.html'));
 
+////////////////////////////////////
 // Middleware for confirming someone is logged in
 const authorize = (req, res, next) => {
   if (req.isAuthenticated()) next();
-  else res.redirect('/#/login');
+  else res.status(401).send('Access denied. Try signing in.');
 };
 
 ////////////////////////////////////
