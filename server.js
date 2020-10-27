@@ -1,15 +1,11 @@
-// require('dotenv').config();
-require('./backend/auth/google');
-require('./backend/auth/serialization');
-
 const express = require('express');
 const passport = require('passport');
+const data = require('./backend/data');
+const auth = require('./backend/auth');
 
 // Initialize app
 const app = express();
 require('./backend/config')(app);
-
-// const port = process.env.PORT || 4000;
 
 ////////////////////////////////////
 // STATIC FILES AND CLIENT ROUTE
@@ -39,7 +35,7 @@ app.get(
   })
 );
 
-app.get('/data/user', authorize, require('./backend/getUserInfo'));
+app.get('/data/user', authorize, data.getUserInfo);
 
 // app.get('/auth/google/logout')
 // app.get('/auth/google/disconnect)

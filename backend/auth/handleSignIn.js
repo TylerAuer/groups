@@ -18,4 +18,5 @@ module.exports = async function handleSignIn(profile) {
   if (isNewUser) {
     handleNewUser(userLookup[0]);
   }
+  // TODO: For returning user: check for updates to name, email, and profile pic
 };
