@@ -1,13 +1,13 @@
 const db = require('../../models');
 
 module.exports = async function handleNewUser(user) {
-  const { id } = user.dataValues;
+  const { id, first_name } = user.dataValues;
 
   // Create a default blank section for a new user
   const blankSectionForNewUser = db.GroupUsSection.create({
     GroupUsUserId: id,
     data: {
-      name: 'Section Name',
+      name: `${first_name}'s 1st Section'`,
       students: [],
       generations: [],
     },
