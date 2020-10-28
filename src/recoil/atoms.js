@@ -60,11 +60,20 @@ export const extrasConfigAtom = atom({
   default: EXTRA_OPTIONS.SPLIT_ACROSS,
 });
 
-///////////////////////////////////////////////////////////
-// STUDENT LIST ATOMS ///////////////////////////////////////
+////////////////////////////////////////////////////////////
+// STUDENT LIST ATOMS //////////////////////////////////////
 
 export const studentListAtom = atom({
   // List of students in the currently active section
   key: 'studentListAtom',
   default: [],
+});
+
+///////////////////////////////////////////////////////////
+// SAVING DATA ////////////////////////////////////////////
+
+export const awaitingSaveConfirmationAtom = atom({
+  // List of students in the currently active section
+  key: 'awaitingSaveConfirmationAtom',
+  default: false,
 });

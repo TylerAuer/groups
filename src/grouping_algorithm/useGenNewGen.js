@@ -7,15 +7,19 @@ import {
   extrasConfigAtom,
   genListAtom,
   activeGenIdxAtom,
+  userAtom,
 } from '../recoil/atoms';
 import { relationGraph } from '../recoil/selectors/relations';
+import useSaveSection from '../hooks/useSaveSection';
 
 const useGenNewGen = () => {
+  const user = useRecoilValue(userAtom);
   const relations = useRecoilValue(relationGraph);
   const size = useRecoilValue(groupSizeConfigAtom);
   const extras = useRecoilValue(extrasConfigAtom);
   const [gens, setGens] = useRecoilState(genListAtom);
   const setGroupsBeingShown = useSetRecoilState(activeGenIdxAtom);
+  const saveSection = useSaveSection();
 
   const iterations = 10000;
 
@@ -69,6 +73,9 @@ const useGenNewGen = () => {
 
     // Set New Generation as the one being displayed
     setGroupsBeingShown(idxOfNewGen);
+
+    // Triggers a save if user is signed in
+    if (user) saveSection();
   };
 
   return algo;

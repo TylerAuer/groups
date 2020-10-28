@@ -31,5 +31,5 @@ app.get('/data/user', authorize, data.getUserData);
 // Data
 //app.get('/data/section/:id', authorize, data.getUserData);
 // app.post('/data/section/:id', authorize, data.getUserData);
-// app.put('/data/section/:id', authorize, data.getUserData);
+app.put('/data/section/:id', authorize, data.saveSectionData);
 // app.delete('/data/section/:id', authorize, data.getUserData);
