@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { useRecoilState } from 'recoil';
-import { studentState } from '../recoil/student';
+import { studentListAtom } from '../recoil/atoms';
 
 const EditableStudentName = ({ id }) => {
   const [editing, setEditing] = useState(false);
-  const [students, setStudents] = useRecoilState(studentState);
+  const [students, setStudents] = useRecoilState(studentListAtom);
 
   const name = students[id].name;
 
@@ -42,7 +42,7 @@ const EditableStudentName = ({ id }) => {
     const updatedStudent = { ...students[id] };
     updatedStudent.name = e.target.value;
 
-    // Copy section list, past in new section with new name, update state
+    // Copy section list, paste in new section with new name, update state
     const updatedStudentList = students.slice();
     updatedStudentList[id] = updatedStudent;
     setStudents(updatedStudentList);

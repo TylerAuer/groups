@@ -2,8 +2,11 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { generationState, activeGenerationId } from '../recoil/generation';
-import { countOfStudents } from '../recoil/student';
+import {
+  genListAtom,
+  activeGenIdxAtom,
+  studentListAtom,
+} from '../recoil/atoms';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { formatRelative } from 'date-fns';
 import Bar from './Bar';
@@ -12,12 +15,12 @@ import GenerationControls from './GenerationControls';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const GenerationList = () => {
-  const [genState, setGenState] = useRecoilState(generationState);
-  const studentCount = useRecoilValue(countOfStudents);
-  const [active, setActive] = useRecoilState(activeGenerationId);
+  const [genList, setGenList] = useRecoilState(genListAtom);
+  const [activeGenIdx, setActiveGenIdx] = useRecoilState(activeGenIdxAtom);
+  const studentCount = useRecoilValue(studentListAtom).length;
 
   // Puts generations in reverse chronological order
-  const generations = [...genState].reverse();
+  const gens = [...genList].reverse();
 
   const barContainerCss = css`
     cursor: pointer;
@@ -71,24 +74,24 @@ const GenerationList = () => {
   );
 
   let title = null;
-  if (studentCount && genState.length) {
+  if (studentCount && genList.length) {
     title = headerWithTitle;
   } else if (studentCount) {
     title = headerJustControls;
   }
 
   const handleDeleteGen = (id) => {
-    const updatedGenState = genState.slice();
+    const updatedGenState = genList.slice();
     const updatedGen = { ...updatedGenState[id], deleted: true };
     updatedGenState[id] = updatedGen;
 
-    setGenState(updatedGenState);
+    setGenList(updatedGenState);
   };
 
   return (
     <section id="list-of-groupings">
       {title}
-      {generations
+      {gens
         .filter((g) => !g.deleted)
         .map((g) => {
           const date = formatRelative(
@@ -100,9 +103,9 @@ const GenerationList = () => {
             <div
               css={barContainerCss}
               key={g.id}
-              onClick={() => setActive(g.id)}
+              onClick={() => setActiveGenIdx(g.id)}
             >
-              <Bar highlight={g.id === active}>
+              <Bar highlight={g.id === activeGenIdx}>
                 <div>
                   {`${g.students} students`}
                   <Pill color="grey" text={`${g.group_size} per group`} />

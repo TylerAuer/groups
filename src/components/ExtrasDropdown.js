@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { useRecoilState } from 'recoil';
-import { extrasSetting } from '../recoil/generation';
+import { extrasConfigAtom } from '../recoil/atoms';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { colors } from '../constants/styles';
 import ControlBtn from './buttons/ControlBtn';
 
 const ExtrasDropdown = () => {
   const [open, setOpen] = useState(false);
-  const [setting, setSetting] = useRecoilState(extrasSetting);
+  const [setting, setSetting] = useRecoilState(extrasConfigAtom);
 
   const dropdownContainerCss = css`
     position: relative;

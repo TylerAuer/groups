@@ -3,9 +3,14 @@ import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { useRecoilState } from 'recoil';
-import { activeSectionId, sectionList } from '../recoil/section';
+import { activeSectionIdxAtom, sectionListAtom } from '../recoil/atoms';
+import cloneDeep from 'lodash.clonedeep';
 
 const EditableSectionTitle = () => {
+  const [editing, setEditing] = useState(false);
+  const [sections, setSections] = useRecoilState(sectionListAtom);
+  const [sectionIdx, setSectionIdx] = useRecoilState(activeSectionIdxAtom);
+
   const containerCss = css`
     display: flex;
     justify-content: center;
@@ -33,20 +38,16 @@ const EditableSectionTitle = () => {
 
   const notEditingCss = css``;
 
-  const [editing, setEditing] = useState(false);
-  const [sections, setSections] = useRecoilState(sectionList);
-  const [id, setId] = useRecoilState(activeSectionId);
-
-  const title = sections[id].name;
+  const title = sections[sectionIdx].name;
 
   const handleChange = (e) => {
     // Copy section, rename
-    const newSection = { ...sections[id] };
+    const newSection = cloneDeep(sections[sectionIdx]);
     newSection.name = e.target.value;
 
     // Copy section list, past in new section with new name, update state
     const newSectionList = sections.slice();
-    newSectionList[id] = newSection;
+    newSectionList[sectionIdx] = newSection;
     setSections(newSectionList);
   };
 

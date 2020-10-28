@@ -1,21 +1,21 @@
 import setGroupSizes from './setGroupSizes';
 import shuffle from './shuffle';
 import calcGroupWeight from './calcGroupWeight';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { relationGraph } from '../recoil/relations';
-import { activeGenerationId } from '../recoil/generation';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import {
-  groupSizeSetting,
-  extrasSetting,
-  generationState,
-} from '../recoil/generation';
+  groupSizeConfigAtom,
+  extrasConfigAtom,
+  genListAtom,
+  activeGenIdxAtom,
+} from '../recoil/atoms';
+import { relationGraph } from '../recoil/selectors/relations';
 
 const useGenNewGen = () => {
   const relations = useRecoilValue(relationGraph);
-  const size = useRecoilValue(groupSizeSetting);
-  const extras = useRecoilValue(extrasSetting);
-  const [gens, setGens] = useRecoilState(generationState);
-  const setGroupsBeingShown = useSetRecoilState(activeGenerationId);
+  const size = useRecoilValue(groupSizeConfigAtom);
+  const extras = useRecoilValue(extrasConfigAtom);
+  const [gens, setGens] = useRecoilState(genListAtom);
+  const setGroupsBeingShown = useSetRecoilState(activeGenIdxAtom);
 
   const iterations = 10000;
 
@@ -29,7 +29,7 @@ const useGenNewGen = () => {
     const count = ids.length;
     const groupSizes = setGroupSizes(count, size, extras);
 
-    // Placeholders to track best grouping in iterations below
+    // Trackers for the arrangement with the lowest total weight
     let minWeight = Infinity;
     let groupings = [];
 
@@ -52,12 +52,12 @@ const useGenNewGen = () => {
       }
     }
 
-    // Update generations state
-    const genIndex = gens.length;
-    setGens([
-      ...gens,
+    const idxOfNewGen = gens.length;
+
+    setGens((oldGens) => [
+      ...oldGens,
       {
-        id: genIndex,
+        id: idxOfNewGen,
         active: true,
         date_created: Math.round(Date.now() / 1000), // Gives datetime in epoch format (no ms)
         group_size: size,
@@ -68,7 +68,7 @@ const useGenNewGen = () => {
     ]);
 
     // Set New Generation as the one being displayed
-    setGroupsBeingShown(genIndex);
+    setGroupsBeingShown(idxOfNewGen);
   };
 
   return algo;

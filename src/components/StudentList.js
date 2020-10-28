@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useState } from 'react';
-import { studentState } from '../recoil/student';
 import { useRecoilState } from 'recoil';
+import { studentListAtom } from '../recoil/atoms';
 import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import ControlBtn from './buttons/ControlBtn';
@@ -10,8 +10,8 @@ import AddStudent from './AddStudent';
 import EditableStudentName from './EditableStudentName';
 
 const StudentList = () => {
-  const [students, setStudents] = useRecoilState(studentState);
   const [addModal, setAddModal] = useState(false);
+  const [students, setStudents] = useRecoilState(studentListAtom);
 
   const h2Css = css`
     display: flex;
@@ -32,7 +32,7 @@ const StudentList = () => {
       active: true,
     }));
 
-    setStudents([...students, ...newStudents]);
+    setStudents((oldStudents) => [...oldStudents, ...newStudents]);
   };
 
   const toggleStudentActive = (id) => {
@@ -45,6 +45,31 @@ const StudentList = () => {
     setStudents(modifiedStudents); // dispatch change to recoil
   };
 
+  const listOfStudents = [...students]
+    .filter((s) => s.active) // filter out inactive students
+    .map((s, index) => {
+      return (
+        <Bar key={s.id}>
+          <div>
+            <div
+              css={css`
+                display: inline-block;
+              `}
+            >
+              {index + 1}
+            </div>
+            <EditableStudentName id={s.id} />
+          </div>
+          <div>
+            <TextOnlyBtn
+              onClick={() => toggleStudentActive(s.id)}
+              text="Deactivate"
+            />
+          </div>
+        </Bar>
+      );
+    });
+
   return (
     <section id="student-list">
       <h2 css={h2Css}>
@@ -56,30 +81,7 @@ const StudentList = () => {
         setOpen={setAddModal}
         addStudents={addStudents}
       />
-      {students
-        .filter((s) => s.active) // Hide inactive students
-        .map((s, index) => {
-          return (
-            <Bar key={s.id}>
-              <div>
-                <div
-                  css={css`
-                    display: inline-block;
-                  `}
-                >
-                  {index + 1}
-                </div>
-                <EditableStudentName id={s.id} />
-              </div>
-              <div>
-                <TextOnlyBtn
-                  onClick={() => toggleStudentActive(s.id)}
-                  text="Deactivate"
-                />
-              </div>
-            </Bar>
-          );
-        })}
+      {listOfStudents}
     </section>
   );
 };

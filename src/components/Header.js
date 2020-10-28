@@ -1,18 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import HeaderBtn from './buttons/HeaderBtn';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userState } from '../recoil/users';
-import useValidateUser from '../hooks/useValidateUser';
+import { userAtom } from '../recoil/atoms';
 
 const Header = () => {
-  const user = useRecoilValue(userState);
-  const validateUser = useValidateUser();
-
-  // Checks to be sure user is signed in
-  validateUser();
+  const user = useRecoilValue(userAtom);
 
   const headerCss = css`
     display: flex;
@@ -23,6 +17,7 @@ const Header = () => {
 
   const titleCss = css`
     display: inline-block;
+    color: black;
   `;
 
   const subtitleCss = css`
@@ -48,12 +43,11 @@ const Header = () => {
 
   return (
     <header css={headerCss}>
-      <div>
+      <Link to="/">
         <h1 css={titleCss}>Group Us</h1>
         <div css={subtitleCss}>Smart, random groupings</div>
-      </div>
+      </Link>
       <div css={rightCss}>
-        <HeaderBtn text="FAQs" onClick={null} />
         {user ? (
           <img
             css={profilePicCss}

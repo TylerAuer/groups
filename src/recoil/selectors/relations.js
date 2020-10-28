@@ -1,13 +1,12 @@
 import { selector } from 'recoil';
-import { generationState } from './generation';
-import { studentState } from './student';
+import { genListAtom, studentListAtom } from '../atoms';
 
 // SELECTORS
 export const relationGraph = selector({
   key: 'relationGraph',
   get: ({ get }) => {
-    const generations = get(generationState);
-    const students = get(studentState);
+    const gens = get(genListAtom);
+    const students = get(studentListAtom);
 
     const graph = {};
 
@@ -22,7 +21,7 @@ export const relationGraph = selector({
     });
 
     // Iterate over each generation
-    generations.forEach((generation) => {
+    gens.forEach((generation) => {
       if (generation.deleted) {
         return;
       }
