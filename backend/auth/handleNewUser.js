@@ -7,7 +7,8 @@ module.exports = async function handleNewUser(user) {
   const blankSectionForNewUser = db.GroupUsSection.create({
     GroupUsUserId: id,
     data: {
-      name: `${first_name}'s 1st Section'`,
+      version: 0,
+      name: `${first_name}'s 1st Section`,
       students: [],
       generations: [],
     },

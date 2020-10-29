@@ -4,6 +4,7 @@ import {
   activeSectionIdxAtom,
   studentListAtom,
   sectionListAtom,
+  sectionVersionAtom,
 } from '../atoms';
 
 export const saveSectionPrimaryKeySelector = selector({
@@ -40,8 +41,10 @@ export const saveDataSelector = selector({
     const gens = get(genListAtom);
     const students = get(studentListAtom);
     const sectionName = get(saveSectionNameSelector);
+    const version = get(sectionVersionAtom);
 
     return {
+      version: version + 1,
       name: sectionName,
       students: students,
       generations: gens,

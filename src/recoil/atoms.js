@@ -31,6 +31,12 @@ export const activeSectionIdxAtom = atom({
   default: 0,
 });
 
+export const sectionVersionAtom = atom({
+  // The index in section list of the section currently being viewed
+  key: 'sectionVersionAtom',
+  default: null,
+});
+
 ///////////////////////////////////////////////////////////
 // GENERATION ATOMS ///////////////////////////////////////
 

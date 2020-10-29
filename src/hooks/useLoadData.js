@@ -6,11 +6,13 @@ import {
   studentListAtom,
   activeSectionIdxAtom,
   activeGenIdxAtom,
+  sectionVersionAtom,
 } from '../recoil/atoms';
 
 const useLoadData = () => {
   const setUser = useSetRecoilState(userAtom);
   const setSectionList = useSetRecoilState(sectionListAtom);
+  const setVersion = useSetRecoilState(sectionVersionAtom);
   const setGenList = useSetRecoilState(genListAtom);
   const setStudentList = useSetRecoilState(studentListAtom);
   const setActiveSectionIdx = useSetRecoilState(activeSectionIdxAtom);
@@ -33,10 +35,12 @@ const useLoadData = () => {
 
     const gens = res.GroupUsSections[0].data.generations;
     const students = res.GroupUsSections[0].data.students;
+    const version = res.GroupUsSections[0].data.version;
 
     // Update application state
     setUser(user);
     setSectionList(sections);
+    setVersion(version);
     setGenList(gens);
     setStudentList(students);
 
