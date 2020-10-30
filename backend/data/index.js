@@ -1,4 +1,9 @@
-const getUserData = require('./getUserData');
+const getUserAndSectionData = require('./getUserAndSectionData');
 const saveSectionData = require('./saveSectionData');
+const makeNewSection = require('./makeNewSection');
 
-module.exports = { getUserData, saveSectionData };
+module.exports = {
+  getUserAndSectionData,
+  makeNewSection,
+  saveSectionData,
+};

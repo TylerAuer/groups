@@ -32,9 +32,18 @@ export const activeSectionIdxAtom = atom({
 });
 
 export const sectionVersionAtom = atom({
-  // The index in section list of the section currently being viewed
+  // Version ID used to tag each save request to prevent stale overwrites
   key: 'sectionVersionAtom',
   default: null,
+});
+
+////////////////////////////////////////////////////////////
+// STUDENT LIST ATOMS //////////////////////////////////////
+
+export const studentListAtom = atom({
+  // List of students in the currently active section
+  key: 'studentListAtom',
+  default: [],
 });
 
 ///////////////////////////////////////////////////////////
@@ -64,15 +73,6 @@ export const extrasConfigAtom = atom({
   // when the groups can't be even
   key: 'extrasConfigAtom',
   default: EXTRA_OPTIONS.SPLIT_ACROSS,
-});
-
-////////////////////////////////////////////////////////////
-// STUDENT LIST ATOMS //////////////////////////////////////
-
-export const studentListAtom = atom({
-  // List of students in the currently active section
-  key: 'studentListAtom',
-  default: [],
 });
 
 ///////////////////////////////////////////////////////////

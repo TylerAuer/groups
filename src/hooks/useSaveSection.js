@@ -25,7 +25,7 @@ const useSaveSection = () => {
       body: JSON.stringify(data),
     })
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200 || res.status === 304) {
           setSave(SAVE_STATUS.SAVED);
         } else {
           setSave(SAVE_STATUS.ERROR);

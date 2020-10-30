@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { sectionListAtom } from './recoil/atoms';
-import useLoadData from './hooks/useLoadData';
+import useLoadUserAndSections from './hooks/useLoadUserAndSections';
 import EditableSectionTitle from './components/EditableSectionTitle';
 import GroupList from './components/GroupList';
 import GenerationList from './components/GenerationList';
 import StudentList from './components/StudentList';
 
 const AppPage = () => {
-  const loadData = useLoadData();
+  const load = useLoadUserAndSections();
   const sections = useRecoilValue(sectionListAtom);
 
   useEffect(() => {
-    loadData();
+    load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
