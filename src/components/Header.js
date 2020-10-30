@@ -4,6 +4,7 @@ import { colors } from '../constants/styles';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../recoil/atoms';
+import SaveTracker from './SaveTracker';
 
 const Header = () => {
   const user = useRecoilValue(userAtom);
@@ -28,6 +29,8 @@ const Header = () => {
   `;
 
   const rightCss = css`
+    display: flex;
+    flex-direction: row;
     margin-left: auto;
     display: inline-block;
   `;
@@ -48,6 +51,7 @@ const Header = () => {
         <div css={subtitleCss}>Smart, random groupings</div>
       </Link>
       <div css={rightCss}>
+        <SaveTracker />
         {user ? (
           <img
             css={profilePicCss}

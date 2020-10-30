@@ -78,8 +78,8 @@ export const studentListAtom = atom({
 ///////////////////////////////////////////////////////////
 // SAVING DATA ////////////////////////////////////////////
 
-export const awaitingSaveConfirmationAtom = atom({
+export const dataIsSavedAtom = atom({
   // List of students in the currently active section
-  key: 'awaitingSaveConfirmationAtom',
-  default: false,
+  key: 'dataIsSavedAtom',
+  default: true,
 });
