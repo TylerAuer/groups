@@ -44,9 +44,9 @@ const useLoadData = () => {
     setGenList(gens);
     setStudentList(students);
 
-    // Reset active indexes to 0 or null
+    // Reset active indexes
     setActiveSectionIdx(0);
-    setActiveGenIdx(gens.length ? 0 : null);
+    setActiveGenIdx(null);
   };
 
   return loadData;

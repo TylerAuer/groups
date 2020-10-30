@@ -27,7 +27,7 @@ const useGenNewGen = () => {
     // Get list of active IDs
     let ids = Object.values(relations)
       .filter((d) => d.active) // Remove inactive students
-      .map((d) => d.id); // Return just he IDs
+      .map((d) => d.id); // Return just the IDs
 
     // Determine group sizes
     const count = ids.length;
@@ -56,26 +56,19 @@ const useGenNewGen = () => {
       }
     }
 
-    const idxOfNewGen = gens.length;
-
     setGens((oldGens) => [
-      ...oldGens,
       {
-        id: idxOfNewGen,
-        active: true,
         date_created: Math.round(Date.now() / 1000), // Gives datetime in epoch format (no ms)
         group_size: size,
         students: count,
         extras: extras.const,
         groups: groupings,
       },
+      ...oldGens,
     ]);
 
     // Set New Generation as the one being displayed
-    setGroupsBeingShown(idxOfNewGen);
-
-    // Triggers a save if user is signed in
-    if (user) saveSection();
+    setGroupsBeingShown(0);
   };
 
   return algo;

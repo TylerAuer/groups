@@ -11,7 +11,7 @@ export const activeGroupsSelector = selector({
     const idx = get(activeGenIdxAtom);
     const students = get(studentListAtom);
 
-    if (!gens.length || idx === null) return null;
+    if (!gens.length || idx === null || !students.length) return null;
 
     const { groups } = gens[idx];
 

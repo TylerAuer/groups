@@ -6,6 +6,7 @@ import EditableSectionTitle from './components/EditableSectionTitle';
 import GroupList from './components/GroupList';
 import GenerationList from './components/GenerationList';
 import StudentList from './components/StudentList';
+import SaveTracker from './components/SaveTracker';
 
 const AppPage = () => {
   const loadData = useLoadData();
@@ -22,6 +23,7 @@ const AppPage = () => {
 
   return (
     <section>
+      <SaveTracker />
       <EditableSectionTitle />
       <GroupList />
       <GenerationList />

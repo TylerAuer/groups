@@ -19,9 +19,6 @@ const GenerationList = () => {
   const [activeGenIdx, setActiveGenIdx] = useRecoilState(activeGenIdxAtom);
   const studentCount = useRecoilValue(studentListAtom).length;
 
-  // Puts generations in reverse chronological order
-  const gens = [...genList].reverse();
-
   const barContainerCss = css`
     cursor: pointer;
 
@@ -80,48 +77,56 @@ const GenerationList = () => {
     title = headerJustControls;
   }
 
-  const handleDeleteGen = (id) => {
-    const updatedGenState = genList.slice();
-    const updatedGen = { ...updatedGenState[id], deleted: true };
-    updatedGenState[id] = updatedGen;
-
-    setGenList(updatedGenState);
+  const handleDeleteGen = (idx) => {
+    let newIdx;
+    if (newIdx === idx) {
+      // Deleting the generation currently being shown, so show no groups
+      newIdx = null;
+    } else if (idx < activeGenIdx) {
+      // Deleting a generation before the one currently being show
+      // So must decrement the idx in order to keep reference to correct groups
+      newIdx = activeGenIdx - 1;
+    } else {
+      // Deleting generation after the one being shown so no change in idx being
+      // shown
+      newIdx = activeGenIdx;
+    }
+    setActiveGenIdx(newIdx);
+    setGenList((prev) => [...prev.slice(0, idx), ...prev.slice(idx + 1)]);
   };
 
   return (
     <section id="list-of-groupings">
       {title}
-      {gens
-        .filter((g) => !g.deleted)
-        .map((g) => {
-          const date = formatRelative(
-            new Date(g.date_created * 1000),
-            new Date()
-          );
+      {genList.map((gen, idx) => {
+        const date = formatRelative(
+          new Date(gen.date_created * 1000),
+          new Date()
+        );
 
-          return (
-            <div
-              css={barContainerCss}
-              key={g.id}
-              onClick={() => setActiveGenIdx(g.id)}
-            >
-              <Bar highlight={g.id === activeGenIdx}>
-                <div>
-                  {`${g.students} students`}
-                  <Pill color="grey" text={`${g.group_size} per group`} />
-                  <Pill color="grey" text={EXTRA_OPTIONS[g.extras].name} />
-                  <span css={dateCss}>{date}</span>
-                </div>
-                <div>
-                  <TextOnlyBtn
-                    onClick={() => handleDeleteGen(g.id)}
-                    text="Delete"
-                  />
-                </div>
-              </Bar>
-            </div>
-          );
-        })}
+        return (
+          <div
+            css={barContainerCss}
+            key={idx}
+            onClick={() => setActiveGenIdx(idx)}
+          >
+            <Bar highlight={idx === activeGenIdx}>
+              <div>
+                {`${gen.students} students`}
+                <Pill color="grey" text={`${gen.group_size} per group`} />
+                <Pill color="grey" text={EXTRA_OPTIONS[gen.extras].name} />
+                <span css={dateCss}>{date}</span>
+              </div>
+              <div>
+                <TextOnlyBtn
+                  onClick={() => handleDeleteGen(idx)}
+                  text="Delete"
+                />
+              </div>
+            </Bar>
+          </div>
+        );
+      })}
     </section>
   );
 };
