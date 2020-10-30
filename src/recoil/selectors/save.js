@@ -14,7 +14,7 @@ export const saveSectionPrimaryKeySelector = selector({
     const sections = get(sectionListAtom);
     const activeSectionIdx = get(activeSectionIdxAtom);
 
-    if (!sections.length) return null;
+    if (!sections) return null;
 
     return sections[activeSectionIdx].id;
   },
@@ -27,7 +27,7 @@ export const saveSectionNameSelector = selector({
     const sections = get(sectionListAtom);
     const activeSectionIdx = get(activeSectionIdxAtom);
 
-    if (!sections.length) return null;
+    if (!sections) return null;
 
     return sections[activeSectionIdx].name;
   },

@@ -22,7 +22,7 @@ export const userAtom = atom({
 export const sectionListAtom = atom({
   // Only used if a user is signed in
   key: 'sectionListAtom',
-  default: [],
+  default: null,
 });
 
 export const activeSectionIdxAtom = atom({

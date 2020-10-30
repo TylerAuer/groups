@@ -2,12 +2,17 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import { useRecoilState } from 'recoil';
-import { activeSectionIdxAtom, sectionListAtom } from '../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  userAtom,
+  activeSectionIdxAtom,
+  sectionListAtom,
+} from '../recoil/atoms';
 import ControlBtn from './buttons/ControlBtn';
 import useMakeNewSection from '../hooks/useMakeNewSection';
 
 const EditableSectionTitle = () => {
+  const user = useRecoilValue(userAtom);
   const [editing, setEditing] = useState(false);
   const [sections, setSections] = useRecoilState(sectionListAtom);
   const [sectionIdx, setSectionIdx] = useRecoilState(activeSectionIdxAtom);
@@ -101,7 +106,7 @@ const EditableSectionTitle = () => {
     margin-right: 0.5rem;
   `;
 
-  const title = sections[sectionIdx].name;
+  const title = sections ? sections[sectionIdx].name : 'Title';
 
   const handleChange = (e) => {
     // // Copy section, rename
@@ -151,7 +156,6 @@ const EditableSectionTitle = () => {
                 key={i}
                 onClick={() => {
                   setSectionIdx(i);
-                  // TRIGGER LOADING OF NEW SECTION
                 }}
               >
                 {i === sectionIdx && <div css={currentMarkerCss} />}{' '}

@@ -26,10 +26,10 @@ app.get('/auth/google', auth.googleAuth);
 app.get('/auth/google/callback', auth.googleCallback);
 
 // User
-app.get('/data', authorize, data.getUserAndSectionData);
+app.get('/data/user', authorize, data.getUser);
 
-// Data
-// app.post('/data/section/:id', authorize, data.getUserData);
+// Sections
+app.get('/data/sections', authorize, data.getSections);
 app.post('/data/section/new', authorize, data.makeNewSection);
 app.put('/data/section/:id', authorize, data.saveSectionData);
 // app.delete('/data/section/:id', authorize, data.getUserData);

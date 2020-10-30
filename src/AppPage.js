@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { sectionListAtom } from './recoil/atoms';
-import useLoadUserAndSections from './hooks/useLoadUserAndSections';
+import { sectionListAtom, userAtom } from './recoil/atoms';
+import useLoadUser from './hooks/useLoadUser';
 import EditableSectionTitle from './components/EditableSectionTitle';
 import GroupList from './components/GroupList';
 import GenerationList from './components/GenerationList';
 import StudentList from './components/StudentList';
 
 const AppPage = () => {
-  const load = useLoadUserAndSections();
+  const user = useRecoilValue(userAtom);
   const sections = useRecoilValue(sectionListAtom);
+  const load = useLoadUser();
 
   useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!sections.length) {
-    return <h2>Loading</h2>;
-  }
+  if (!user || !sections) return null;
 
   return (
     <section>
