@@ -5,25 +5,19 @@ module.exports = async function saveSectionData(req, res) {
 
   const currentDbData = await db.GroupUsSection.findByPk(key);
 
-  const dbVersion = currentDbData.dataValues.data.version;
+  const dbVersion = currentDbData.dataValues.section_info.version;
   const incomingVersion = req.body.version;
 
   if (dbVersion >= incomingVersion) {
     res.status(304).send('Data is stale. Database not updated');
   } else {
-    const updatedSection = await db.GroupUsSection.update(
+    await db.GroupUsSection.update(
       {
-        data: req.body,
+        section_info: req.body,
       },
       { where: { id: key } }
     );
 
-    const flatUpdatedSection = {
-      id: updatedSection.id,
-      last_updated: updatedSection.updatedAt,
-      ...updatedSection.data,
-    };
-
-    res.send(flatUpdatedSection);
+    res.send('Successfully saved data');
   }
 };

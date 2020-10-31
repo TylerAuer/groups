@@ -58,7 +58,7 @@ const useGenNewGen = () => {
     setData((prev) => {
       const next = cloneDeep(prev);
 
-      next.GroupUsSections[idx].data.generations = [
+      next.GroupUsSections[idx].section_info.generations = [
         {
           date_created: Math.round(Date.now() / 1000), // Gives datetime in epoch format (no ms)
           group_size: size,
@@ -66,8 +66,11 @@ const useGenNewGen = () => {
           extras: extras.const,
           groups: groupings,
         },
-        ...next.GroupUsSections[idx].data.generations,
+        ...next.GroupUsSections[idx].section_info.generations,
       ];
+
+      next.GroupUsSections[idx].section_info.version =
+        next.GroupUsSections[idx].section_info.version + 1;
 
       return next;
     });

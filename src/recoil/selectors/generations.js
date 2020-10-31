@@ -9,7 +9,7 @@ export const genList = selector({
     const data = get(userDataAtom);
 
     if (data) {
-      return data.GroupUsSections[idx].data.generations;
+      return data.GroupUsSections[idx].section_info.generations;
     } else {
       return [];
     }

@@ -95,7 +95,13 @@ const GenerationList = () => {
 
     setData((prev) => {
       const next = cloneDeep(prev);
-      next.GroupUsSections[sectionIdx].data.generations.splice(clickedIdx, 1);
+      next.GroupUsSections[sectionIdx].section_info.generations.splice(
+        clickedIdx,
+        1
+      );
+
+      next.GroupUsSections[sectionIdx].section_info.version =
+        next.GroupUsSections[sectionIdx].section_info.version + 1;
 
       return next;
     });

@@ -37,13 +37,16 @@ const StudentList = () => {
     }));
 
     setData((prev) => {
-      const oldStudents = prev.GroupUsSections[idx].data.students;
+      const oldStudents = prev.GroupUsSections[idx].section_info.students;
       const next = cloneDeep(prev);
 
-      next.GroupUsSections[idx].data.students = [
+      next.GroupUsSections[idx].section_info.students = [
         ...oldStudents,
         ...newStudents,
       ];
+
+      next.GroupUsSections[idx].section_info.version =
+        prev.GroupUsSections[idx].section_info.version + 1;
 
       return next;
     });
@@ -52,8 +55,11 @@ const StudentList = () => {
   const toggleStudentActive = (id) => {
     setData((prev) => {
       const next = cloneDeep(prev);
-      next.GroupUsSections[idx].data.students[id].active = !next
-        .GroupUsSections[idx].data.students[id].active;
+      next.GroupUsSections[idx].section_info.students[id].active = !next
+        .GroupUsSections[idx].section_info.students[id].active;
+
+      next.GroupUsSections[idx].section_info.version =
+        next.GroupUsSections[idx].section_info.version + 1;
 
       return next;
     });

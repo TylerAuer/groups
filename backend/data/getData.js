@@ -7,8 +7,8 @@ module.exports = async function getData(req, res) {
     },
     attributes: { exclude: ['google_id', 'email', 'last_name'] },
     include: db.GroupUsSection,
-    order: [[db.GroupUsSection, 'id']], // returns in ascending id order
+    //order: [[db.GroupUsSection, 'id']], // returns in ascending id order
   });
-
+  console.log(userData.dataValues.GroupUsSections[0]);
   res.send(userData);
 };

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   GroupUsSection.init(
     {
-      data: DataTypes.JSON,
+      section_info: DataTypes.JSON,
     },
     {
       sequelize,

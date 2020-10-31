@@ -14,7 +14,7 @@ module.exports = async function makeNewSection(req, res) {
 
   const newSection = await db.GroupUsSection.create({
     GroupUsUserId: userPrimaryKey,
-    data: newSectionData,
+    section_info: newSectionData,
   });
 
   res.send(newSection);

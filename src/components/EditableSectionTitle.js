@@ -107,12 +107,14 @@ const EditableSectionTitle = () => {
     margin-right: 0.5rem;
   `;
 
-  const title = sections[idx].data.name;
+  const title = sections[idx].section_info.name;
 
   const handleChange = (e) => {
     setData((prev) => {
       const next = cloneDeep(prev);
-      next.GroupUsSections[idx].data.name = e.target.value;
+      next.GroupUsSections[idx].section_info.name = e.target.value;
+      next.GroupUsSections[idx].section_info.version =
+        next.GroupUsSections[idx].section_info.version + 1;
 
       return next;
     });
@@ -156,7 +158,7 @@ const EditableSectionTitle = () => {
                 }}
               >
                 {i === idx && <div css={currentMarkerCss} />}{' '}
-                {section.data.name}
+                {section.section_info.name}
               </li>
             ))}
           </ul>

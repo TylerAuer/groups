@@ -1,28 +1,29 @@
 import { SAVE_STATUS } from '../constants/saveStatus';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { activeSectionIdxAtom, dataIsSavedAtom } from '../recoil/atoms';
 import {
-  saveSectionPrimaryKeySelector,
-  saveDataSelector,
-} from '../recoil/selectors/save';
-import { sectionList } from '../recoil/selectors/sections';
+  activeSectionIdxAtom,
+  dataIsSavedAtom,
+  userDataAtom,
+} from '../recoil/atoms';
 
 const useSaveSection = () => {
-  const key = useRecoilValue(saveSectionPrimaryKeySelector);
-  const data = useRecoilValue(saveDataSelector);
+  const data = useRecoilValue(userDataAtom);
+  const idx = useRecoilValue(activeSectionIdxAtom);
   const setSave = useSetRecoilState(dataIsSavedAtom);
-  const setSectionList = useSetRecoilState(sectionList);
-  const activeSectionIdx = useRecoilValue(activeSectionIdxAtom);
+
+  const section = data && data.GroupUsSections[idx];
+  const key = section && section.id;
 
   const saveSection = async () => {
     // Doesn't take effect until AFTER the fetch request has been made,
     // So there is also a +1 on the save selector
+
     fetch(`/data/section/${key}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(section),
     })
       .then((res) => {
         if (res.status === 200) {

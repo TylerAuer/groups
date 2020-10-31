@@ -7,7 +7,7 @@ import { userDataAtom, dataIsSavedAtom } from '../recoil/atoms';
 import { useEffect } from 'react';
 
 const SaveTracker = () => {
-  // const save = useSaveSection();
+  const save = useSaveSection();
   const data = useRecoilValue(userDataAtom);
   const [saveStatus, setSaveStatus] = useRecoilState(dataIsSavedAtom);
 
@@ -17,17 +17,17 @@ const SaveTracker = () => {
     font-style: italic;
   `;
 
-  // useEffect(() => {
-  //   setSaveStatus(SAVE_STATUS.SAVING);
-  //   const debouncedSectionSave = setTimeout(() => {
-  //     if (data) save();
-  //   }, 2500);
+  useEffect(() => {
+    setSaveStatus(SAVE_STATUS.SAVING);
+    const debouncedSectionSave = setTimeout(() => {
+      if (data) save();
+    }, 2500);
 
-  //   return () => {
-  //     clearTimeout(debouncedSectionSave);
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [data]);
+    return () => {
+      clearTimeout(debouncedSectionSave);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
 
   return <div css={statusCss}>{saveStatus}</div>;
 };

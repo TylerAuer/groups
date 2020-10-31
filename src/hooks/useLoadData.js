@@ -6,6 +6,7 @@ const useLoadUser = () => {
 
   const loadData = async () => {
     const res = await fetch('/data').then((res) => res.json());
+    console.log('LOADED DATA FROM ENDPOINT');
     setUserData(res);
   };
 

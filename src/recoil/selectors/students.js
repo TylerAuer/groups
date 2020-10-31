@@ -9,7 +9,7 @@ export const studentList = selector({
     const data = get(userDataAtom);
 
     if (data) {
-      return data.GroupUsSections[idx].data.students;
+      return data.GroupUsSections[idx].section_info.students;
     } else {
       return [];
     }
