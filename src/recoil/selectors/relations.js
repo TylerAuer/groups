@@ -6,6 +6,7 @@ import { studentList } from './students';
 export const relationGraph = selector({
   key: 'relationGraph',
   get: ({ get }) => {
+    console.log('recalculating graph!');
     const gens = get(genList);
     const students = get(studentList);
 
@@ -21,12 +22,10 @@ export const relationGraph = selector({
       };
     });
 
+    console.log('graph1', graph);
+
     // Iterate over each generation
     gens.forEach((generation) => {
-      if (generation.deleted) {
-        return;
-      }
-
       // For each group, determine groups value (more kids less value)
       const { groups } = generation;
       groups.forEach((group) => {
@@ -67,6 +66,7 @@ export const relationGraph = selector({
         }
       });
     });
+    console.log('graph2', graph);
     return graph;
   },
 });

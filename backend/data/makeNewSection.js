@@ -17,11 +17,5 @@ module.exports = async function makeNewSection(req, res) {
     data: newSectionData,
   });
 
-  const flatNewSection = {
-    id: newSection.id,
-    last_update: newSection.updatedAt,
-    ...newSection.data,
-  };
-
-  res.send(flatNewSection);
+  res.send(newSection);
 };

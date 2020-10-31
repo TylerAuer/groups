@@ -7,9 +7,25 @@ import GroupList from './components/GroupList';
 import GenerationList from './components/GenerationList';
 import StudentList from './components/StudentList';
 
+import { activeGenIdxAtom, activeSectionIdxAtom } from './recoil/atoms';
+import { genList } from './recoil/selectors/generations';
+import { studentList } from './recoil/selectors/students';
+
 const AppPage = () => {
   const data = useRecoilValue(userDataAtom);
   const loadData = useLoadData();
+
+  const genIdx = useRecoilValue(activeGenIdxAtom);
+  const sectionIdx = useRecoilValue(activeSectionIdxAtom);
+  const gens = useRecoilValue(genList);
+  const students = useRecoilValue(studentList);
+
+  console.log('data', data);
+  console.log('genIdx', genIdx);
+  console.log('sectionIdx', sectionIdx);
+  console.log('gensList', gens);
+  console.log('studentsList', students);
+  console.log(' ');
 
   useEffect(() => {
     loadData();
@@ -20,7 +36,7 @@ const AppPage = () => {
 
   return (
     <section>
-      {/* <EditableSectionTitle /> */}
+      <EditableSectionTitle />
       <GroupList />
       <GenerationList />
       <StudentList />

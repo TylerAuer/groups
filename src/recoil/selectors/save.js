@@ -1,7 +1,6 @@
 import { selector } from 'recoil';
 import { activeSectionIdxAtom, userDataAtom } from '../atoms';
 import { studentList } from './students';
-
 import { genList } from './generations';
 
 export const saveSectionPrimaryKeySelector = selector({

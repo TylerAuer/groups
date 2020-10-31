@@ -2,20 +2,22 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import { useRecoilState } from 'recoil';
-import { activeSectionIdxAtom } from '../recoil/atoms';
+import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
+import { activeSectionIdxAtom, userDataAtom } from '../recoil/atoms';
 import { sectionList } from '../recoil/selectors/sections';
 import ControlBtn from './buttons/ControlBtn';
 import useMakeNewSection from '../hooks/useMakeNewSection';
-import useSwitchSections from '../hooks/useSwitchSections';
+import cloneDeep from 'lodash.clonedeep';
 
 const EditableSectionTitle = () => {
+  // Component State
   const [editing, setEditing] = useState(false);
-  const [sections, setSections] = useRecoilState(sectionList);
-  const [sectionIdx, setSectionIdx] = useRecoilState(activeSectionIdxAtom);
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // App state
+  const [idx, setIdx] = useRecoilState(activeSectionIdxAtom);
+  const setData = useSetRecoilState(userDataAtom);
+  const sections = useRecoilValue(sectionList);
   const makeNewSection = useMakeNewSection();
-  const switchSections = useSwitchSections();
 
   const parentCss = css`
     position: relative;
@@ -36,6 +38,7 @@ const EditableSectionTitle = () => {
     border: 2px solid transparent;
     border-radius: 5px;
     outline: none;
+    margin: 0 1rem;
 
     &[disabled] {
       color: black;
@@ -104,20 +107,15 @@ const EditableSectionTitle = () => {
     margin-right: 0.5rem;
   `;
 
-  const title = sections ? sections[sectionIdx].name : 'Title';
+  const title = sections[idx].data.name;
 
   const handleChange = (e) => {
-    // // Copy section, rename
-    const renamedSection = {
-      ...sections[sectionIdx],
-      name: e.target.value,
-    };
+    setData((prev) => {
+      const next = cloneDeep(prev);
+      next.GroupUsSections[idx].data.name = e.target.value;
 
-    setSections((old) => [
-      ...old.slice(0, sectionIdx),
-      renamedSection,
-      ...old.slice(sectionIdx + 1),
-    ]);
+      return next;
+    });
   };
 
   const handleSubmit = (e) => {
@@ -148,22 +146,17 @@ const EditableSectionTitle = () => {
         <div css={dropdownCss}>
           <div css={dropdownTitleCss}>Switch Sections</div>
           <ul>
-            <li
-              onClick={async () => {
-                makeNewSection();
-              }}
-            >
-              &#43; Create new section
-            </li>
+            <li onClick={() => makeNewSection()}>&#43; Create new section</li>
             {sections.map((section, i) => (
               <li
                 key={i}
                 onClick={() => {
-                  switchSections(i);
+                  setIdx(i);
+                  setIsMenuOpen(false);
                 }}
               >
-                {i === sectionIdx && <div css={currentMarkerCss} />}{' '}
-                {section.name}
+                {i === idx && <div css={currentMarkerCss} />}{' '}
+                {section.data.name}
               </li>
             ))}
           </ul>

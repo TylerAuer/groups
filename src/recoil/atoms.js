@@ -26,7 +26,7 @@ export const activeSectionIdxAtom = atom({
 });
 
 ////////////////////////////////////////////////////////////
-// GENERATION CONFIG SETTINGS///////////////////////////////
+// GENERATION CONFIG SETTINGS //////////////////////////////
 
 export const groupSizeConfigAtom = atom({
   // Tracks the user's setting for the groups size when
@@ -46,4 +46,12 @@ export const dataIsSavedAtom = atom({
   // List of students in the currently active section
   key: 'dataIsSavedAtom',
   default: true,
+});
+
+////////////////////////////////////////////////////////////
+// COMPONENT STATES ////////////////////////////////////////
+
+export const isSectionDropdownOpenAtom = atom({
+  key: 'sectionDropdownAtom',
+  default: false,
 });
