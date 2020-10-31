@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil';
@@ -8,11 +8,14 @@ import { sectionList } from '../recoil/selectors/sections';
 import ControlBtn from './buttons/ControlBtn';
 import useMakeNewSection from '../hooks/useMakeNewSection';
 import cloneDeep from 'lodash.clonedeep';
+import useOutsideClickListener from '../hooks/useClickOutsideListener';
 
 const EditableSectionTitle = () => {
   // Component State
   const [editing, setEditing] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const ref = useRef(null);
+  useOutsideClickListener(ref, () => setIsMenuOpen(false));
   // App state
   const [idx, setIdx] = useRecoilState(activeSectionIdxAtom);
   const setData = useSetRecoilState(userDataAtom);
@@ -126,7 +129,7 @@ const EditableSectionTitle = () => {
   };
 
   return (
-    <div css={parentCss}>
+    <div ref={ref} css={parentCss}>
       <div css={titleAndToggleContainerCss}>
         <form onSubmit={handleSubmit}>
           <input
@@ -148,7 +151,14 @@ const EditableSectionTitle = () => {
         <div css={dropdownCss}>
           <div css={dropdownTitleCss}>Switch Sections</div>
           <ul>
-            <li onClick={() => makeNewSection()}>&#43; Create new section</li>
+            <li
+              onClick={() => {
+                makeNewSection();
+                setIsMenuOpen(false);
+              }}
+            >
+              &#43; Create new section
+            </li>
             {sections.map((section, i) => (
               <li
                 key={i}

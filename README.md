@@ -6,11 +6,9 @@ Group Us generates groups from lists of people (well, really anything). Each tim
 
 ## Development To Do (mostly in order)
 
-- Get app running on local machine (test with my account and wife's) using save button
-- Implement autosave/syncing with useAutoSync which syncs data whenever a function is called
 - Add spinner element
-- Make it so you can add sections
 - Group sizing should update based on number of kids so you don't get anything funky
+- Landing Page
 - Add modal when arriving if not logged in
 - Add Favicon (venn diagram is an idea)
 - Add FAQs modal

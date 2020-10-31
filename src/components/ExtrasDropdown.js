@@ -1,15 +1,18 @@
 /** @jsx jsx */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { css, jsx } from '@emotion/core';
 import { useRecoilState } from 'recoil';
 import { extrasConfigAtom } from '../recoil/atoms';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { colors } from '../constants/styles';
+import useClickOutsideListener from '../hooks/useClickOutsideListener';
 import ControlBtn from './buttons/ControlBtn';
 
 const ExtrasDropdown = () => {
   const [open, setOpen] = useState(false);
   const [setting, setSetting] = useRecoilState(extrasConfigAtom);
+  const ref = useRef(null);
+  useClickOutsideListener(ref, () => setOpen(false));
 
   const dropdownContainerCss = css`
     position: relative;
@@ -59,7 +62,7 @@ const ExtrasDropdown = () => {
   };
 
   return (
-    <div css={dropdownContainerCss}>
+    <div ref={ref} css={dropdownContainerCss}>
       <ControlBtn text={setting.name} onClick={() => setOpen(!open)} />
       <div
         css={dropdownCss}

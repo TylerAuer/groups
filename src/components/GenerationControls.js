@@ -49,7 +49,9 @@ const GenerationControls = () => {
         <div css={spacerCss} />
         <ControlBtn text="+" onClick={onGroupSizeIncrement} />
       </div>
+
       <ExtrasDropdown />
+
       <ControlBtn text="Generate" onClick={genNewGroups} />
     </div>
   );
