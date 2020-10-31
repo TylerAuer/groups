@@ -13,7 +13,7 @@ module.exports = async function saveSectionData(req, res) {
   } else {
     await db.GroupUsSection.update(
       {
-        section_info: req.body,
+        section_info: req.body.section_info,
       },
       { where: { id: key } }
     );
