@@ -12,10 +12,16 @@ module.exports = async function makeNewSection(req, res) {
     generations: [],
   };
 
-  await db.GroupUsSection.create({
+  const newSection = await db.GroupUsSection.create({
     GroupUsUserId: userPrimaryKey,
     data: newSectionData,
   });
 
-  res.send(newSectionData);
+  const flatNewSection = {
+    id: newSection.id,
+    last_update: newSection.updatedAt,
+    ...newSection.data,
+  };
+
+  res.send(flatNewSection);
 };

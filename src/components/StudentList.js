@@ -1,17 +1,21 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useState } from 'react';
-import { useRecoilState } from 'recoil';
-import { studentListAtom } from '../recoil/atoms';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { userDataAtom, activeSectionIdxAtom } from '../recoil/atoms';
+import { studentList } from '../recoil/selectors/students';
 import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import ControlBtn from './buttons/ControlBtn';
 import AddStudent from './AddStudent';
 import EditableStudentName from './EditableStudentName';
+import cloneDeep from 'lodash.clonedeep';
 
 const StudentList = () => {
+  const setData = useSetRecoilState(userDataAtom);
   const [addModal, setAddModal] = useState(false);
-  const [students, setStudents] = useRecoilState(studentListAtom);
+  const students = useRecoilValue(studentList);
+  const idx = useRecoilValue(activeSectionIdxAtom);
 
   const h2Css = css`
     display: flex;
@@ -32,17 +36,27 @@ const StudentList = () => {
       active: true,
     }));
 
-    setStudents((oldStudents) => [...oldStudents, ...newStudents]);
+    setData((prev) => {
+      const oldStudents = prev.GroupUsSections[idx].data.students;
+      const next = cloneDeep(prev);
+
+      next.GroupUsSections[idx].data.students = [
+        ...oldStudents,
+        ...newStudents,
+      ];
+
+      return next;
+    });
   };
 
   const toggleStudentActive = (id) => {
-    const student = { ...students[id] }; // Grab and copy the student
-    student.active = !student.active; // Toggle their activeness
+    setData((prev) => {
+      const next = cloneDeep(prev);
+      next.GroupUsSections[idx].data.students[id].active = !next
+        .GroupUsSections[idx].data.students[id].active;
 
-    const modifiedStudents = [...students]; // Make copy of state
-    modifiedStudents[id] = student; // replace student with new one
-
-    setStudents(modifiedStudents); // dispatch change to recoil
+      return next;
+    });
   };
 
   const listOfStudents = [...students]

@@ -1,15 +1,16 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import useGenNewGen from '../grouping_algorithm/useGenNewGen';
-import { groupSizeConfigAtom, studentListAtom } from '../recoil/atoms';
+import makeNewGen from '../grouping_algorithm/makeNewGen';
+import { groupSizeConfigAtom } from '../recoil/atoms';
+import { studentList } from '../recoil/selectors/students';
 import ControlBtn from './buttons/ControlBtn';
 import ExtrasDropdown from './ExtrasDropdown';
 
 const GenerationControls = () => {
   const [groupSize, setGroupSize] = useRecoilState(groupSizeConfigAtom);
-  const studentCount = useRecoilValue(studentListAtom).length;
-  const genNewGen = useGenNewGen();
+  const studentCount = useRecoilValue(studentList).length;
+  const genNewGroups = makeNewGen();
 
   const controlsCss = css`
     display: flex;
@@ -49,7 +50,7 @@ const GenerationControls = () => {
         <ControlBtn text="+" onClick={onGroupSizeIncrement} />
       </div>
       <ExtrasDropdown />
-      <ControlBtn text="Generate" onClick={genNewGen} />
+      <ControlBtn text="Generate" onClick={genNewGroups} />
     </div>
   );
 };

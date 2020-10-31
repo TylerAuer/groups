@@ -2,22 +2,20 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  userAtom,
-  activeSectionIdxAtom,
-  sectionListAtom,
-} from '../recoil/atoms';
+import { useRecoilState } from 'recoil';
+import { activeSectionIdxAtom } from '../recoil/atoms';
+import { sectionList } from '../recoil/selectors/sections';
 import ControlBtn from './buttons/ControlBtn';
 import useMakeNewSection from '../hooks/useMakeNewSection';
+import useSwitchSections from '../hooks/useSwitchSections';
 
 const EditableSectionTitle = () => {
-  const user = useRecoilValue(userAtom);
   const [editing, setEditing] = useState(false);
-  const [sections, setSections] = useRecoilState(sectionListAtom);
+  const [sections, setSections] = useRecoilState(sectionList);
   const [sectionIdx, setSectionIdx] = useRecoilState(activeSectionIdxAtom);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const makeNewSection = useMakeNewSection();
+  const switchSections = useSwitchSections();
 
   const parentCss = css`
     position: relative;
@@ -150,12 +148,18 @@ const EditableSectionTitle = () => {
         <div css={dropdownCss}>
           <div css={dropdownTitleCss}>Switch Sections</div>
           <ul>
-            <li onClick={makeNewSection}>&#43; Create new section</li>
+            <li
+              onClick={async () => {
+                makeNewSection();
+              }}
+            >
+              &#43; Create new section
+            </li>
             {sections.map((section, i) => (
               <li
                 key={i}
                 onClick={() => {
-                  setSectionIdx(i);
+                  switchSections(i);
                 }}
               >
                 {i === sectionIdx && <div css={currentMarkerCss} />}{' '}

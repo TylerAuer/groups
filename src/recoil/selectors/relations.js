@@ -1,12 +1,13 @@
 import { selector } from 'recoil';
-import { genListAtom, studentListAtom } from '../atoms';
+import { genList } from './generations';
+import { studentList } from './students';
 
 // SELECTORS
 export const relationGraph = selector({
   key: 'relationGraph',
   get: ({ get }) => {
-    const gens = get(genListAtom);
-    const students = get(studentListAtom);
+    const gens = get(genList);
+    const students = get(studentList);
 
     const graph = {};
 

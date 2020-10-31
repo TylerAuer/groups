@@ -1,30 +1,32 @@
-import { useSetRecoilState, useRecoilValue } from 'recoil';
-import {
-  activeSectionIdxAtom,
-  activeGenIdxAtom,
-  sectionListAtom,
-} from '../recoil/atoms';
-import useLoadUserAndSections from './useLoadUserAndSections';
-import useSwitchSections from './useSwitchSections';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { activeSectionIdxAtom, activeGenIdxAtom } from '../recoil/atoms';
+import { genList } from '../recoil/selectors/generations';
+import { sectionList } from '../recoil/selectors/sections';
+import { studentList } from '../recoil/selectors/students';
 
 const useMakeNewSection = () => {
-  const setActiveSectionIdx = useSetRecoilState(activeSectionIdxAtom);
+  const [sectionList, setSectionList] = useRecoilState(sectionList);
+  const setSectionIdx = useSetRecoilState(activeSectionIdxAtom);
+  const setStudentList = useSetRecoilState(studentList);
+  const setGenList = useSetRecoilState(genList);
   const setActiveGenIdx = useSetRecoilState(activeGenIdxAtom);
-  const switchSections = useSwitchSections();
-  const sectionList = useRecoilValue(sectionListAtom);
-  const loadUserAndSections = useLoadUserAndSections();
 
   const makeNewSection = async () => {
-    await fetch('/data/section/new', {
+    const newSection = await fetch('/data/section/new', {
       method: 'POST',
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('New section created');
-      });
+    }).then((res) => res.json());
 
-    loadUserAndSections();
-    switchSections(sectionList.length);
+    // update sectionList
+    setSectionList((old) => [...old, newSection]);
+
+    // You might be tempted to use the useSwitchSections hook here, but it won't
+    // work. The problem is that the useSwitchSections hook relies on the new
+    // section to already be in the sectionListAtom. So, when it tries to grab
+    // the info it needs to adjust state, none of it is there
+    setSectionIdx(sectionList.length);
+    setStudentList(newSection.students);
+    setGenList(newSection.generations);
+    setActiveGenIdx(null);
   };
 
   return makeNewSection;

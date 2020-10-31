@@ -3,11 +3,11 @@ import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userAtom } from '../recoil/atoms';
+import { userDataAtom } from '../recoil/atoms';
 import SaveTracker from './SaveTracker';
 
 const Header = () => {
-  const user = useRecoilValue(userAtom);
+  const user = useRecoilValue(userDataAtom);
 
   const headerCss = css`
     display: flex;

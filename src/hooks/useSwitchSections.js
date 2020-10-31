@@ -1,31 +1,31 @@
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import {
-  activeSectionIdxAtom,
-  studentListAtom,
-  genListAtom,
-  activeGenIdxAtom,
-  sectionListAtom,
-} from '../recoil/atoms';
+import { activeSectionIdxAtom, activeGenIdxAtom } from '../recoil/atoms';
+import useSaveSection from '../hooks/useSaveSection';
+import { genList } from '../recoil/selectors/generations';
+import { sectionList } from '../recoil/selectors/sections';
+import { studentList } from '../recoil/selectors/students';
 
 const useSwitchSections = () => {
-  const sectionList = useRecoilValue(sectionListAtom);
+  const sections = useRecoilValue(sectionList);
   const setSectionIdx = useSetRecoilState(activeSectionIdxAtom);
-  const setStudentList = useSetRecoilState(studentListAtom);
-  const setGenList = useSetRecoilState(genListAtom);
+  const setStudentList = useSetRecoilState(studentList);
+  const setGenList = useSetRecoilState(genList);
   const setActiveGenIdx = useSetRecoilState(activeGenIdxAtom);
+  const save = useSaveSection();
 
   const switchSections = (idx) => {
-    console.log('section-list', sectionList);
-    console.log('idx', idx);
+    // Immediatelly saves the current state so that changes aren't lost when
+    // the new section is loaded.
+    save();
 
     // set active section to idx
     setSectionIdx(idx);
 
     // update student list
-    setStudentList(sectionList[idx].students);
+    setStudentList(sections[idx].students);
 
     // update gen list
-    setGenList(sectionList[idx].generations);
+    setGenList(sections[idx].generations);
 
     // set active gen to null
     setActiveGenIdx(null);

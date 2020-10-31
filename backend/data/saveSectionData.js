@@ -11,24 +11,19 @@ module.exports = async function saveSectionData(req, res) {
   if (dbVersion >= incomingVersion) {
     res.status(304).send('Data is stale. Database not updated');
   } else {
-    db.GroupUsSection.update(
+    const updatedSection = await db.GroupUsSection.update(
       {
         data: req.body,
       },
-      {
-        where: {
-          id: key,
-        },
-      }
-    )
-      .then(() => {
-        res.send('Data saved');
-      })
-      .catch((err) => {
-        res.send(`
-    Ugh oh, there's been an error!
-    ${err}
-    `);
-      });
+      { where: { id: key } }
+    );
+
+    const flatUpdatedSection = {
+      id: updatedSection.id,
+      last_updated: updatedSection.updatedAt,
+      ...updatedSection.data,
+    };
+
+    res.send(flatUpdatedSection);
   }
 };

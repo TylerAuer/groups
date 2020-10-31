@@ -1,25 +1,24 @@
 import setGroupSizes from './setGroupSizes';
 import shuffle from './shuffle';
 import calcGroupWeight from './calcGroupWeight';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import {
   groupSizeConfigAtom,
   extrasConfigAtom,
-  genListAtom,
   activeGenIdxAtom,
-  userAtom,
+  userDataAtom,
+  activeSectionIdxAtom,
 } from '../recoil/atoms';
 import { relationGraph } from '../recoil/selectors/relations';
-import useSaveSection from '../hooks/useSaveSection';
+import cloneDeep from 'lodash.clonedeep';
 
 const useGenNewGen = () => {
-  const user = useRecoilValue(userAtom);
+  const setData = useSetRecoilState(userDataAtom);
   const relations = useRecoilValue(relationGraph);
   const size = useRecoilValue(groupSizeConfigAtom);
   const extras = useRecoilValue(extrasConfigAtom);
-  const [gens, setGens] = useRecoilState(genListAtom);
+  const idx = useRecoilValue(activeSectionIdxAtom);
   const setGroupsBeingShown = useSetRecoilState(activeGenIdxAtom);
-  const saveSection = useSaveSection();
 
   const iterations = 10000;
 
@@ -56,16 +55,22 @@ const useGenNewGen = () => {
       }
     }
 
-    setGens((oldGens) => [
-      {
-        date_created: Math.round(Date.now() / 1000), // Gives datetime in epoch format (no ms)
-        group_size: size,
-        students: count,
-        extras: extras.const,
-        groups: groupings,
-      },
-      ...oldGens,
-    ]);
+    setData((prev) => {
+      const next = cloneDeep(prev);
+
+      next.GroupUsSections[idx].data.generations = [
+        {
+          date_created: Math.round(Date.now() / 1000), // Gives datetime in epoch format (no ms)
+          group_size: size,
+          students: count,
+          extras: extras.const,
+          groups: groupings,
+        },
+        ...next.GroupUsSections[idx].data.generations,
+      ];
+
+      return next;
+    });
 
     // Set New Generation as the one being displayed
     setGroupsBeingShown(0);

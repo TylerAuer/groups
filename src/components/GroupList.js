@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useRecoilValue } from 'recoil';
-import { activeGroupsSelector } from '../recoil/selectors/activeGroups';
+import { activeGroups } from '../recoil/selectors/groups';
 import Card from './Card';
 
 const GroupList = () => {
-  const groups = useRecoilValue(activeGroupsSelector);
+  const groups = useRecoilValue(activeGroups);
 
-  if (!groups) {
+  if (!groups || !groups.length) {
     return null;
   }
 
@@ -28,8 +28,8 @@ const GroupList = () => {
       <div css={containerCss}>
         {groups.map((group) => (
           <Card key={group}>
-            {group.map((student) => (
-              <div css={studentCss} key={student}>
+            {group.map((student, idx) => (
+              <div css={studentCss} key={idx}>
                 {student}
               </div>
             ))}

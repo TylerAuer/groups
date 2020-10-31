@@ -5,23 +5,17 @@ import { EXTRA_OPTIONS } from '../constants/extraOptions';
 ///////////////////////////////////////////////////////////
 // USER AND AUTH ATOMS ////////////////////////////////////
 
-export const userAtom = atom({
-  // Null if not signed in
-  //
-  // If signed in, includes:
-  // - first_name
-  // - profile_pic
-  // - id <- Primary key in DB
-  key: 'userAtom',
+export const userDataAtom = atom({
+  key: 'userDataAtom',
   default: null,
 });
 
-///////////////////////////////////////////////////////////
-// SECTION ATOMS //////////////////////////////////////////
+////////////////////////////////////////////////////////////
+// ACTIVE ATOMS ////////////////////////////////////////////
 
-export const sectionListAtom = atom({
-  // Only used if a user is signed in
-  key: 'sectionListAtom',
+export const activeGenIdxAtom = atom({
+  // Tracks the generation currently being viewed
+  key: 'activeGenIdxAtom',
   default: null,
 });
 
@@ -31,35 +25,8 @@ export const activeSectionIdxAtom = atom({
   default: 0,
 });
 
-export const sectionVersionAtom = atom({
-  // Version ID used to tag each save request to prevent stale overwrites
-  key: 'sectionVersionAtom',
-  default: null,
-});
-
 ////////////////////////////////////////////////////////////
-// STUDENT LIST ATOMS //////////////////////////////////////
-
-export const studentListAtom = atom({
-  // List of students in the currently active section
-  key: 'studentListAtom',
-  default: [],
-});
-
-///////////////////////////////////////////////////////////
-// GENERATION ATOMS ///////////////////////////////////////
-
-export const genListAtom = atom({
-  // List of generations for the current section
-  key: 'genListAtom',
-  default: [],
-});
-
-export const activeGenIdxAtom = atom({
-  // Tracks the generation currently being viewed
-  key: 'activeGenIdxAtom',
-  default: null,
-});
+// GENERATION CONFIG SETTINGS///////////////////////////////
 
 export const groupSizeConfigAtom = atom({
   // Tracks the user's setting for the groups size when
@@ -74,9 +41,6 @@ export const extrasConfigAtom = atom({
   key: 'extrasConfigAtom',
   default: EXTRA_OPTIONS.SPLIT_ACROSS,
 });
-
-///////////////////////////////////////////////////////////
-// SAVING DATA ////////////////////////////////////////////
 
 export const dataIsSavedAtom = atom({
   // List of students in the currently active section

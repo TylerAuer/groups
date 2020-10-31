@@ -1,12 +1,15 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import cloneDeep from 'lodash.clonedeep';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
-  genListAtom,
+  userDataAtom,
   activeGenIdxAtom,
-  studentListAtom,
+  activeSectionIdxAtom,
 } from '../recoil/atoms';
+import { genList } from '../recoil/selectors/generations';
+import { studentList } from '../recoil/selectors/students';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
 import { formatRelative } from 'date-fns';
 import Bar from './Bar';
@@ -15,9 +18,11 @@ import GenerationControls from './GenerationControls';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 
 const GenerationList = () => {
-  const [genList, setGenList] = useRecoilState(genListAtom);
-  const [activeGenIdx, setActiveGenIdx] = useRecoilState(activeGenIdxAtom);
-  const studentCount = useRecoilValue(studentListAtom).length;
+  const [genIdx, setGenIdx] = useRecoilState(activeGenIdxAtom);
+  const setData = useSetRecoilState(userDataAtom);
+  const sectionIdx = useRecoilValue(activeSectionIdxAtom);
+  const gens = useRecoilValue(genList);
+  const studentCount = useRecoilValue(studentList).length;
 
   const barContainerCss = css`
     cursor: pointer;
@@ -71,46 +76,43 @@ const GenerationList = () => {
   );
 
   let title = null;
-  if (studentCount && genList.length) {
+  if (studentCount && gens.length) {
     title = headerWithTitle;
   } else if (studentCount) {
     title = headerJustControls;
   }
 
-  const handleDeleteGen = (idx) => {
-    let newIdx;
-    if (newIdx === idx) {
+  const handleDeleteGen = (clickedIdx) => {
+    // TODO: Fix bug where clicking on delete also clicks the bar
+    if (genIdx === clickedIdx) {
       // Deleting the generation currently being shown, so show no groups
-      newIdx = null;
-    } else if (idx < activeGenIdx) {
+      setGenIdx(null);
+    } else if (clickedIdx < genIdx) {
       // Deleting a generation before the one currently being show
       // So must decrement the idx in order to keep reference to correct groups
-      newIdx = activeGenIdx - 1;
-    } else {
-      // Deleting generation after the one being shown so no change in idx being
-      // shown
-      newIdx = activeGenIdx;
+      setGenIdx(genIdx - 1);
     }
-    setActiveGenIdx(newIdx);
-    setGenList((prev) => [...prev.slice(0, idx), ...prev.slice(idx + 1)]);
+
+    setData((prev) => {
+      const next = cloneDeep(prev);
+      next.GroupUsSections[sectionIdx].data.generations.splice(clickedIdx, 1);
+
+      return next;
+    });
   };
 
   return (
     <section id="list-of-groupings">
       {title}
-      {genList.map((gen, idx) => {
+      {gens.map((gen, idx) => {
         const date = formatRelative(
           new Date(gen.date_created * 1000),
           new Date()
         );
 
         return (
-          <div
-            css={barContainerCss}
-            key={idx}
-            onClick={() => setActiveGenIdx(idx)}
-          >
-            <Bar highlight={idx === activeGenIdx}>
+          <div css={barContainerCss} key={idx} onClick={() => setGenIdx(idx)}>
+            <Bar highlight={genIdx === idx}>
               <div>
                 {`${gen.students} students`}
                 <Pill color="grey" text={`${gen.group_size} per group`} />

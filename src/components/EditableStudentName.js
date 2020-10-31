@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { useRecoilState } from 'recoil';
-import { studentListAtom } from '../recoil/atoms';
+import { studentList } from '../recoil/selectors/students';
 
 const EditableStudentName = ({ id }) => {
   const [editing, setEditing] = useState(false);
-  const [students, setStudents] = useRecoilState(studentListAtom);
+  const [students, setStudents] = useRecoilState(studentList);
 
   const name = students[id].name;
 
