@@ -21,7 +21,7 @@ const SaveTracker = () => {
     setSaveStatus(SAVE_STATUS.SAVING);
     const debouncedSectionSave = setTimeout(() => {
       if (data) save();
-    }, 2500);
+    }, 1500);
 
     return () => {
       clearTimeout(debouncedSectionSave);

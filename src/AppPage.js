@@ -11,9 +11,6 @@ const AppPage = () => {
   const data = useRecoilValue(userDataAtom);
   const loadData = useLoadData();
 
-  console.log('data', data);
-  console.log(' ');
-
   useEffect(() => {
     loadData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

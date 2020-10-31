@@ -9,6 +9,5 @@ module.exports = async function getData(req, res) {
     include: db.GroupUsSection,
     order: [[db.GroupUsSection, 'id']], // returns in ascending id order
   });
-  console.log(userData.dataValues.GroupUsSections[0]);
   res.send(userData);
 };

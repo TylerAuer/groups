@@ -66,11 +66,11 @@ const useGenNewGen = () => {
           extras: extras.const,
           groups: groupings,
         },
-        ...next.GroupUsSections[idx].section_info.generations,
+        ...prev.GroupUsSections[idx].section_info.generations,
       ];
 
       next.GroupUsSections[idx].section_info.version =
-        next.GroupUsSections[idx].section_info.version + 1;
+        prev.GroupUsSections[idx].section_info.version + 1;
 
       return next;
     });
