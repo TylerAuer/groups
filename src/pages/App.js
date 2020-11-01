@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { userDataAtom } from '../recoil/atoms';
+import { checkingForUserAtom, isSignedInAtom } from '../recoil/atoms';
 import useLoadData from '../hooks/useLoadData';
 import EditableSectionTitle from '../components/EditableSectionTitle';
 import GroupList from '../components/GroupList';
@@ -11,7 +11,8 @@ import StudentList from '../components/StudentList';
 import Header from '../components/Header';
 
 const AppPage = () => {
-  const data = useRecoilValue(userDataAtom);
+  const checkingForUser = useRecoilValue(checkingForUserAtom);
+  const isSignedIn = useRecoilValue(isSignedInAtom);
   const loadData = useLoadData();
 
   const appCss = css`
@@ -33,13 +34,15 @@ const AppPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!data) return null;
+  console.log(checkingForUser);
+
+  if (checkingForUser) return null;
 
   return (
     <div css={appCss}>
       <Header />
       <section>
-        <EditableSectionTitle />
+        {isSignedIn && <EditableSectionTitle />}
         <GroupList />
         <GenerationList />
         <StudentList />

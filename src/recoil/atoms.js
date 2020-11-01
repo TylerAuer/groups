@@ -5,6 +5,16 @@ import { EXTRA_OPTIONS } from '../constants/extraOptions';
 ///////////////////////////////////////////////////////////
 // USER AND AUTH ATOMS ////////////////////////////////////
 
+export const checkingForUserAtom = atom({
+  key: 'checkingForUserAtom',
+  default: true,
+});
+
+export const isSignedInAtom = atom({
+  key: 'isSignedInAtom',
+  default: false,
+});
+
 export const userDataAtom = atom({
   key: 'userDataAtom',
   default: null,

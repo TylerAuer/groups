@@ -1,12 +1,19 @@
 /** @jsx jsx */
+import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
 import { Link } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { userDataAtom } from '../recoil/atoms';
+import {
+  userDataAtom,
+  checkingForUserAtom,
+  isSignedInAtom,
+} from '../recoil/atoms';
 import SaveTracker from './SaveTracker';
 
 const Header = () => {
+  const checkingForUser = useRecoilValue(checkingForUserAtom);
+  const isSignedIn = useRecoilValue(isSignedInAtom);
   const user = useRecoilValue(userDataAtom);
 
   const headerCss = css`
@@ -51,16 +58,17 @@ const Header = () => {
         <div css={subtitleCss}>Smart, random groupings</div>
       </Link>
       <div css={rightCss}>
-        <SaveTracker />
-        {user ? (
-          <img
-            css={profilePicCss}
-            src={user.profile_pic}
-            alt={user.first_name}
-          />
-        ) : (
-          <Link to="/login">Log In</Link>
+        {!checkingForUser && isSignedIn && (
+          <React.Fragment>
+            <SaveTracker />
+            <img
+              css={profilePicCss}
+              src={user.profile_pic}
+              alt={user.first_name}
+            />
+          </React.Fragment>
         )}
+        {!checkingForUser && !isSignedIn && <Link to="/login">Log In</Link>}
       </div>
     </header>
   );
