@@ -7,31 +7,33 @@ import circles from '../img/overlapping-circles.svg';
 const StartBtn = () => {
   const btnCss = css`
     display: block;
-    width: 80%;
+    width: 60%;
     margin: 4rem auto;
     font-size: 2rem;
     outline: none;
-    color: #373737;
-    border: 2px solid #373737;
+    border: none;
     border-radius: 5px;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(16, 16, 16, 0.6);
     font-weight: bolder;
     text-align: center;
     transition: 0.5s;
+    text-decoration: none;
+    text-shadow: none;
+    color: white;
 
     &:hover,
     &:focus {
       text-decoration: none;
       outline: none;
-      width: 100%;
+      width: 70%;
     }
   `;
 
   return (
-    <button type="button" css={btnCss}>
-      Start Grouping
-    </button>
+    <Link css={btnCss} to="/app">
+      Start
+    </Link>
   );
 };
 
@@ -82,7 +84,7 @@ const LandingPage = () => {
       font-size: 1.7rem;
     }
 
-    & a {
+    & > p > a {
       color: #97009f;
       text-decoration: none;
 
@@ -98,31 +100,26 @@ const LandingPage = () => {
         <h1>Group Us</h1>
         <div className="subtitle">Smart, random groupings</div>
         <p>
-          Group Us is a powerful tool that generates random groupings. You
-          choose the size and how to handle extras, we'll do the rest!
+          <b>Group Us</b> is a powerful tool that generates random groupings.
+          You choose the size and how to handle extras, we'll do the rest!
         </p>
         <p>
-          Randomness isn't great when you get paired with the same person
-          over-and-over again. That's why Group Us remembers and minimizes
-          repeats.
+          But, randomness isn't great when you get paired with the same person
+          over-and-over again. That's why Group Us tracks and minimizes repeated
+          pairings.
         </p>
-        <h2>Why Random Groups?</h2>
         <p>
-          Research{' '}
           <a
             href="http://peterliljedahl.com/wp-content/uploads/Building-Thinking-Classrooms-Feb-14-20151.pdf#page=16"
             alt="Summary of research on visibly random groupings"
           >
-            {' '}
-            has found{' '}
-          </a>
-          that people collobarate and learn more when they know they are grouped
-          randomly. Use Group Us to make this an easy routine for your class or
-          meeting.
+            Research
+          </a>{' '}
+          has found that people collobarate and learn more when they know are
+          grouped randomly. Use Group Us to make this an easy routine for your
+          class or meeting.
         </p>
-        <Link to="/app">
-          <StartBtn />
-        </Link>
+        <StartBtn />
       </div>
     </div>
   );
