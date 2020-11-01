@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { Link } from 'react-router-dom';
-import { colors } from '../constants/styles';
 import circles from '../img/overlapping-circles.svg';
+import logo from '../img/logo-450.png';
 
 const StartBtn = () => {
   const btnCss = css`
@@ -67,6 +67,12 @@ const LandingPage = () => {
     font-size: 1.5rem;
     text-shadow: 2px 2px 6px white;
 
+    & img {
+      margin: -10px auto;
+      height: 200px;
+      width: auto;
+      display: block;
+    }
     & h1 {
       text-align: center;
       font-size: 5rem;
@@ -97,6 +103,7 @@ const LandingPage = () => {
   return (
     <div css={pageCss}>
       <div css={welcomeCss}>
+        <img src={logo} alt="Group Us logo" />
         <h1>Group Us</h1>
         <div className="subtitle">Smart, random groupings</div>
         <p>
