@@ -12,8 +12,8 @@ const ControlBtn = ({ text, onClick }) => {
     outline: none;
     border-radius: 5px;
 
-    color: ${colors.tertiary};
-    background-color: white;
+    color: white;
+    background-color: ${colors.tertiary};
     transition: all 0.2s ease-in-out;
     min-width: 2.5rem;
 

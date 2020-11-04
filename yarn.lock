@@ -9518,10 +9518,10 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-responsive-modal@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-5.1.1.tgz#245e3efcc07076255d226f58fb3a0c864a15e201"
-  integrity sha512-DjNBoVWfiP+5KCvpqFKhjKPVpPUYjpieCU/F3nlBU4OPImiZyGdM7l8iDjTIEti0lAt02vbuwmAaVLf3z1Mrqw==
+react-responsive-modal@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-responsive-modal/-/react-responsive-modal-5.2.1.tgz#82efee0cdc8db6b1c9c8c0f5ded1b3728034bc50"
+  integrity sha512-nPZjOF6mzZe/vRisT+9NDo0LboCvp7P8ppsgc5NBadHfMHRTjsgAHC0ymp3mTE+QwjLTAExTr2pLX58NWcj0Ew==
   dependencies:
     classnames "^2.2.6"
     no-scroll "^2.1.1"

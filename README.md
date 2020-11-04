@@ -6,9 +6,8 @@ Group Us generates groups from lists of people (well, really anything). Each tim
 
 ## Development To Do (mostly in order)
 
-- Color BG for app
 - Fix background so it is always full page height and centered info is slightly towards top instead of vertically centered
-- Add log out + disconnect account options to user icon in app
+- Add disconnect account options to user icon in app
 - Add option to delete a section
 - Add option to restore deactivated students
 - Fix issue where deleting a generation changes the generation being displayed.

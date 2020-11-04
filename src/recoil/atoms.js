@@ -5,24 +5,22 @@ import { EXTRA_OPTIONS } from '../constants/extraOptions';
 ///////////////////////////////////////////////////////////
 // USER AND AUTH ATOMS ////////////////////////////////////
 
+// Holds the user data whether signed in or not
 export const userDataAtom = atom({
   key: 'userDataAtom',
   default: null,
 });
 
+// Tracks whether the site is awaiting user data from the backend
 export const checkingForUserAtom = atom({
   key: 'checkingForUserAtom',
   default: true,
 });
 
+// Tracks if a user is signed in
 export const isSignedInAtom = atom({
   key: 'isSignedInAtom',
   default: false,
-});
-
-export const savingIsDisabled = atom({
-  key: 'savingIsDisabled',
-  default: true,
 });
 
 ////////////////////////////////////////////////////////////
@@ -58,7 +56,6 @@ export const extrasConfigAtom = atom({
 });
 
 export const dataIsSavedAtom = atom({
-  // List of students in the currently active section
   key: 'dataIsSavedAtom',
   default: true,
 });

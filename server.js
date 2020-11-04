@@ -25,6 +25,7 @@ const authorize = (req, res, next) => {
 app.get('/auth/google', auth.googleAuth);
 app.get('/auth/google/callback', auth.googleCallback);
 app.get('/auth/verify', authorize, auth.verify);
+app.get('/auth/logout', authorize, auth.logout);
 
 // User
 app.get('/data', authorize, data.getData);

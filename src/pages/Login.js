@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { savingIsDisabled } from '../recoil/atoms';
+import { isSignedInAtom } from '../recoil/atoms';
 import useVerifyUser from '../hooks/useVerifyUser';
 import GoogleAuthBtn from '../components/buttons/GoogleAuthBtn';
 import MediumBtn from '../components/buttons/MediumBtn';
@@ -11,8 +11,7 @@ import LogoAndTitle from '../components/LogoAndTitle';
 import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
-  // TODO: Check if signed in. If so, redirect to app
-  const setSaving = useSetRecoilState(savingIsDisabled);
+  const setIsSignedIn = useSetRecoilState(isSignedInAtom);
   const verifyUser = useVerifyUser();
 
   // Redirect to app if already logged in
@@ -47,7 +46,7 @@ const LoginPage = () => {
           <MediumBtn
             text="Don't Save my Data"
             onClick={() => {
-              setSaving(false);
+              setIsSignedIn(false);
             }}
           />
         </Link>

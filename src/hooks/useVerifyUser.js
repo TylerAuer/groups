@@ -1,9 +1,9 @@
 import { useSetRecoilState } from 'recoil';
-import { savingIsDisabled } from '../recoil/atoms';
+import { isSignedInAtom } from '../recoil/atoms';
 import { useHistory } from 'react-router-dom';
 
 const useVerifyUser = () => {
-  const setSavingIsDisabled = useSetRecoilState(savingIsDisabled);
+  const setIsSignedIn = useSetRecoilState(isSignedInAtom);
   const history = useHistory();
 
   const verifyUser = async () => {
@@ -11,9 +11,10 @@ const useVerifyUser = () => {
 
     if (res.status !== 202) {
       // User is not signed in
-      setSavingIsDisabled(true);
+      setIsSignedIn(false);
       return;
     } else {
+      setIsSignedIn(true);
       history.push('/app');
     }
   };

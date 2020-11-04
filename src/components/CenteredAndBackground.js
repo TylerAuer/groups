@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { colors } from '../constants/styles';
 import circles from '../img/overlapping-circles.svg';
 
 const CenteredAndBackground = (props) => {
@@ -12,7 +13,7 @@ const CenteredAndBackground = (props) => {
     width: 100%;
     top: 0;
     z-index: -10000;
-    background-color: #f0ecf1;
+    background-color: ${colors.grey_bg};
     background-image: url(${circles});
     background-repeat: repeat;
     animation: 60s scroll infinite linear;
