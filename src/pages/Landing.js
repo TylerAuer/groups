@@ -1,10 +1,20 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { useEffect } from 'react';
+import useVerifyUser from '../hooks/useVerifyUser';
 import LargeLinkBtn from '../components/buttons/LargeLinkBtn';
 import CenteredAndBackground from '../components/CenteredAndBackground';
 import LogoAndTitle from '../components/LogoAndTitle';
 
 const LandingPage = () => {
+  const verifyUser = useVerifyUser();
+
+  // Redirect to app if already logged in
+  useEffect(() => {
+    verifyUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const styles = css`
     & > p > a {
       color: #97009f;

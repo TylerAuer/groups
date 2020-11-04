@@ -1,7 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
+import { useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { isSavingActiveAtom } from '../recoil/atoms';
+import { savingIsDisabled } from '../recoil/atoms';
+import useVerifyUser from '../hooks/useVerifyUser';
 import GoogleAuthBtn from '../components/buttons/GoogleAuthBtn';
 import MediumBtn from '../components/buttons/MediumBtn';
 import CenteredAndBackground from '../components/CenteredAndBackground';
@@ -10,7 +12,14 @@ import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
   // TODO: Check if signed in. If so, redirect to app
-  const setSaving = useSetRecoilState(isSavingActiveAtom);
+  const setSaving = useSetRecoilState(savingIsDisabled);
+  const verifyUser = useVerifyUser();
+
+  // Redirect to app if already logged in
+  useEffect(() => {
+    verifyUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const styles = css`
     & > h1 {

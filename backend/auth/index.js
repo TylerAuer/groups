@@ -1,4 +1,5 @@
 const passport = require('passport');
+const verify = require('./verify');
 
 // Serialization functions for PassportJS
 require('./serialization');
@@ -6,6 +7,7 @@ require('./serialization');
 // Initialize PassportJS Strategies
 require('./google');
 
+// Redirect after auth process
 const successUrl = '/#/app';
 const failureUrl = '/#/login';
 
@@ -26,4 +28,4 @@ const googleCallback = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = { googleAuth, googleCallback };
+module.exports = { googleAuth, googleCallback, verify };
