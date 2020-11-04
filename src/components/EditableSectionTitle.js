@@ -42,6 +42,7 @@ const EditableSectionTitle = () => {
     border-radius: 5px;
     outline: none;
     margin: 0 1rem;
+    background-color: transparent;
 
     &[disabled] {
       color: black;

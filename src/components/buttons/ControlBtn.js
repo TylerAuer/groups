@@ -6,9 +6,9 @@ const ControlBtn = ({ text, onClick }) => {
   const btnCss = css`
     position: relative;
     font-size: 1.3rem;
-    padding: 5px 10px;
+    padding: 8px 15px;
 
-    border: 2px solid ${colors.tertiary};
+    border: none;
     outline: none;
     border-radius: 5px;
 

@@ -25,6 +25,7 @@ const EditableStudentName = ({ id }) => {
     border-radius: 5px;
     outline: none;
     padding: 3px;
+    background-color: transparent;
 
     &[disabled] {
       color: black;

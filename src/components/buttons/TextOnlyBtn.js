@@ -2,22 +2,18 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../../constants/styles';
 
-const ControlBtn = ({ text, onClick }) => {
+const TextOnlyBtn = ({ text, onClick }) => {
   const btnCss = css`
-    background-color: white;
     border: none;
     font-size: 1.2rem;
     padding: 0.25rem;
     outline: none;
+    background-color: transparent;
 
     &:hover,
     &:focus {
-      color: ${colors.primary};
+      color: ${colors.tertiary};
       cursor: pointer;
-    }
-
-    &:active {
-      color: red;
     }
   `;
 
@@ -28,4 +24,4 @@ const ControlBtn = ({ text, onClick }) => {
   );
 };
 
-export default ControlBtn;
+export default TextOnlyBtn;
