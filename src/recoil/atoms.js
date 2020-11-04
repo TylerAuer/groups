@@ -20,6 +20,11 @@ export const userDataAtom = atom({
   default: null,
 });
 
+export const isSavingActiveAtom = atom({
+  key: 'isSavingActiveAtom',
+  default: null,
+});
+
 ////////////////////////////////////////////////////////////
 // ACTIVE ATOMS ////////////////////////////////////////////
 

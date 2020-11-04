@@ -1,8 +1,9 @@
 /** @jsx jsx */
+import React from 'react';
 import { css, jsx } from '@emotion/core';
-import logo from '../img/logo-450.png';
+import img from '../img/logo-450.png';
 
-const LogoAndTitle = () => {
+const LogoAndTitle = ({ title = true, logo = true }) => {
   const styles = css`
     & > img {
       margin: -10px auto;
@@ -26,9 +27,13 @@ const LogoAndTitle = () => {
 
   return (
     <div css={styles}>
-      <img src={logo} alt="Group Us logo" />
-      <h1>Group Us</h1>
-      <div className="subtitle">Smart, random groupings</div>
+      {logo && <img src={img} alt="Group Us logo" />}
+      {title && (
+        <React.Fragment>
+          <h1>Group Us</h1>
+          <div className="subtitle">Smart, random groupings</div>
+        </React.Fragment>
+      )}
     </div>
   );
 };

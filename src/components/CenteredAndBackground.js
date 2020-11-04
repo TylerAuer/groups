@@ -29,9 +29,8 @@ const CenteredAndBackground = (props) => {
     padding: 1rem;
     color: #373737;
     line-height: 1.6;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     text-shadow: 2px 2px 6px white;
-    margin-bottom: 20rem;
   `;
   return (
     <div css={pageCss}>

@@ -6,10 +6,6 @@ import LogoAndTitle from '../components/LogoAndTitle';
 
 const LandingPage = () => {
   const styles = css`
-    & p {
-      font-size: 1.4rem;
-    }
-
     & > p > a {
       color: #97009f;
       text-decoration: none;
