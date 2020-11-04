@@ -10,6 +10,8 @@ const CenteredAndBackground = (props) => {
     align-items: center;
     height: 100%;
     width: 100%;
+    top: 0;
+    z-index: -10000;
     background-color: #f0ecf1;
     background-image: url(${circles});
     background-repeat: repeat;

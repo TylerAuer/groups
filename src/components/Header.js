@@ -9,6 +9,7 @@ import {
   checkingForUserAtom,
   isSignedInAtom,
 } from '../recoil/atoms';
+import logo from '../img/logo-450.png';
 import SaveTracker from './SaveTracker';
 
 const Header = () => {
@@ -23,16 +24,26 @@ const Header = () => {
     margin-bottom: 3rem;
   `;
 
-  const titleCss = css`
-    display: inline-block;
-    color: black;
-  `;
+  const leftCss = css`
+    display: flex;
+    align-items: baseline;
 
-  const subtitleCss = css`
-    display: inline-block;
-    color: darkgrey;
-    text-emphasis: italic;
-    margin-left: 1rem;
+    & > img {
+      width: 3rem;
+      margin: auto 0.5rem auto 0;
+    }
+
+    & > h1 {
+      display: inline-block;
+      color: black;
+    }
+
+    & > .subtitle {
+      display: inline-block;
+      color: darkgrey;
+      text-emphasis: italic;
+      margin-left: 1rem;
+    }
   `;
 
   const rightCss = css`
@@ -53,9 +64,10 @@ const Header = () => {
 
   return (
     <header css={headerCss}>
-      <Link to="/">
-        <h1 css={titleCss}>Group Us</h1>
-        <div css={subtitleCss}>Smart, random groupings</div>
+      <Link css={leftCss} to="/">
+        <img src={logo} alt="Group Us logo" />
+        <h1>Group Us</h1>
+        <div className="subtitle">Smart, random groupings</div>
       </Link>
       <div css={rightCss}>
         {!checkingForUser && isSignedIn && (

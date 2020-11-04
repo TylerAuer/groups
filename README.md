@@ -6,15 +6,14 @@ Group Us generates groups from lists of people (well, really anything). Each tim
 
 ## Development To Do (mostly in order)
 
+- Fix background so it is always full page height and centered info is slightly towards top instead of vertically centered
+- On app load, check if user is already signed in (session). If so, redirect to app
+- Add log out + disconnect account options to user icon in app
+- Add option to delete a section
+- Add option to restore deactivated students
+- Fix issue where deleting a generation changes the generation being displayed.
 - Add spinner element
 - Group sizing should update based on number of kids so you don't get anything funky
-- Landing Page
-- Add modal when arriving if not logged in
-- Add Favicon (venn diagram is an idea)
-- Add FAQs modal
-  - How the groupings work
-  - Why visible, random groupings are great
-  - Use guide (how to make groups)
 - Add feedback link
 - Add patreon / Kofi
 - Add 2D array of previous pairings
