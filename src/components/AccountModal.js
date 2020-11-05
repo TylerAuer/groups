@@ -8,7 +8,7 @@ import { useResetRecoilState, useRecoilValue } from 'recoil';
 import { userDataAtom, isSignedInAtom } from '../recoil/atoms';
 import 'react-responsive-modal/styles.css';
 
-const AccountModal = ({ isOpen, setIsOpen }) => {
+const AccountModal = ({ isOpen, setOpen }) => {
   const userData = useRecoilValue(userDataAtom);
   const resetUserData = useResetRecoilState(userDataAtom);
   const resetIsSignedIn = useResetRecoilState(isSignedInAtom);
@@ -53,7 +53,7 @@ const AccountModal = ({ isOpen, setIsOpen }) => {
         modal: { maxWidth: '25rem', borderRadius: '5px', padding: '1.5rem' },
       }}
       open={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={() => setOpen(false)}
       center
     >
       <div css={modalContentCss}>

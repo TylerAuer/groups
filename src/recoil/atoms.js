@@ -63,7 +63,17 @@ export const dataIsSavedAtom = atom({
 ////////////////////////////////////////////////////////////
 // COMPONENT STATES ////////////////////////////////////////
 
-export const isSectionDropdownOpenAtom = atom({
-  key: 'sectionDropdownAtom',
+export const isSectionModalOpenAtom = atom({
+  key: 'isSectionModalOpenAtom',
+  default: false,
+});
+
+export const isAccountModalOpenAtom = atom({
+  key: 'isAccountModalOpenAtom',
+  default: false,
+});
+
+export const isExtrasDropdownOpenAtom = atom({
+  key: 'isExtrasDropdownOpenAtom',
   default: false,
 });

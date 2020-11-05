@@ -13,11 +13,18 @@ const Pill = ({ text, color }) => {
 
   let colorCss;
   switch (color) {
+    case 'purple':
+      colorCss = css`
+        color: white;
+        background-color: ${colors.tertiary};
+      `;
+      break;
+
     case 'grey':
     default:
       colorCss = css`
-        color: ${colors.darkgrey};
-        background-color: ${colors.lightgrey};
+        color: black;
+        background-color: ${colors.mediumgrey};
       `;
   }
 

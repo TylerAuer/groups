@@ -120,8 +120,8 @@ const GenerationList = () => {
           <div css={barContainerCss} key={idx} onClick={() => setGenIdx(idx)}>
             <Bar highlight={genIdx === idx}>
               <div>
-                {`${gen.students} students`}
-                <Pill color="grey" text={`${gen.group_size} per group`} />
+                {`${gen.students} people`}
+                <Pill color="purple" text={`${gen.group_size} per group`} />
                 <Pill color="grey" text={EXTRA_OPTIONS[gen.extras].name} />
                 <span css={dateCss}>{date}</span>
               </div>

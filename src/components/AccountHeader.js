@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import React, { useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   userDataAtom,
   checkingForUserAtom,
   isSignedInAtom,
+  isAccountModalOpenAtom,
 } from '../recoil/atoms';
 import SaveTracker from './SaveTracker';
 import { colors } from '../constants/styles';
@@ -17,7 +17,7 @@ const AccountHeader = () => {
   const checkingForUser = useRecoilValue(checkingForUserAtom);
   const isSignedIn = useRecoilValue(isSignedInAtom);
   const user = useRecoilValue(userDataAtom);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useRecoilState(isAccountModalOpenAtom);
   const history = useHistory();
 
   const profilePicCss = css`
@@ -29,15 +29,13 @@ const AccountHeader = () => {
     border: 3px solid ${colors.tertiary};
   `;
 
-  console.log(user);
-
   if (checkingForUser) {
     // Checking for the user's info
     return null;
   } else if (isSignedIn) {
     // USER IS SIGNED IN
     return (
-      <React.Fragment>
+      <div>
         <SaveTracker />
         <img
           onClick={() => setIsModalOpen(true)}
@@ -45,8 +43,8 @@ const AccountHeader = () => {
           src={user.profile_pic}
           alt={user.first_name}
         />
-        <AccountModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
-      </React.Fragment>
+        <AccountModal isOpen={isModalOpen} setOpen={setIsModalOpen} />
+      </div>
     );
   } else {
     // USER IS NOT SIGNED IN

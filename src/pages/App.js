@@ -35,8 +35,6 @@ const AppPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(checkingForUser);
-
   if (checkingForUser) return null;
 
   return (
