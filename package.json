@@ -17,7 +17,6 @@
     "express-session": "^1.17.1",
     "google-auth-library": "^6.1.2",
     "lodash.clonedeep": "^4.5.0",
-    "lodash.debounce": "^4.0.8",
     "lodash.isequal": "^4.5.0",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",

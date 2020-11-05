@@ -2,12 +2,16 @@
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
 import { colors } from '../constants/styles';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userDataAtom, activeSectionIdxAtom } from '../recoil/atoms';
 import { studentList } from '../recoil/selectors/students';
+import cloneDeep from 'lodash.clonedeep';
 
 const EditableStudentName = ({ id }) => {
   const [editing, setEditing] = useState(false);
-  const [students, setStudents] = useRecoilState(studentList);
+  const students = useRecoilValue(studentList);
+  const idx = useRecoilValue(activeSectionIdxAtom);
+  const setData = useSetRecoilState(userDataAtom);
 
   const name = students[id].name;
 
@@ -39,14 +43,12 @@ const EditableStudentName = ({ id }) => {
   const notEditingCss = css``;
 
   const handleChange = (e) => {
-    // Copy section, rename
-    const updatedStudent = { ...students[id] };
-    updatedStudent.name = e.target.value;
+    setData((prev) => {
+      const next = cloneDeep(prev);
+      next.GroupUsSections[idx].section_info.students[id].name = e.target.value;
 
-    // Copy section list, paste in new section with new name, update state
-    const updatedStudentList = students.slice();
-    updatedStudentList[id] = updatedStudent;
-    setStudents(updatedStudentList);
+      return next;
+    });
   };
 
   const handleSubmit = (e) => {
