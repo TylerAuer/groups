@@ -5,14 +5,11 @@ import { colors } from '../constants/styles';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { activeSectionIdxAtom, userDataAtom } from '../recoil/atoms';
 import { sectionList } from '../recoil/selectors/sections';
-import ControlBtn from './buttons/ControlBtn';
 import cloneDeep from 'lodash.clonedeep';
-import SectionModal from './SectionModal';
 
 const EditableSectionTitle = () => {
   // Component State
   const [editing, setEditing] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // App state
   const idx = useRecoilValue(activeSectionIdxAtom);
@@ -75,10 +72,6 @@ const EditableSectionTitle = () => {
     setEditing(false);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <div css={parentCss}>
       <div css={titleAndToggleContainerCss}>
@@ -97,8 +90,6 @@ const EditableSectionTitle = () => {
           />
         </form>
       </div>
-      <SectionModal isOpen={isModalOpen} close={closeModal} />
-      <ControlBtn text="Switch Sections" onClick={() => setIsModalOpen(true)} />
     </div>
   );
 };

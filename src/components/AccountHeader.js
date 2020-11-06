@@ -6,28 +6,49 @@ import {
   checkingForUserAtom,
   isSignedInAtom,
   isAccountModalOpenAtom,
+  isSectionModalOpenAtom,
 } from '../recoil/atoms';
 import SaveTracker from './SaveTracker';
 import { colors } from '../constants/styles';
 import { useHistory } from 'react-router-dom';
 import AccountModal from './AccountModal';
 import ControlBtn from './buttons/ControlBtn';
+import SectionModal from './SectionModal';
 
 const AccountHeader = () => {
   const checkingForUser = useRecoilValue(checkingForUserAtom);
   const isSignedIn = useRecoilValue(isSignedInAtom);
   const user = useRecoilValue(userDataAtom);
-  const [isModalOpen, setIsModalOpen] = useRecoilState(isAccountModalOpenAtom);
+  const [isAccountModalOpen, setIsAccountModalOpen] = useRecoilState(
+    isAccountModalOpenAtom
+  );
+  const [isSectionModalOpen, setIsSectionModalOpen] = useRecoilState(
+    isSectionModalOpenAtom
+  );
   const history = useHistory();
 
-  const profilePicCss = css`
-    vertical-align: middle;
-    height: 3rem;
-    border-radius: 50%;
-    margin: 1rem;
-    padding: 2px;
-    border: 3px solid ${colors.tertiary};
+  const loggedInCss = css`
+    & img {
+      vertical-align: middle;
+      height: 3rem;
+      border-radius: 50%;
+      margin: 1rem;
+      padding: 2px;
+      border: 3px solid ${colors.tertiary};
+    }
+
+    & div {
+      margin-right: 1rem;
+    }
   `;
+
+  const closeAccountModal = () => {
+    setIsAccountModalOpen(false);
+  };
+
+  const closeSectionModal = () => {
+    setIsSectionModalOpen(false);
+  };
 
   if (checkingForUser) {
     // Checking for the user's info
@@ -35,15 +56,19 @@ const AccountHeader = () => {
   } else if (isSignedIn) {
     // USER IS SIGNED IN
     return (
-      <div>
+      <div css={loggedInCss}>
         <SaveTracker />
+        <SectionModal isOpen={isSectionModalOpen} close={closeSectionModal} />
+        <ControlBtn
+          text="Sections"
+          onClick={() => setIsSectionModalOpen(true)}
+        />
         <img
-          onClick={() => setIsModalOpen(true)}
-          css={profilePicCss}
+          onClick={() => setIsAccountModalOpen(true)}
           src={user.profile_pic}
           alt={user.first_name}
         />
-        <AccountModal isOpen={isModalOpen} setOpen={setIsModalOpen} />
+        <AccountModal isOpen={isAccountModalOpen} setOpen={closeAccountModal} />
       </div>
     );
   } else {
