@@ -35,6 +35,7 @@ const AccountHeader = () => {
       margin: 1rem;
       padding: 2px;
       border: 3px solid ${colors.tertiary};
+      cursor: pointer;
     }
 
     & div {

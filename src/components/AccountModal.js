@@ -47,6 +47,18 @@ const AccountModal = ({ isOpen, setOpen }) => {
       .catch((err) => console.error('Error logging out:', err));
   };
 
+  const handleDestroy = () => {
+    const warning =
+      'WARNING: Are you sure you want to delete all of your data? This cannot be undone.';
+
+    if (window.confirm(warning))
+      fetch('/auth/destroy')
+        .then(() => history.push('/'))
+        .catch((err) =>
+          console.error('Unknown Error: Unable to destroy account')
+        );
+  };
+
   return (
     <Modal
       styles={{
@@ -63,13 +75,13 @@ const AccountModal = ({ isOpen, setOpen }) => {
         <hr />
         <p>
           <b>Warning: </b>
-          Deactivating your account will permanently delete all of your
-          sections, groups, and other data.
+          Destroying your account will permanently delete all of your sections,
+          groups, and other data.
         </p>
         <p>
           <b>This cannot be undone!</b>
         </p>
-        <MediumBtn text="Deactivate Account" onClick={null} />
+        <MediumBtn text="Destory Account" onClick={handleDestroy} />
       </div>
     </Modal>
   );

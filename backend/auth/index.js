@@ -1,6 +1,7 @@
 const passport = require('passport');
 const verify = require('./verify');
 const logout = require('./logout');
+const destroy = require('./destroy');
 
 // Serialization functions for PassportJS
 require('./serialization');
@@ -29,4 +30,4 @@ const googleCallback = (req, res, next) => {
   })(req, res, next);
 };
 
-module.exports = { googleAuth, googleCallback, verify, logout };
+module.exports = { googleAuth, googleCallback, verify, logout, destroy };

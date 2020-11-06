@@ -26,12 +26,10 @@ app.get('/auth/google', auth.googleAuth);
 app.get('/auth/google/callback', auth.googleCallback);
 app.get('/auth/verify', authorize, auth.verify);
 app.get('/auth/logout', authorize, auth.logout);
-
-// User
-app.get('/data', authorize, data.getData);
+app.get('/auth/destroy', authorize, auth.destroy);
 
 // Sections
-//app.get('/data/sections', authorize, data.getSections);
+app.get('/data', authorize, data.getData);
 app.post('/data/section/new', authorize, data.makeNewSection);
 app.put('/data/section/:id', authorize, data.saveSectionData);
 app.delete('/data/section/:id', authorize, data.deleteSection);

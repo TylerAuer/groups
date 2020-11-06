@@ -9,6 +9,7 @@ import useMakeNewSection from '../hooks/useMakeNewSection';
 import useDeleteSection from '../hooks/useDeleteSection';
 import ControlBtn from './buttons/ControlBtn';
 import Pill from './Pill';
+import trash from '../img/icons/trash.png';
 import 'react-responsive-modal/styles.css';
 
 const SectionModal = ({ isOpen, close }) => {
@@ -17,13 +18,22 @@ const SectionModal = ({ isOpen, close }) => {
   const makeNewSection = useMakeNewSection();
 
   const modalContentCss = css`
+    & > img {
+      height: 4rem;
+      border-radius: 50%;
+      padding: 5px;
+      border: 3px solid ${colors.tertiary};
+      display: block;
+      margin: 0 auto;
+    }
+
     & h2 {
       text-align: center;
       margin-bottom: 2rem;
     }
 
     & hr {
-      margin: 0 auto;
+      margin: 1rem auto;
       border: none;
       border-top: 2px solid ${colors.tertiary};
     }
@@ -31,6 +41,7 @@ const SectionModal = ({ isOpen, close }) => {
     & button {
       margin: 2rem auto;
       display: block;
+      font-size: 1.8rem;
     }
   `;
 
@@ -46,14 +57,14 @@ const SectionModal = ({ isOpen, close }) => {
       }}
       open={isOpen}
       onClose={close}
-      center
     >
       <div css={modalContentCss}>
+        <img src={userData.profile_pic} alt={userData.first_name} />
         <h2>{userData.first_name}'s Sections</h2>
         {sections.map((s, i) => (
           <SectionInList key={s.id} data={s} index={i} close={close} />
         ))}
-        <ControlBtn text="Create a new section" onClick={handleNewSection} />
+        <ControlBtn text="New section" onClick={handleNewSection} />
       </div>
     </Modal>
   );
@@ -70,6 +81,7 @@ const SectionInList = ({ data, index, close }) => {
     justify-content: space-between;
     align-items: baseline;
     font-size: 1.2rem;
+    margin-right: 2rem;
     cursor: pointer;
 
     & .non-trash-elements {
@@ -78,6 +90,7 @@ const SectionInList = ({ data, index, close }) => {
       border: 2px solid transparent;
       border-radius: 3px;
       justify-content: left;
+      flex-grow: 1;
 
       &:hover,
       &:focus {
@@ -96,12 +109,12 @@ const SectionInList = ({ data, index, close }) => {
       & .index {
         text-align: center;
         width: 3rem;
-        font-weight: ${isActive ? 'bold' : 'normal'};
       }
+    }
 
-      & .name {
-        font-weight: ${isActive ? 'bold' : 'normal'};
-      }
+    & .trash {
+      height: 2rem;
+      margin: auto 0;
     }
   `;
 
@@ -125,7 +138,12 @@ const SectionInList = ({ data, index, close }) => {
           color="darkgrey"
         />
       </div>
-      <div onClick={() => deleteSection(data.id, index)}>Trash</div>
+      <img
+        className="trash"
+        src={trash}
+        alt="Delete this section"
+        onClick={() => deleteSection(data.id, index)}
+      />
     </div>
   );
 };

@@ -24,7 +24,7 @@ const Pill = ({ text, color }) => {
     default:
       colorCss = css`
         color: black;
-        background-color: ${colors.mediumgrey};
+        background-color: ${colors.lightgrey};
       `;
   }
 

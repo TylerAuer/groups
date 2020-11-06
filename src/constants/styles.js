@@ -4,7 +4,7 @@ export const colors = {
   tertiary: 'orchid',
   tertiaryLight: '#DA70D6',
   grey_bg: '#f0ecf1',
-  lightgrey: '#e6e6e6',
+  lightgrey: '#dddddd',
   mediumgrey: '#bababa',
   darkgrey: '#3d3d3d',
 };

@@ -6,7 +6,7 @@ const ControlBtn = ({ text, onClick }) => {
   const btnCss = css`
     position: relative;
     font-size: 1.2rem;
-    padding: 7px 12px;
+    padding: 6px 12px;
 
     border: none;
     outline: none;
