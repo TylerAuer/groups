@@ -6,6 +6,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { userDataAtom, activeSectionIdxAtom } from '../recoil/atoms';
 import { sectionList } from '../recoil/selectors/sections';
 import useMakeNewSection from '../hooks/useMakeNewSection';
+import useDeleteSection from '../hooks/useDeleteSection';
 import ControlBtn from './buttons/ControlBtn';
 import Pill from './Pill';
 import 'react-responsive-modal/styles.css';
@@ -60,45 +61,47 @@ const SectionModal = ({ isOpen, close }) => {
 
 const SectionInList = ({ data, index, close }) => {
   const [idx, setIdx] = useRecoilState(activeSectionIdxAtom);
+  const deleteSection = useDeleteSection();
+
   const isActive = index === idx;
 
   const sectionInListCss = css`
     display: flex;
-    justify-content: left;
-    margin-right: 2rem;
+    justify-content: space-between;
     align-items: baseline;
-    border: 2px solid transparent;
-    border-radius: 3px;
-    padding: 5px;
     font-size: 1.2rem;
     cursor: pointer;
 
-    &:hover,
-    &:focus {
-      border-color: ${colors.tertiary};
-    }
+    & .non-trash-elements {
+      padding: 5px;
+      display: flex;
+      border: 2px solid transparent;
+      border-radius: 3px;
+      justify-content: left;
 
-    & .active {
-      visibility: ${isActive ? 'visible' : 'hidden'};
-      height: 1rem;
-      width: 1rem;
-      border-radius: 50%;
-      background-color: ${colors.tertiary};
-      margin-right: 1rem;
-      transform: translateY(2px);
-    }
+      &:hover,
+      &:focus {
+        border-color: ${colors.tertiary};
+      }
 
-    & .index {
-      margin-right: 1rem;
-      font-weight: ${isActive ? 'bold' : 'normal'};
-    }
+      & .active {
+        visibility: ${isActive ? 'visible' : 'hidden'};
+        height: 1rem;
+        width: 1rem;
+        border-radius: 50%;
+        background-color: ${colors.tertiary};
+        transform: translateY(2px);
+      }
 
-    & .name {
-      font-weight: ${isActive ? 'bold' : 'normal'};
-    }
+      & .index {
+        text-align: center;
+        width: 3rem;
+        font-weight: ${isActive ? 'bold' : 'normal'};
+      }
 
-    & .spacer {
-      flex-grow: 1;
+      & .name {
+        font-weight: ${isActive ? 'bold' : 'normal'};
+      }
     }
   `;
 
@@ -108,20 +111,21 @@ const SectionInList = ({ data, index, close }) => {
   };
 
   return (
-    <div css={sectionInListCss} onClick={handleSelectSection}>
-      <div className="active" />
-      <div className="index">{index + 1}</div>
-      <div className="name">{data.section_info.name}</div>
-      <Pill
-        text={`${data.section_info.students.length} people`}
-        color="darkgrey"
-      />
-      <Pill
-        text={`${data.section_info.generations.length} generations`}
-        color="darkgrey"
-      />
-      <div className="spacer" />
-      <div>Trash</div>
+    <div css={sectionInListCss}>
+      <div className="non-trash-elements" onClick={handleSelectSection}>
+        <div className="active" />
+        <div className="index">{index + 1}</div>
+        <div className="name">{data.section_info.name}</div>
+        <Pill
+          text={`${data.section_info.students.length} people`}
+          color="purple"
+        />
+        <Pill
+          text={`${data.section_info.generations.length} generations`}
+          color="darkgrey"
+        />
+      </div>
+      <div onClick={() => deleteSection(data.id, index)}>Trash</div>
     </div>
   );
 };

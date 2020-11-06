@@ -34,4 +34,4 @@ app.get('/data', authorize, data.getData);
 //app.get('/data/sections', authorize, data.getSections);
 app.post('/data/section/new', authorize, data.makeNewSection);
 app.put('/data/section/:id', authorize, data.saveSectionData);
-// app.delete('/data/section/:id', authorize, data.getUserData);
+app.delete('/data/section/:id', authorize, data.deleteSection);

@@ -3,7 +3,6 @@ import { css, jsx } from '@emotion/core';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { checkingForUserAtom, isSignedInAtom } from '../recoil/atoms';
-import { colors } from '../constants/styles';
 import useLoadData from '../hooks/useLoadData';
 import EditableSectionTitle from '../components/EditableSectionTitle';
 import GroupList from '../components/GroupList';
