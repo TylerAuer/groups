@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import { useState } from 'react';
 import { css, jsx } from '@emotion/core';
-import { Link } from 'react-router-dom';
 
 const GoogleAuthBtn = () => {
   const src = {
