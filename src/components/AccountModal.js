@@ -44,7 +44,7 @@ const AccountModal = ({ isOpen, setOpen }) => {
         resetIsSignedIn();
         history.push('/');
       })
-      .catch((err) => console.log('Error logging out:', err));
+      .catch((err) => console.error('Error logging out:', err));
   };
 
   return (

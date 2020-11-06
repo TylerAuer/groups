@@ -65,7 +65,7 @@ export const dataIsSavedAtom = atom({
 
 export const isSectionModalOpenAtom = atom({
   key: 'isSectionModalOpenAtom',
-  default: true,
+  default: false,
 });
 
 export const isAccountModalOpenAtom = atom({

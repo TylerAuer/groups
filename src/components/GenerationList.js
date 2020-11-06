@@ -50,16 +50,7 @@ const GenerationList = () => {
     justify-content: center;
 
     & > div {
-      flex-direction: column-reverse;
-
-      & > div,
-      & > button {
-        margin-bottom: 1rem;
-      }
-
-      & > :not(:last-child) {
-        margin-right: 0;
-      }
+      flex-direction: row;
     }
   `;
 

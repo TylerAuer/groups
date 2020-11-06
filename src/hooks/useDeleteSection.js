@@ -58,7 +58,7 @@ const useDeleteSection = () => {
       })
       .catch((err) => {
         setSave(SAVE_STATUS.ERROR);
-        console.log(err);
+        console.error(err);
       });
   };
 

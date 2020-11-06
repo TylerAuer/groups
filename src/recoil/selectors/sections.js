@@ -7,8 +7,6 @@ export const sectionList = selector({
   get: ({ get }) => {
     const data = get(userDataAtom);
 
-    console.log(data.GroupUsSections);
-
     if (data) {
       return data.GroupUsSections;
     }
