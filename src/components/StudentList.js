@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
 import { userDataAtom, activeSectionIdxAtom } from '../recoil/atoms';
 import { studentList } from '../recoil/selectors/students';
+import { colors } from '../constants/styles';
 import Bar from './Bar';
 import TextOnlyBtn from './buttons/TextOnlyBtn';
 import ControlBtn from './buttons/ControlBtn';
@@ -21,6 +22,46 @@ const StudentList = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  `;
+
+  const studentCss = css`
+    .left,
+    .right {
+      display: flex;
+      justify-content: left;
+      align-items: baseline;
+    }
+
+    .right {
+      justify-content: right;
+
+      & button {
+        width: 5rem;
+      }
+    }
+
+    .index {
+      width: 1rem;
+    }
+  `;
+
+  const inactiveCss = css`
+    color: ${colors.mediumgrey};
+    border-color: ${colors.mediumgrey};
+
+    & input {
+      color: ${colors.mediumgrey};
+    }
+
+    & .warning {
+      font-style: italic;
+      font-size: 1rem;
+      padding-right: 0.5rem;
+    }
+
+    & button {
+      color: ${colors.mediumgrey};
+    }
   `;
 
   const addStudents = (namesArray) => {
@@ -66,24 +107,27 @@ const StudentList = () => {
   };
 
   const listOfStudents = [...students]
-    .filter((s) => s.active) // filter out inactive students
+    .sort((a, b) => {
+      if (a.active && b.active) return 0;
+      else if (a.active) return -1;
+      else if (b.active) return 1;
+      else return 0;
+    }) // filter out inactive students
     .map((s, index) => {
       return (
-        <Bar key={s.id}>
-          <div>
-            <div
-              css={css`
-                display: inline-block;
-              `}
-            >
-              {index + 1}
-            </div>
+        <Bar key={s.id} styles={[studentCss, s.active ? null : inactiveCss]}>
+          <div className="left">
+            <div className="index">{s.active ? index + 1 : ''}</div>
             <EditableStudentName id={s.id} />
           </div>
-          <div>
+
+          <div className="right">
+            <div className="warning">
+              {s.active ? '' : 'Excluded from new generations'}
+            </div>
             <TextOnlyBtn
               onClick={() => toggleStudentActive(s.id)}
-              text="Deactivate"
+              text={s.active ? 'Exclude' : 'Include'}
             />
           </div>
         </Bar>

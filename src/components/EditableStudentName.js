@@ -63,8 +63,7 @@ const EditableStudentName = ({ id }) => {
         css={[nameCss, editing ? editingCss : notEditingCss]}
         value={name}
         onChange={handleChange}
-        maxLength="50"
-        size={Math.max(name.length, 20)}
+        maxLength="25"
         placeholder="Hey! I need a name!"
         onFocus={() => setEditing(true)}
         onBlur={() => setEditing(false)}
