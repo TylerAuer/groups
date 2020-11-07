@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 const LargeLinkBtn = ({ to, text }) => {
   const btnCss = css`
     display: block;
-    width: 80%;
     margin: 4rem auto;
+    width: 12rem;
     font-size: 3rem;
     outline: none;
     border: none;
     border-radius: 5px;
-    padding: 1rem;
+    padding: 2rem 6rem;
     background: rgba(16, 16, 16, 0.6);
     font-weight: bolder;
     text-align: center;
@@ -24,7 +24,7 @@ const LargeLinkBtn = ({ to, text }) => {
     &:focus {
       text-decoration: none;
       outline: none;
-      width: 90%;
+      background: rgba(16, 16, 16, 1);
     }
   `;
 

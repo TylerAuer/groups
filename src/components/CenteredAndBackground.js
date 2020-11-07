@@ -27,12 +27,12 @@ const CenteredAndBackground = (props) => {
 
   const centerCss = css`
     width: 50rem;
-    max-width: 80%;
+    min-width: 40%;
     z-index: 100;
     padding: 1rem;
     color: #373737;
     line-height: 1.6;
-    font-size: 2.4rem;
+    font-size: 2rem;
     text-shadow: 2px 2px 6px white;
   `;
   return (

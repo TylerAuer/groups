@@ -44,7 +44,7 @@ const LoginPage = () => {
         </p>
         <Link to="/app">
           <MediumBtn
-            text="Don't Save my Data"
+            text="Try Without Saving Data"
             onClick={() => {
               setIsSignedIn(false);
             }}

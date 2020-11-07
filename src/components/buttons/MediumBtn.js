@@ -8,7 +8,7 @@ const MediumBtn = ({ text, onClick, className = '' }) => {
     position: relative;
     font-size: 2.6rem;
     font-weight: bold;
-    padding: 0.75rem 3rem;
+    padding: 2rem 4rem;
     border: none;
     outline: none;
     border-radius: 5px;
