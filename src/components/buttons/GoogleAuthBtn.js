@@ -17,6 +17,7 @@ const GoogleAuthBtn = () => {
       margin: 0 auto;
       display: block;
       width: 30rem;
+      max-width: 100%;
     }
   `;
 

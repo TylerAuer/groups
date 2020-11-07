@@ -7,7 +7,7 @@ const LogoAndTitle = ({ title = true, logo = true }) => {
   const styles = css`
     & > img {
       margin: -10px auto;
-      height: 200px;
+      height: 20rem;
       width: auto;
       display: block;
     }

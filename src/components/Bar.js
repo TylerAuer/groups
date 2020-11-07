@@ -7,13 +7,15 @@ const Bar = ({ children, highlight, styles = css`` }) => {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-
     border: 2px solid grey;
     border-radius: 5px;
-    padding: 0.75rem 1.5rem;
-    margin: 0.25rem 0;
-
+    padding: 0.4rem 1.5rem;
+    margin: 3px 0;
     font-size: 2rem;
+
+    @media (max-width: 700px) {
+      border-width: 1px;
+    }
   `;
 
   const highlightCss = css`

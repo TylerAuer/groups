@@ -57,6 +57,10 @@ const StudentList = () => {
       font-style: italic;
       font-size: 1.6rem;
       padding-right: 0.5rem;
+
+      @media (max-width: 400px) {
+        display: none;
+      }
     }
 
     & button {

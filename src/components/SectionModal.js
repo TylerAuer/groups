@@ -86,7 +86,6 @@ const SectionInList = ({ data, index, close }) => {
   const sectionInListCss = css`
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
     font-size: 1.8rem;
     margin: 1rem 2rem 1rem 0;
     cursor: pointer;
@@ -98,6 +97,7 @@ const SectionInList = ({ data, index, close }) => {
       border-radius: 3px;
       justify-content: left;
       flex-grow: 1;
+      align-items: baseline;
 
       &:hover,
       &:focus {
@@ -116,6 +116,12 @@ const SectionInList = ({ data, index, close }) => {
       & .index {
         text-align: center;
         width: 3rem;
+      }
+
+      & .generations {
+        @media (max-width: 400px) {
+          display: none;
+        }
       }
     }
 
@@ -139,10 +145,12 @@ const SectionInList = ({ data, index, close }) => {
         <Pill
           text={`${data.section_info.students.length} people`}
           color="purple"
+          className="students"
         />
         <Pill
           text={`${data.section_info.generations.length} generations`}
           color="darkgrey"
+          className="generations"
         />
       </div>
       <img

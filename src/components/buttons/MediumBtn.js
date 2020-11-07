@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../../constants/styles';
 
-const MediumBtn = ({ text, onClick }) => {
+const MediumBtn = ({ text, onClick, className = '' }) => {
   const btnCss = css`
     display: block;
     position: relative;
@@ -34,7 +34,7 @@ const MediumBtn = ({ text, onClick }) => {
   `;
 
   return (
-    <button css={btnCss} onClick={onClick}>
+    <button className={className} css={btnCss} onClick={onClick}>
       {text}
     </button>
   );

@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import makeNewGen from '../grouping_algorithm/makeNewGen';
 import { groupSizeConfigAtom } from '../recoil/atoms';
 import { studentList } from '../recoil/selectors/students';
+import makeNewGen from '../grouping_algorithm/makeNewGen';
 import ControlBtn from './buttons/ControlBtn';
 import ExtrasDropdown from './ExtrasDropdown';
 
