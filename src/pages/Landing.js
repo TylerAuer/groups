@@ -36,8 +36,8 @@ const LandingPage = () => {
         </p>
         <p>
           But, randomness isn't great when you get paired with the same person
-          over-and-over again. That's why Group Us tracks and minimizes repeated
-          pairings.
+          over-and-over again. That's why Group Us{' '}
+          <b>tracks and minimizes repeated pairings</b>.
         </p>
         <p>
           <a
