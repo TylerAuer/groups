@@ -3,8 +3,8 @@ import { genList } from './generations';
 import { studentList } from './students';
 
 // SELECTORS
-export const relationGraph = selector({
-  key: 'relationGraph',
+export const historyGraph = selector({
+  key: 'historyGraph',
   get: ({ get }) => {
     const gens = get(genList);
     const students = get(studentList);

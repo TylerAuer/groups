@@ -4,11 +4,12 @@ import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 import { checkingForUserAtom, isSignedInAtom } from '../recoil/atoms';
 import useLoadData from '../hooks/useLoadData';
+import Header from '../components/Header';
 import EditableSectionTitle from '../components/EditableSectionTitle';
 import GroupList from '../components/GroupList';
 import GenerationList from '../components/GenerationList';
 import StudentList from '../components/StudentList';
-import Header from '../components/Header';
+import History from '../components/History';
 
 const AppPage = () => {
   const checkingForUser = useRecoilValue(checkingForUserAtom);
@@ -39,12 +40,12 @@ const AppPage = () => {
   return (
     <div css={appCss}>
       <Header />
-      <section>
-        {isSignedIn && <EditableSectionTitle />}
-        <GroupList />
-        <GenerationList />
-        <StudentList />
-      </section>
+
+      {isSignedIn && <EditableSectionTitle />}
+      <GroupList />
+      <GenerationList />
+      <StudentList />
+      <History />
     </div>
   );
 };
