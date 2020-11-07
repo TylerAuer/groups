@@ -10,6 +10,10 @@ const Header = () => {
     justify-content: space-between;
     align-items: baseline;
     margin-bottom: 3rem;
+
+    @media (max-width: 400px) {
+      align-items: center;
+    }
   `;
 
   const leftCss = css`
@@ -19,11 +23,19 @@ const Header = () => {
     & > img {
       width: 6rem;
       margin: auto 0.5rem auto 0;
+
+      @media (max-width: 400px) {
+        width: 8rem;
+      }
     }
 
     & > h1 {
       display: inline-block;
       color: black;
+
+      @media (max-width: 400px) {
+        display: none;
+      }
     }
 
     & > .subtitle {
@@ -32,6 +44,10 @@ const Header = () => {
       text-emphasis: italic;
       margin-left: 1rem;
       font-size: 1.8rem;
+
+      @media (max-width: 800px) {
+        display: none;
+      }
     }
   `;
 

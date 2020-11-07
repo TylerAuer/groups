@@ -37,6 +37,10 @@ const GenerationList = () => {
     font-style: italic;
     font-size: 1.6rem;
     margin-left: 0.8rem;
+
+    @media (max-width: 400px) {
+      display: none;
+    }
   `;
 
   const headerWithTitleCss = css`

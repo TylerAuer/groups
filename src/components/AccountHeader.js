@@ -34,7 +34,7 @@ const AccountHeader = () => {
       border-radius: 50%;
       margin-left: 2rem;
       padding: 2px;
-      border: 3px solid ${colors.tertiary};
+      border: 0.3rem solid ${colors.tertiary};
       cursor: pointer;
     }
 

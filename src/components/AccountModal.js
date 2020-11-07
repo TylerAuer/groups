@@ -19,21 +19,30 @@ const AccountModal = ({ isOpen, setOpen }) => {
 
     & > img {
       vertical-align: middle;
-      height: 5rem;
+      height: 8rem;
       border-radius: 50%;
-      padding: 5px;
+      padding: 0.5rem;
       border: 3px solid ${colors.tertiary};
     }
 
     & button {
       margin: 1rem auto;
-      width: 20rem;
+      width: 35rem;
     }
 
     & hr {
       margin: 2rem auto;
       border: none;
       border-top: 1px solid ${colors.tertiary};
+    }
+
+    & .destroy {
+      background-color: red;
+
+      &:hover,
+      &:focus {
+        background-color: red;
+      }
     }
   `;
 
@@ -62,7 +71,7 @@ const AccountModal = ({ isOpen, setOpen }) => {
   return (
     <Modal
       styles={{
-        modal: { maxWidth: '25rem', borderRadius: '5px', padding: '1.5rem' },
+        modal: { maxWidth: '50rem', borderRadius: '5px', padding: '1.5rem' },
       }}
       open={isOpen}
       onClose={() => setOpen(false)}
@@ -81,7 +90,11 @@ const AccountModal = ({ isOpen, setOpen }) => {
         <p>
           <b>This cannot be undone!</b>
         </p>
-        <MediumBtn text="Destory Account" onClick={handleDestroy} />
+        <MediumBtn
+          className="destroy"
+          text="Destroy Account"
+          onClick={handleDestroy}
+        />
       </div>
     </Modal>
   );

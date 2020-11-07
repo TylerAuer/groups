@@ -17,6 +17,14 @@ const ControlBtn = ({ text, onClick }) => {
     transition: all 0.2s ease-in-out;
     min-width: 2.5rem;
 
+    @media (max-width: 700px) {
+      padding: 6px 8px;
+    }
+
+    @media (max-width: 450px) {
+      padding: 4px 6px;
+    }
+
     &:hover,
     &:focus {
       background-color: ${colors.tertiary};
