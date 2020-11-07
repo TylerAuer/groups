@@ -36,7 +36,7 @@ const StudentList = () => {
       justify-content: right;
 
       & button {
-        width: 5rem;
+        width: 10rem;
       }
     }
 
@@ -55,7 +55,7 @@ const StudentList = () => {
 
     & .warning {
       font-style: italic;
-      font-size: 1rem;
+      font-size: 1.6rem;
       padding-right: 0.5rem;
     }
 

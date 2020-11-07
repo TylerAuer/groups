@@ -30,16 +30,16 @@ const AccountHeader = () => {
   const loggedInCss = css`
     & img {
       vertical-align: middle;
-      height: 3rem;
+      height: 7rem;
       border-radius: 50%;
-      margin: 1rem;
+      margin-left: 2rem;
       padding: 2px;
       border: 3px solid ${colors.tertiary};
       cursor: pointer;
     }
 
     & div {
-      margin-right: 1rem;
+      margin-right: 2rem;
     }
   `;
 

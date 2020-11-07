@@ -16,7 +16,7 @@ const GoogleAuthBtn = () => {
     & img {
       margin: 0 auto;
       display: block;
-      width: 15rem;
+      width: 30rem;
     }
   `;
 

@@ -30,6 +30,8 @@ const ExtrasDropdown = () => {
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
       rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    width: 25rem;
+    right: 0;
 
     & .dropdown-option {
       padding: 5px;
@@ -44,13 +46,13 @@ const ExtrasDropdown = () => {
     }
 
     & .option-title {
-      font-size: 1.2rem;
+      font-size: 2rem;
       font-weight: bolder;
       line-height: 1.2;
     }
 
     & .option-desc {
-      font-size: 0.8rem;
+      font-size: 1.4rem;
       font-style: italic;
       margin-top: 3px;
     }

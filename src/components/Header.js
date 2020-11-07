@@ -17,7 +17,7 @@ const Header = () => {
     align-items: baseline;
 
     & > img {
-      width: 3rem;
+      width: 6rem;
       margin: auto 0.5rem auto 0;
     }
 
@@ -31,6 +31,7 @@ const Header = () => {
       color: darkgrey;
       text-emphasis: italic;
       margin-left: 1rem;
+      font-size: 1.8rem;
     }
   `;
 

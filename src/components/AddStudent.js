@@ -15,7 +15,7 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
     border-radius: 3px;
     height: 10rem;
     padding: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 2rem;
     font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
       'Helvetica Neue', sans-serif;
     outline: none;
@@ -29,11 +29,11 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
 
   const submitBtnCss = css`
     display: block;
-    background-color: white;
+    background-color: ${colors.tertiary};
     border: 2px solid ${colors.tertiary};
-    color: ${colors.tertiary};
+    color: white;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 2rem;
     padding: 0.5rem 2rem;
     float: right;
     outline: none;
@@ -72,8 +72,8 @@ const AddStudent = ({ open, setOpen, addStudents }) => {
       <h2>Add Students</h2>
       <div>
         <p>
-          You can add multiple students at once by putting each name on a new
-          line or separating each name with a comma.
+          Add multiple students at once by putting each name on a new line or
+          separating each name with a comma.
         </p>
         <form onSubmit={handleSubmit}>
           <textarea
