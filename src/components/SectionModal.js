@@ -17,11 +17,17 @@ const SectionModal = ({ isOpen, close }) => {
   const sections = useRecoilValue(sectionList);
   const makeNewSection = useMakeNewSection();
 
+  const modalStyles = {
+    width: '70rem',
+    borderRadius: '5px',
+    padding: '2rem',
+  };
+
   const modalContentCss = css`
     & > img {
-      height: 4rem;
+      height: 8rem;
       border-radius: 50%;
-      padding: 5px;
+      padding: 3px;
       border: 3px solid ${colors.tertiary};
       display: block;
       margin: 0 auto;
@@ -29,6 +35,7 @@ const SectionModal = ({ isOpen, close }) => {
 
     & h2 {
       text-align: center;
+      font-size: 3rem;
       margin-bottom: 2rem;
     }
 
@@ -39,9 +46,9 @@ const SectionModal = ({ isOpen, close }) => {
     }
 
     & button {
-      margin: 2rem auto;
+      margin: 4rem auto;
       display: block;
-      font-size: 1.8rem;
+      font-size: 2.4rem;
     }
   `;
 
@@ -53,7 +60,7 @@ const SectionModal = ({ isOpen, close }) => {
   return (
     <Modal
       styles={{
-        modal: { width: '48rem', borderRadius: '5px', padding: '1.5rem' },
+        modal: modalStyles,
       }}
       open={isOpen}
       onClose={close}
@@ -80,8 +87,8 @@ const SectionInList = ({ data, index, close }) => {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 1.2rem;
-    margin-right: 2rem;
+    font-size: 1.8rem;
+    margin: 1rem 2rem 1rem 0;
     cursor: pointer;
 
     & .non-trash-elements {
@@ -99,8 +106,8 @@ const SectionInList = ({ data, index, close }) => {
 
       & .active {
         visibility: ${isActive ? 'visible' : 'hidden'};
-        height: 1rem;
-        width: 1rem;
+        height: 1.8rem;
+        width: 1.8rem;
         border-radius: 50%;
         background-color: ${colors.tertiary};
         transform: translateY(2px);
@@ -113,7 +120,7 @@ const SectionInList = ({ data, index, close }) => {
     }
 
     & .trash {
-      height: 2rem;
+      height: 3rem;
       margin: auto 0;
     }
   `;

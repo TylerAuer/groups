@@ -5,7 +5,7 @@ import { colors } from '../../constants/styles';
 const ControlBtn = ({ text, onClick }) => {
   const btnCss = css`
     position: relative;
-    font-size: 1.2rem;
+    font-size: 2rem;
     padding: 6px 12px;
 
     border: none;

@@ -6,9 +6,9 @@ const Pill = ({ text, color }) => {
   const pillCss = css`
     display: inline-block;
     padding: 5px 12px;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     border-radius: 15px;
-    margin-left: 0.5rem;
+    margin-left: 1rem;
   `;
 
   let colorCss;

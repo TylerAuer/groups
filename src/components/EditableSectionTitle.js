@@ -35,7 +35,7 @@ const EditableSectionTitle = () => {
   const titleCss = css`
     font-family: inherit;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3.6rem;
     font-weight: bold;
     border: 2px solid transparent;
     border-radius: 5px;

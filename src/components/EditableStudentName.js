@@ -24,7 +24,7 @@ const EditableStudentName = ({ id }) => {
     display: inline-block;
     font-family: inherit;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 2rem;
     border: 2px solid transparent;
     border-radius: 5px;
     outline: none;

@@ -10,10 +10,10 @@ const Bar = ({ children, highlight, styles = css`` }) => {
 
     border: 2px solid grey;
     border-radius: 5px;
-    padding: 0.3rem 1rem;
+    padding: 0.75rem 1.5rem;
     margin: 0.25rem 0;
 
-    font-size: 1.2rem;
+    font-size: 2rem;
   `;
 
   const highlightCss = css`

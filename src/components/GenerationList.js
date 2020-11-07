@@ -35,7 +35,7 @@ const GenerationList = () => {
   const dateCss = css`
     color: ${colors.mediumgrey};
     font-style: italic;
-    font-size: 1rem;
+    font-size: 1.6rem;
     margin-left: 0.8rem;
   `;
 

@@ -16,7 +16,7 @@ const GenerationControls = () => {
     display: flex;
     justify-content: left;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
     font-weight: normal;
 
     & > :not(:last-child) {

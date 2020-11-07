@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const LargeLinkBtn = ({ to, text }) => {
   const btnCss = css`
     display: block;
-    width: 60%;
+    width: 80%;
     margin: 4rem auto;
-    font-size: 2rem;
+    font-size: 3rem;
     outline: none;
     border: none;
     border-radius: 5px;
@@ -24,7 +24,7 @@ const LargeLinkBtn = ({ to, text }) => {
     &:focus {
       text-decoration: none;
       outline: none;
-      width: 70%;
+      width: 90%;
     }
   `;
 

@@ -6,7 +6,8 @@ const MediumBtn = ({ text, onClick }) => {
   const btnCss = css`
     display: block;
     position: relative;
-    font-size: 1.2rem;
+    font-size: 2.6rem;
+    font-weight: bold;
     padding: 0.75rem 3rem;
     border: none;
     outline: none;

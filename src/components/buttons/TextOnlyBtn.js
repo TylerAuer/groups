@@ -5,8 +5,8 @@ import { colors } from '../../constants/styles';
 const TextOnlyBtn = ({ text, onClick }) => {
   const btnCss = css`
     border: none;
-    font-size: 1.2rem;
-    padding: 0.25rem;
+    font-size: 1.8rem;
+    padding: 1rem;
     outline: none;
     background-color: transparent;
 

@@ -13,12 +13,12 @@ const LogoAndTitle = ({ title = true, logo = true }) => {
     }
     & > h1 {
       text-align: center;
-      font-size: 5rem;
+      font-size: 8rem;
       line-height: 1;
       margin: 1rem;
     }
     & > .subtitle {
-      font-size: 1.2rem;
+      font-size: 1.8rem;
       text-align: center;
       line-height: 1;
       margin-bottom: 4rem;
