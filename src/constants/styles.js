@@ -3,6 +3,7 @@ export const colors = {
   secondary: 'lightblue',
   tertiary: 'orchid',
   tertiaryLight: '#DA70D6',
+  tertiaryVeryLight: '#f2def1',
   grey_bg: '#f0ecf1',
   lightgrey: '#dddddd',
   mediumgrey: '#bababa',

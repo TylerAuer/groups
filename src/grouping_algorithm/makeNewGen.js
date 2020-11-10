@@ -9,12 +9,12 @@ import {
   userDataAtom,
   activeSectionIdxAtom,
 } from '../recoil/atoms';
-import { relationGraph } from '../recoil/selectors/relations';
+import { historyGraph } from '../recoil/selectors/history';
 import cloneDeep from 'lodash.clonedeep';
 
 const useGenNewGen = () => {
   const setData = useSetRecoilState(userDataAtom);
-  const relations = useRecoilValue(relationGraph);
+  const relations = useRecoilValue(historyGraph);
   const size = useRecoilValue(groupSizeConfigAtom);
   const extras = useRecoilValue(extrasConfigAtom);
   const idx = useRecoilValue(activeSectionIdxAtom);
