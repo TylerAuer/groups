@@ -62,7 +62,8 @@ const GenerationList = () => {
 
   const headerWithTitle = (
     <h2 css={headerWithTitleCss}>
-      Generations <GenerationControls />
+      Generations ( {gens.length} )
+      <GenerationControls />
     </h2>
   );
 
@@ -85,8 +86,6 @@ const GenerationList = () => {
     if (!window.confirm(warning)) return;
 
     if (genIdx === clickedIdx) {
-      // TODO: Fix bug where clicking on delete also clicks the bar
-
       // Deleting the generation currently being shown, so show no groups
       setGenIdx(null);
     } else if (clickedIdx < genIdx) {

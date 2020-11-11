@@ -1,4 +1,5 @@
 /** @jsx jsx */
+import React from 'react';
 import { css, jsx } from '@emotion/core';
 import { useState } from 'react';
 import { useSetRecoilState, useRecoilValue } from 'recoil';
@@ -22,6 +23,10 @@ const StudentList = () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    & .inactive-count {
+      color: ${colors.mediumgrey};
+    }
   `;
 
   const studentCss = css`
@@ -110,6 +115,16 @@ const StudentList = () => {
     });
   };
 
+  let activeCount = 0;
+  let inactiveCount = 0;
+  students.forEach((s) => {
+    if (s.active) {
+      activeCount++;
+    } else {
+      inactiveCount++;
+    }
+  });
+
   const listOfStudents = [...students]
     .sort((a, b) => {
       if (a.active && b.active) return 0;
@@ -141,7 +156,18 @@ const StudentList = () => {
   return (
     <section id="student-list">
       <h2 css={h2Css}>
-        Students
+        <div>
+          Students ( {activeCount}
+          {inactiveCount ? (
+            <React.Fragment>
+              {' / '}
+              <span className="inactive-count">{inactiveCount} </span>
+            </React.Fragment>
+          ) : (
+            ' '
+          )}
+          )
+        </div>
         <ControlBtn text="Add" onClick={() => setAddModal(true)} />
       </h2>
       <AddStudent
