@@ -136,6 +136,15 @@ const SectionInList = ({ data, index, close }) => {
     close();
   };
 
+  const handleDeleteSection = (id, index) => {
+    const warning =
+      'WARNING: Are you sure you want to delete this section? All of your data will be lost. This cannot be undone.';
+
+    if (window.confirm(warning)) {
+      deleteSection(id, index);
+    }
+  };
+
   return (
     <div css={sectionInListCss}>
       <div className="non-trash-elements" onClick={handleSelectSection}>
@@ -157,7 +166,7 @@ const SectionInList = ({ data, index, close }) => {
         className="trash"
         src={trash}
         alt="Delete this section"
-        onClick={() => deleteSection(data.id, index)}
+        onClick={() => handleDeleteSection(data.id, index)}
       />
     </div>
   );

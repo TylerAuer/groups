@@ -42,9 +42,13 @@ const useDeleteSection = () => {
         if (res.status === 200) {
           setSave(SAVE_STATUS.SAVED);
 
-          // If deleting the section that is currently open, set the active
-          // section to be the first in the list
-          if (index === idx) setIdx(0);
+          // Choose the correct active idx
+          if (index === idx) {
+            // If deleting the currently open section
+            setIdx(0);
+          } else if (index < idx) {
+            setIdx((prev) => prev - 1);
+          }
 
           setData((prev) => {
             const next = cloneDeep(prev);
