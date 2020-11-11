@@ -25,10 +25,12 @@ const GenerationList = () => {
   const studentCount = useRecoilValue(studentList).length;
 
   const barContainerCss = css`
-    cursor: pointer;
+    & .left {
+      flex-grow: 1;
+    }
 
-    & > div:hover {
-      border-color: ${colors.tertiary};
+    & .left:hover {
+      cursor: pointer;
     }
   `;
 
@@ -80,7 +82,6 @@ const GenerationList = () => {
   const handleDeleteGen = (clickedIdx) => {
     const warning =
       'Are you sure you want to delete this set of groups? This cannot be undone';
-
     if (!window.confirm(warning)) return;
 
     if (genIdx === clickedIdx) {
@@ -118,15 +119,15 @@ const GenerationList = () => {
         );
 
         return (
-          <div css={barContainerCss} key={idx} onClick={() => setGenIdx(idx)}>
+          <div css={barContainerCss} key={idx}>
             <Bar highlight={genIdx === idx}>
-              <div>
+              <div className="left" onClick={() => setGenIdx(idx)}>
                 {`${gen.students} people`}
                 <Pill color="purple" text={`${gen.group_size} per group`} />
                 <Pill color="grey" text={EXTRA_OPTIONS[gen.extras].name} />
                 <span css={dateCss}>{date}</span>
               </div>
-              <div>
+              <div className="right">
                 <TextOnlyBtn
                   onClick={() => handleDeleteGen(idx)}
                   text="Delete"
