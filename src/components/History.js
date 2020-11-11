@@ -1,7 +1,8 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
-import { historyGraph } from '../recoil/selectors/history';
 import { useRecoilValue } from 'recoil';
+import { historyGraph } from '../recoil/selectors/history';
+import { genList } from '../recoil/selectors/generations';
 import { colors } from '../constants/styles';
 import left from '../img/icons/left-arrow.svg';
 import down from '../img/icons/down-arrow.svg';
@@ -9,6 +10,9 @@ import downAndLeft from '../img/icons/down-and-left-arrow.svg';
 
 const History = () => {
   const history = useRecoilValue(historyGraph);
+  const gens = useRecoilValue(genList);
+
+  if (!gens.length) return null;
 
   const matrixCss = css`
     font-size: 1.4rem;
@@ -97,6 +101,7 @@ const History = () => {
 
       countElems.push(
         <div
+          key={`${id}-${i}`}
           className={`
           cell ${i === 0 ? 'first-cell-of-row' : ''} 
           ${id === countOfStudents - 1 ? 'first-cell-of-column' : ''} 
@@ -108,7 +113,11 @@ const History = () => {
       );
     }
 
-    countElems.push(<div className="arrow">{arrow}</div>);
+    countElems.push(
+      <div key={id} className="arrow">
+        {arrow}
+      </div>
+    );
 
     chart.push(
       <div className={`row ${id % 2 === 0 ? 'shaded-row' : ''}`} key={id}>
