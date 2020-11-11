@@ -17,12 +17,11 @@ const History = () => {
   const matrixCss = css`
     font-size: 1.4rem;
     margin-top: 2rem;
-    /* overflow: scroll; */
 
     & .row {
       display: flex;
       justify-content: flex-start;
-      text-align: right;
+      text-align: center;
       align-items: center;
     }
 
@@ -44,7 +43,7 @@ const History = () => {
       font-size: 1.2rem;
       vertical-align: sub;
       transform-origin: bottom left;
-      transform: translate(-4px, -8px) rotate(-30deg);
+      transform: translate(-1px, -4px) rotate(-30deg);
     }
 
     & .cell {
