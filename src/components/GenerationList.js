@@ -78,8 +78,14 @@ const GenerationList = () => {
   }
 
   const handleDeleteGen = (clickedIdx) => {
-    // TODO: Fix bug where clicking on delete also clicks the bar
+    const warning =
+      'Are you sure you want to delete this set of groups? This cannot be undone';
+
+    if (!window.confirm(warning)) return;
+
     if (genIdx === clickedIdx) {
+      // TODO: Fix bug where clicking on delete also clicks the bar
+
       // Deleting the generation currently being shown, so show no groups
       setGenIdx(null);
     } else if (clickedIdx < genIdx) {
