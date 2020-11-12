@@ -2,7 +2,7 @@
 import { css, jsx } from '@emotion/core';
 import { colors } from '../../constants/styles';
 
-const TextOnlyBtn = ({ text, onClick }) => {
+const TextOnlyBtn = ({ text, onClick, className = '' }) => {
   const btnCss = css`
     border: none;
     font-size: 1.8rem;
@@ -18,7 +18,7 @@ const TextOnlyBtn = ({ text, onClick }) => {
   `;
 
   return (
-    <button css={btnCss} onClick={onClick}>
+    <button className={className} css={btnCss} onClick={onClick}>
       {text}
     </button>
   );
