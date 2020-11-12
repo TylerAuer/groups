@@ -15,9 +15,21 @@ const HistoryCollapsing = () => {
     border-bottom: 1px solid ${colors.tertiary};
 
     & .name {
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-size: 2rem;
+      /* font-weight: bold; */
       padding: 0;
+    }
+
+    & .active {
+      color: ${colors.tertiary};
+      font-size: 3rem;
+
+      &__add-on {
+        color: ${colors.mediumgrey};
+        margin-left: 1rem;
+        display: inline-block;
+        font-size: 1.8rem;
+      }
     }
   `;
 
@@ -28,8 +40,14 @@ const HistoryCollapsing = () => {
           <TextOnlyBtn
             text={person.name}
             onClick={() => setActive(active !== i ? i : null)}
-            className="name"
+            className={`name ${active === i ? 'active' : ''}`}
           />
+          {active === i && (
+            <div className="active__add-on">
+              (Person - Times in Group with {person.name})
+            </div>
+          )}
+
           {active === i && (
             <HistoryForAPerson relations={Object.values(person.relations)} />
           )}
@@ -40,15 +58,39 @@ const HistoryCollapsing = () => {
 };
 
 const HistoryForAPerson = ({ relations }) => {
-  const styles = css``;
+  const styles = css`
+    font-size: 1.8rem;
 
-  const rows = relations.map((r, i) => (
-    <div css={styles} key={i}>
-      {r.name} - {r.count}
+    & ul {
+      list-style: none;
+      padding-inline-start: 1rem;
+      margin: 0;
+      font-size: 1.8rem;
+      border-left: 3px solid ${colors.tertiary};
+
+      & li {
+        margin: 0.5rem 0;
+      }
+    }
+  `;
+
+  let rows = relations
+    .sort((a, b) => b.count - a.count)
+    .map((r, i) => (
+      <li key={i}>
+        {r.name} - {r.count}
+      </li>
+    ));
+
+  if (!rows.length) {
+    rows = <li>This person has not yet been in a group with others.</li>;
+  }
+
+  return (
+    <div css={styles}>
+      <ul>{rows}</ul>
     </div>
-  ));
-
-  return <div>{rows}</div>;
+  );
 };
 
 export default HistoryCollapsing;
