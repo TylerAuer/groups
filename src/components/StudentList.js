@@ -46,7 +46,7 @@ const StudentList = () => {
     }
 
     .index {
-      width: 1rem;
+      width: 2rem;
     }
   `;
 
