@@ -1,6 +1,7 @@
 // Minimal elements of state for the application
 import { atom } from 'recoil';
 import { EXTRA_OPTIONS } from '../constants/extraOptions';
+import { SAVE_STATUS } from '../constants/saveStatus';
 
 ///////////////////////////////////////////////////////////
 // USER AND AUTH ATOMS ////////////////////////////////////
@@ -21,6 +22,11 @@ export const checkingForUserAtom = atom({
 export const isSignedInAtom = atom({
   key: 'isSignedInAtom',
   default: false,
+});
+
+export const dataIsSavedAtom = atom({
+  key: 'dataIsSavedAtom',
+  default: SAVE_STATUS.SAVED,
 });
 
 ////////////////////////////////////////////////////////////
@@ -53,11 +59,6 @@ export const extrasConfigAtom = atom({
   // when the groups can't be even
   key: 'extrasConfigAtom',
   default: EXTRA_OPTIONS.SPLIT_ACROSS,
-});
-
-export const dataIsSavedAtom = atom({
-  key: 'dataIsSavedAtom',
-  default: true,
 });
 
 ////////////////////////////////////////////////////////////

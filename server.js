@@ -28,8 +28,9 @@ app.get('/auth/verify', authorize, auth.verify);
 app.get('/auth/logout', authorize, auth.logout);
 app.get('/auth/destroy', authorize, auth.destroy);
 
-// Sections
+// Data
 app.get('/data', authorize, data.getData);
+app.put('/data/check', authorize, data.checkForStaleData);
 app.post('/data/section/new', authorize, data.makeNewSection);
 app.put('/data/section/:id', authorize, data.saveSectionData);
 app.delete('/data/section/:id', authorize, data.deleteSection);
