@@ -15,9 +15,6 @@ const useSaveSection = () => {
   const key = section && section.id;
 
   const saveSection = async () => {
-    // Doesn't take effect until AFTER the fetch request has been made,
-    // So there is also a +1 on the save selector
-
     fetch(`/data/section/${key}`, {
       method: 'PUT',
       headers: {

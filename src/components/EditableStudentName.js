@@ -45,6 +45,7 @@ const EditableStudentName = ({ id }) => {
   const handleChange = (e) => {
     setData((prev) => {
       const next = cloneDeep(prev);
+      next.GroupUsSections[idx].section_info.version++;
       next.GroupUsSections[idx].section_info.students[id].name = e.target.value;
 
       return next;

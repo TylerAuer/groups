@@ -74,9 +74,9 @@ const GenerationList = () => {
   );
 
   let title = null;
-  if (studentCount && gens.length) {
+  if (studentCount > 2 && gens.length) {
     title = headerWithTitle;
-  } else if (studentCount) {
+  } else if (studentCount > 2) {
     title = headerJustControls;
   }
 
